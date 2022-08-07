@@ -257,7 +257,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   textColor: Colors.white,
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    "log in",
+                    "Log In",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
                   ),
                   onPressed: onSingInTap,
