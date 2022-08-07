@@ -56,7 +56,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     };
 
     return Scaffold(
-      backgroundColor: ThemeColors.background_color,
+      backgroundColor: ThemeColors.background_color1,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: InkWell(
@@ -65,7 +65,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           },
           child: Icon(
             Icons.arrow_back,
-            color: Colors.white,
           ),
         ),
         // backgroundColor: Colors.transparent,
@@ -92,8 +91,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       "Claim",
                       style: TextStyle(
                         color: Color.fromRGBO(205, 13, 30, 1),
-                        fontSize: 30,
                         fontFamily: 'circulat_std_bold.ttf',
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     // SizedBox(
@@ -103,7 +103,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       "Core",
                       style: TextStyle(
                         color: ThemeColors.primary_dark_lt,
-                        fontSize: 30,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
                         fontFamily: 'circulat_std_bold.ttf',
                       ),
                     ),
@@ -181,7 +182,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     "Cancel",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
                   ),
-                  onPressed: onForgotPasswordTap,
+                  onPressed: () {},
 
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),

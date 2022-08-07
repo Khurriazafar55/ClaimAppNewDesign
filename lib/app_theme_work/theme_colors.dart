@@ -5,9 +5,11 @@ class ThemeColors {
   ThemeColors._();
 
   //Light theme colors
-  static const Color primary_dark_lt = Colors.deepOrangeAccent;
+  static const Color primary_dark_lt = Color.fromRGBO(255, 102, 0, 1);
+
   static const Color orange_button = Color.fromRGBO(255, 102, 0, 1);
-  static const Color background_color = Color(0xFFF6EEEE);
+  static const Color background_color = Color.fromRGBO(249, 198, 153, 1);
+  static const Color background_color1 = Color.fromRGBO(248, 240, 234, 1);
   static const Color primary_light_lt = primary_dark_lt;
   static const Color primary_varient_lt = Color(0xff6B2D5C);
   static const Color primary_yellow_lt = Color(0xFFF2CD60);

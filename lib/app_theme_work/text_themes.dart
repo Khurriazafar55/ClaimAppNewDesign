@@ -145,7 +145,6 @@ class TextThemes {
     headline3: heading_03.copyWith(color: ThemeColors.headline3_color_lt),
     headline4: heading_04.copyWith(color: ThemeColors.headline4_color_lt),
     headline5: heading_05.copyWith(color: ThemeColors.headline5_color_lt),
-    // headline6: heading_06.copyWith(color: ThemeColors.headline6_color_lt),
     headline6: heading_06.copyWith(color: ThemeColors.headline7_color_lt),
     subtitle1: subtitle_01.copyWith(color: ThemeColors.subtitle1_color_lt),
     subtitle2: subtitle_02.copyWith(color: ThemeColors.subtitle2_color_lt),

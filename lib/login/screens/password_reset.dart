@@ -16,7 +16,7 @@ class _PasswordResetState extends State<PasswordReset> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeColors.background_color,
+      backgroundColor: ThemeColors.background_color1,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: InkWell(
@@ -52,7 +52,8 @@ class _PasswordResetState extends State<PasswordReset> {
                       "Claim",
                       style: TextStyle(
                         color: Color.fromRGBO(205, 13, 30, 1),
-                        fontSize: 30,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
                         fontFamily: 'circulat_std_bold.ttf',
                       ),
                     ),
@@ -63,8 +64,9 @@ class _PasswordResetState extends State<PasswordReset> {
                       "Core",
                       style: TextStyle(
                         color: ThemeColors.primary_dark_lt,
-                        fontSize: 30,
                         fontFamily: 'circulat_std_bold.ttf',
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ])),

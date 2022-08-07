@@ -8,6 +8,7 @@ import 'package:claim_core/claim/screens/screen_my_claims.dart';
 import 'package:claim_core/claim/screens/screen_new_claim.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
 import 'package:claim_core/dashboard/models/model_weather.dart';
+import 'package:claim_core/dashboard/models/model_weather1.dart';
 import 'package:claim_core/dashboard/screens/screen_calendar.dart';
 import 'package:claim_core/dashboard/screens/screen_contacts.dart';
 import 'package:claim_core/dashboard/screens/screen_guide.dart';
@@ -27,6 +28,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:intl/intl.dart';
 
 class ScreenDashboard extends StatefulWidget {
   @override
@@ -35,6 +37,19 @@ class ScreenDashboard extends StatefulWidget {
 
 class _ScreenDashboardState extends State<ScreenDashboard> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+//  DateFormat("yyyy-MM-ddTHH:mm:ss").parse(dateTime)
+
+  String getTime2(String time) {
+    String spilt = time.split(',').last;
+    spilt = spilt.split(',').first;
+    print(spilt);
+    DateTime tempDate = DateFormat("yyyy-MM-ddTHH:mm:ss").parse(spilt);
+    String dateTo = DateFormat("hh:mm a").format(tempDate);
+    print(dateTo);
+    return dateTo;
+  }
+  //yyyy-MM-dd
 
   @override
   void initState() {
@@ -153,16 +168,12 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
         ConstantFunctions.OpenNewActivity(ScreenMeasureAssist()),
       );
     };
-    return Scaffold(
-      key: _drawerKey,
-      drawer: ScreenDrawer(),
-      body: GetBody(),
-    );
+    return Scaffold(key: _drawerKey, drawer: ScreenDrawer(), body: GetBody());
   }
 
   Widget GetBody() {
     return Container(
-        color: Color.fromRGBO(249, 198, 153, 1),
+        color: ThemeColors.background_color,
         child: Column(
           children: [
             Expanded(
@@ -172,13 +183,8 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                     Container(
                       decoration: new BoxDecoration(
                           color: Color.fromRGBO(255, 94, 0, 1),
-                          //   borderRadius: BorderRadius.only(
-                          //       bottomLeft: Radius.circular(130),
-                          //       bottomRight: Radius.circular(190)),
-                          // ),
-                          borderRadius: BorderRadius.vertical(
-                            bottom: Radius.elliptical(
-                                MediaQuery.of(context).size.height, 190.0),
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(95),
                           )),
                       padding:
                           EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -234,6 +240,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                             ],
                           ),
                           Container(
+                              width: double.infinity,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   // center: Alignment.center,
@@ -254,36 +261,66 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
-                              width: double.infinity,
-                              // height: 120,
+                              height: MediaQuery.of(context).size.height / 5.8,
                               margin: EdgeInsets.symmetric(
-                                  horizontal: 7, vertical: 20),
+                                  horizontal: 5, vertical: 5),
                               padding: EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 10),
-                              // decoration: WidgetsReusing.getListBoxDecoration(),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        getWeatherhead2(
+                                            "FrankFort, IL", "92 F"),
+                                        getWeatherhead3(Icons.sunny, "Sunny",
+                                            "H:94", "L:60"),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    color:
+                                        const Color.fromRGBO(86, 201, 250, 1),
+                                    height: MediaQuery.of(context).size.height /
+                                        10.5,
+                                    child: FutureBuilder<List>(
+                                      future: fetchWeather(),
+                                      builder: (context, snapshot) {
+                                        final weather = snapshot.data;
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        }
+                                        if (weather == null) {
+                                          return const Center(
+                                              child: Text('No user found'));
+                                        }
 
-                              child: getWeather(
-                                Icons.ac_unit,
-                                "sdf",
-                                "sfdf",
-                              )
-                              // child: getWeatherFunctional("", "", "")
-                              // child: getWeatherFunctional(Icons.sunny, "hhh", "ggg"),
-                              /*     child: FutureBuilder(
-                // future: ,
-                builder: (context, AsyncSnapshot<> snapshot) {
-                  if(snapshot.hasError) {
+                                        return ListView.builder(
+                                          itemCount: weather.length,
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, index) {
+                                            final temp = weather[index];
 
-                  }
-                  else if(snapshot.hasData) {
-
-                  }
-                  else {
-
-                  }
-                },
-              ),*/
-                              ),
+                                            return getWeatherUpdate(
+                                                getTime2(temp.date),
+                                                // temp.date,
+                                                temp.summary,
+                                                temp.temperatureC.toString());
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )),
                           Container(
                             width: double.infinity,
                             // height: 120,
@@ -433,123 +470,39 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
         ));
   }
 
-  Widget getWeather(
-    time,
-    icon_data,
-    temp,
-  ) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          // center: Alignment.center,
-          begin: Alignment.topCenter,
-
-          end: Alignment.bottomCenter,
-          stops: [
-            0.15,
-            0.4,
-            // 0.6,
-            // 0.9,
-          ],
-          colors: [
-            Color.fromRGBO(55, 121, 253, 1),
-            const Color.fromRGBO(86, 201, 250, 1)
-          ],
-          // tileMode: TileMode.clamp,
-        ),
-        borderRadius: BorderRadius.circular(5),
-      ),
-
-      // color: Color.fromARGB(255, 138, 213, 248),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              getWeatherhead2("FrankFort, IL", "92 F"),
-              getWeatherhead3(Icons.sunny, "Sunny", "H:94", "L:60"),
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              getWeatherUpdate(
-                "9 AM",
-                Icons.sunny,
-                "92",
-              ),
-              getWeatherUpdate(
-                "9 AM",
-                Icons.sunny,
-                "92",
-              ),
-              getWeatherUpdate(
-                "9 AM",
-                Icons.sunny,
-                "92",
-              ),
-              getWeatherUpdate(
-                "9 AM",
-                Icons.sunny,
-                "92",
-              ),
-              getWeatherUpdate1(
-                "9 AM",
-                Icons.cloud_outlined,
-                // Icon(
-                //   Icons.outbond_outlined,
-                //   size: 30,
-                //   color: Colors.white,
-                // ),
-                "92",
-              ),
-              getWeatherUpdate1(
-                "9 AM",
-                Icons.cloud_outlined,
-                "92",
-              ),
-
-              // getWeatherUpdate(
-              //     Icons.cloud_outlined, "Thursday", "30%", "H:76 o L 66"),
-              // getWeatherUpdate(
-              //     Icons.cloud_outlined, "Friday", "30%", "H:76 o L 66"),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget getWeatherUpdate(
-    time,
-    icon_data,
+    date,
+    summary,
     temp,
   ) {
-    return Column(
-      children: [
-        Text(time,
-            style: Theme.of(context)
-                .textTheme
-                .headline6!
-                .copyWith(fontSize: 13.5)),
-        Icon(
-          icon_data,
-          size: 30,
-          color: Colors.yellow,
-        ),
-        Text(temp,
-            style: Theme.of(context)
-                .textTheme
-                .headline6!
-                .copyWith(fontSize: 13.5)),
-        // Text(humidity,
-        //     style: Theme.of(context)
-        //         .textTheme
-        //         .headline4!
-        //         .copyWith(fontSize: 13.5)),
-      ],
-    );
+    return Card(
+        color: const Color.fromRGBO(86, 201, 250, 1),
+        elevation: 0,
+        child: Column(
+          children: [
+            Text(date,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 13.5)),
+            SizedBox(
+              height: 5,
+            ),
+            Text(summary,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 13.5)),
+            SizedBox(
+              height: 5,
+            ),
+            Text(temp,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 13.5)),
+          ],
+        ));
   }
 
   Widget getWeatherUpdate1(
@@ -695,5 +648,24 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
         ),
       ],
     );
+  }
+
+  Future<List> fetchWeather() async {
+    const baseUrl = 'https://insurancefapp.azurewebsites.net';
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/weatherforecast'),
+        headers: {
+          HttpHeaders.contentTypeHeader: ContentType.json.toString(),
+        },
+      );
+      if (response.statusCode != HttpStatus.ok) {
+        throw Exception('failed to load user');
+      }
+      final List photos = jsonDecode(response.body);
+      return photos.map((photo) => ModelWeather.fromMap(photo)).toList();
+    } catch (e) {
+      throw Exception('User failed  ');
+    }
   }
 }

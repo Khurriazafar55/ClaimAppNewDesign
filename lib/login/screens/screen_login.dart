@@ -1,5 +1,6 @@
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
+import 'package:claim_core/dashboard/screens/dashboard.dart';
 import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
 import 'package:claim_core/data/database_user.dart';
 import 'package:claim_core/login/screens/forgot_screen.dart';
@@ -50,6 +51,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_function_declarations_over_variables
     GestureTapCallback onSingInTap = () {
       print("HelloImranKhana : GestureTapCallback");
 
@@ -97,7 +99,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
     };
 
     return Scaffold(
-      backgroundColor: ThemeColors.background_color,
+      backgroundColor: ThemeColors.background_color1,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: InkWell(
@@ -143,9 +145,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
                       "Claim",
                       style: TextStyle(
                         color: Color.fromRGBO(205, 13, 30, 1),
-                        fontSize: 30,
-                        fontFamily: 'circulat_std_bold.ttf',
-                        // fontWeight: FontWeight.w300,
+                        fontSize: 40,
+                        fontFamily: "circulat_std_bold",
+                        fontWeight: FontWeight.w700,
 
                         // fontWeight: FontWeight.bold,
                       ),
@@ -157,10 +159,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
                       "Core",
                       style: TextStyle(
                         color: ThemeColors.primary_dark_lt,
-                        fontSize: 30,
+                        fontSize: 40,
                         fontFamily: 'circulat_std_bold.ttf',
 
-                        // fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w700,
                         // fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -255,7 +257,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   textColor: Colors.white,
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    "Log In",
+                    "log in",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
                   ),
                   onPressed: onSingInTap,

@@ -12,7 +12,7 @@ class RestApiUtils {
   // static String ip_config = "https://insurancefrontapp1.azurewebsites.net/Services/";
 
   // static String ImageUrl = "http://fundraising.sidrafoundation.pk/storage/avatars/";
-
+  // https://insurancefapp.azurewebsites.net/weatherforecast
   static final String login = ip_config + "api/Auth/Login";
   static final String forgot = ip_config + "api/auth/Forgot";
   static final String drop_down_get_all = ip_config + "api/DropDown/GetAll";

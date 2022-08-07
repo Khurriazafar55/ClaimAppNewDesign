@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:claim_core/claim/reports/data/database_images.dart';
-import 'package:claim_core/dashboard/dashboard.dart';
+import 'package:claim_core/dashboard/dashboard_services.dart';
 import 'package:claim_core/login/screens/screen_login.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:flutter/material.dart';
