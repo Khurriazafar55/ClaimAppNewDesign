@@ -105,76 +105,79 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: FutureBuilder(
-                      future: future_get_claim,
-                      builder:
-                          (context, AsyncSnapshot<ModelGetClaim> snapshot) {
-                        //  print("snapshotobject : hasData : ${snapshot.hasData}");
-                        // print("snapshotobject : hasError : ${snapshot.hasError}");
-
-                        if (snapshot.hasData) {
-                          // print("object : data : ${snapshot.data}");
-                          if (snapshot.data!.data == null &&
-                              snapshot.data!.status == 200) {
-                            return WidgetsReusing.getReLoadWidget(context,
-                                icon_path: AppAssets.claim_issues,
-                                message: "${snapshot.error.toString()}",
-                                onPresseddd: onPresseddd);
-                          }
-                          if (snapshot.data!.data != null &&
-                              snapshot.data!.data!.length > 0) {
-                            return ListView.builder(
-                              itemCount: snapshot.data!.data!.length,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {
-                                    Color _colour = Colors.blue;
-                                    if (snapshot.data!.data![index].state ==
-                                        "Assigned") {
-                                      _colour = Colors.blue;
-                                    } else if (snapshot
-                                            .data!.data![index].state ==
-                                        "In Progress") {
-                                      _colour = Colors.orange;
-                                    } else if (snapshot
-                                            .data!.data![index].state ==
-                                        "Cancelled") {
-                                      _colour = Colors.black54;
-                                    }
-
-                                    Navigator.push(
-                                        context,
-                                        ConstantFunctions.OpenNewActivity(
-                                            ScreenNamePHClaimDetail(
-                                          dataSingleClaim:
-                                              snapshot.data!.data![index],
-                                          status_color: _colour,
-                                        )));
-                                  },
-                                  child: WidgetsReusing.GetClaimListItem(
-                                      snapshot.data!.data![index]),
-                                );
-                              },
-                            );
-                          } else {
-                            return WidgetsReusing.getReLoadWidget(context,
-                                icon_path: "claim_issues.json",
-                                message: "${snapshot.data!.message}",
-                                onPresseddd: onPresseddd);
-                          }
-                        } else if (snapshot.hasError) {
-                          return WidgetsReusing.getReLoadWidget(context,
-                              message: "${snapshot.error.toString()}",
-                              onPresseddd: onPresseddd);
-                        } else {
-                          return ConstantFunctions.ShowProgressLoadingView(
-                              context);
-                        }
-                      },
-                    ),
-                  ),
                   // Expanded(
+                  //   child: FutureBuilder(
+                  //     future: future_get_claim,
+                  //     builder:
+                  //         (context, AsyncSnapshot<ModelGetClaim> snapshot) {
+                  //       //  print("snapshotobject : hasData : ${snapshot.hasData}");
+                  //       // print("snapshotobject : hasError : ${snapshot.hasError}");
+
+                  //       if (snapshot.hasData) {
+                  //         // print("object : data : ${snapshot.data}");
+                  //         if (snapshot.data!.data == null &&
+                  //             snapshot.data!.status == 200) {
+                  //           return WidgetsReusing.getReLoadWidget(context,
+                  //               icon_path: AppAssets.claim_issues,
+                  //               message: "${snapshot.error.toString()}",
+                  //               onPresseddd: onPresseddd);
+                  //         }
+                  //         if (snapshot.data!.data != null &&
+                  //             snapshot.data!.data!.length > 0) {
+                  //           return ListView.builder(
+                  //             itemCount: snapshot.data!.data!.length,
+                  //             itemBuilder: (context, index) {
+                  //               return InkWell(
+                  //                 onTap: () {
+                  //                   Color _colour = Colors.blue;
+                  //                   if (snapshot.data!.data![index].state ==
+                  //                       "Assigned") {
+                  //                     _colour = Colors.blue;
+                  //                   } else if (snapshot
+                  //                           .data!.data![index].state ==
+
+                  //                       "In Progress") {
+                  //                     _colour = Colors.orange;
+                  //                   } else if (snapshot
+                  //                           .data!.data![index].state ==
+                  //                       "Cancelled") {
+                  //                     _colour = Colors.black54;
+                  //                   }
+
+                  //                   Navigator.push(
+                  //                       context,
+                  //                       ConstantFunctions.OpenNewActivity(
+                  //                           ScreenNamePHClaimDetail(
+                  //                         dataSingleClaim:
+                  //                             snapshot.data!.data![index],
+                  //                         status_color: _colour,
+                  //                       )));
+                  //                 },
+                  //                 child: WidgetsReusing.GetClaimListItem(
+                  //                     snapshot.data!.data![index]),
+                  //               );
+
+                  //             },
+
+                  //           );
+                  //         } else {
+                  //           return WidgetsReusing.getReLoadWidget(context,
+                  //               icon_path: "claim_issues.json",
+                  //               message: "${snapshot.data!.message}",
+                  //               onPresseddd: onPresseddd);
+                  //         }
+                  //       } else if (snapshot.hasError) {
+                  //         return WidgetsReusing.getReLoadWidget(context,
+                  //             message: "${snapshot.error.toString()}",
+                  //             onPresseddd: onPresseddd);
+                  //       } else {
+                  //         return ConstantFunctions.ShowProgressLoadingView(
+                  //             context);
+                  //       }
+                  //     },
+                  //   ),
+                  // ),
+                  // // Expanded(
                   //   child: ListView.builder(
                   //     itemCount: 10,
                   //     itemBuilder: (context, index) {
@@ -182,6 +185,44 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
                   //     },
                   //   ),
                   // )
+
+                  Container(
+                    child: FutureBuilder(
+                      future: future_get_claim,
+                      builder:
+                          (context, AsyncSnapshot<ModelGetClaim> snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    topRight: Radius.circular(25))),
+                            child: ListView.builder(
+                              itemCount: snapshot.data!.data!.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  title: Text(snapshot.data!.data![index].id
+                                      .toString()),
+                                  subtitle: Text(snapshot
+                                      .data!.data![index].mainContactPhoneNumber
+                                      .toString()),
+                                  // trailing: Text(
+                                  //     "${timeago.format(notificationsmodel.data[index].createdOn)}"),
+                                );
+                              },
+                            ),
+                          );
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

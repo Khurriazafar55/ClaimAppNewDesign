@@ -1,7 +1,7 @@
 import 'package:claim_core/app_theme_work/text_themes.dart';
+import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
 import 'package:claim_core/utilities/app_assets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -10,11 +10,11 @@ class WidgetsReusing {
     return BoxDecoration(
         color: Colors.white,
         //sifat
-        borderRadius: BorderRadius.all(Radius.circular(5)),
+        borderRadius: const BorderRadius.all(Radius.circular(5)),
         boxShadow: [
           BoxShadow(
               color: Colors.black.withOpacity(.25),
-              offset: Offset(1, 1),
+              offset: const Offset(1, 1),
               blurRadius: 5,
               spreadRadius: 1)
         ]);
@@ -22,10 +22,10 @@ class WidgetsReusing {
 
   static Widget GetClaimListItem(DataSingleClaim? data) {
     return Container(
-      margin: EdgeInsets.only(left: 5, right: 5, top: 7, bottom: 7),
-      padding: EdgeInsets.only(left: 5, right: 5, top: 7, bottom: 7),
+      margin: const EdgeInsets.only(left: 5, right: 5, top: 7, bottom: 7),
+      padding: const EdgeInsets.only(left: 5, right: 5, top: 7, bottom: 7),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
           border: Border.all(width: 2, color: Colors.black54)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,25 +47,25 @@ class WidgetsReusing {
           ),
           Text(
             "${data.address}",
-            style: TextStyle(fontSize: 17),
+            style: const TextStyle(fontSize: 17),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
                 child: Text("${data.adjusterName}",
-                    style: TextStyle(fontSize: 14)),
+                    style: const TextStyle(fontSize: 14)),
               ),
               Expanded(
                   child: Text(
                 "${data.inspectionDate}",
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               )),
               Expanded(
                   child: Text(
                 "${data.inspectionDate}",
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               )),
             ],
           ),
@@ -106,31 +106,31 @@ class WidgetsReusing {
       children: [
         Container(
           alignment: Alignment.topCenter,
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: 140,
                 height: 140,
                 child: Lottie.asset(icon_path),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Text(
                 "$message",
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 23,
                     letterSpacing: .2,
                     color: Colors.black87),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               GetTextButton(context, "Reload", onPresseddd,
-                  EdgeInsets.symmetric(horizontal: 20))
+                  const EdgeInsets.symmetric(horizontal: 20))
             ],
           ),
         ),
@@ -145,13 +145,13 @@ class WidgetsReusing {
           SizedBox(
             width: 62,
             height: 25,
-            child: Text('${title}',
-                style: TextStyle(
+            child: Text(title,
+                style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                     color: Colors.black)),
           ),
-          Text('${value}',
+          Text(value,
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
@@ -161,20 +161,20 @@ class WidgetsReusing {
     );
   }
 
-  static Widget GetGoalItem(IconData icon_data, String title, String value) {
+  static Widget GetGoalItem(IconData iconData, String title, String value) {
     return Container(
       child: Row(
         children: [
-          Icon(icon_data),
-          SizedBox(width: 10),
-          Text('${title}',
-              style: TextStyle(
+          Icon(iconData),
+          const SizedBox(width: 10),
+          Text(title,
+              style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                   color: Colors.black)),
-          Spacer(),
-          Text('${value}',
-              style: TextStyle(
+          const Spacer(),
+          Text(value,
+              style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                   color: Colors.black)),
@@ -184,20 +184,20 @@ class WidgetsReusing {
   }
 
   static Widget GetListSingleItemWidthHeight(
-      String title, String value, double item_width, double item_height) {
+      String title, String value, double itemWidth, double itemHeight) {
     return Container(
       child: Row(
         children: [
           SizedBox(
-            width: item_width,
-            height: item_height,
-            child: Text('${title}',
-                style: TextStyle(
+            width: itemWidth,
+            height: itemHeight,
+            child: Text(title,
+                style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                     color: Colors.black)),
           ),
-          Text('${value}',
+          Text(value,
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
@@ -211,8 +211,7 @@ class WidgetsReusing {
 
   static Material GetMaterialTabbar(context, tabController, tabList) {
     return Material(
-      // color: Theme.of(context).colorScheme.secondary,
-      color: Theme.of(context).colorScheme.background,
+      color: ThemeColors.background_color,
       child: TabBar(
         onTap: (vvv) {
           if (vvv == 0) {
@@ -224,9 +223,7 @@ class WidgetsReusing {
         controller: tabController,
         isScrollable: false,
         labelColor: Colors.black,
-        indicatorColor: Colors.white,
-        indicatorPadding: EdgeInsets.symmetric(horizontal: 0),
-        indicatorWeight: 3,
+
         // indicator: Decoration(),
         labelStyle: Theme.of(context)
             .textTheme
@@ -242,12 +239,12 @@ class WidgetsReusing {
       return Container(
         // padding: EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
-            color: Colors.grey[200],
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: ThemeColors.headline6_color_lt,
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             boxShadow: [
               BoxShadow(
                   color: Colors.black.withOpacity(0.2),
-                  offset: Offset(0, 5),
+                  offset: const Offset(0, 5),
                   blurRadius: 10,
                   spreadRadius: 3)
             ]),
@@ -260,10 +257,10 @@ class WidgetsReusing {
 
   //=========== Tab bar Work =========================================
 
-  static Widget GetTextFormField(context, _controller,
+  static Widget GetTextFormField(context, controller,
       {keyboardType = TextInputType.text}) {
     return TextFormField(
-      controller: _controller,
+      controller: controller,
       style: Theme.of(context).textTheme.bodyText2,
       keyboardType: keyboardType,
       decoration: InputDecoration(
@@ -275,7 +272,7 @@ class WidgetsReusing {
   }
 
   static Widget getElevatedButton(context, String text, onTap) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 55,
       child: ElevatedButton(
@@ -283,7 +280,7 @@ class WidgetsReusing {
         onPressed: onTap,
         child: Text(
           text,
-          style: TextStyle(fontSize: 18, color: Colors.white),
+          style: const TextStyle(fontSize: 18, color: Colors.white),
         ),
       ),
     );
@@ -291,9 +288,12 @@ class WidgetsReusing {
 
   static Widget GetTextButton(context, String text, onTap, edgeinsets) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width / 2,
       margin: edgeinsets,
-      color: Color.fromRGBO(255, 102, 0, 1),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(17),
+        color: ThemeColors.headline6_color_lt,
+      ),
       height: 50,
       child: TextButton(
         style: Theme.of(context).textButtonTheme.style,
@@ -312,7 +312,7 @@ class WidgetsReusing {
       width: double.infinity,
       margin: edgeinsets,
       height: 50,
-      color: Colors.transparent,
+      color: ThemeColors.headline7_color_lt,
       child: TextButton(
         style: Theme.of(context).textButtonTheme.style,
         onPressed: onTap,

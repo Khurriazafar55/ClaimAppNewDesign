@@ -1,75 +1,75 @@
 import 'package:flutter/material.dart';
 
 class TextFormFieldTheme {
-  static final border_radius = BorderRadius.all(Radius.circular(5));
+  static const border_radius = BorderRadius.all(Radius.circular(5));
   static double border_width = 1;
 
   static Widget GetTextFormFieldWithBorder(
-      context, title, _controller, lable_text, margin_edges,
-      {keyboardType = TextInputType.text, focus_node = null, enabled = true}) {
+      context, title, controller, lableText, marginEdges,
+      {keyboardType = TextInputType.text, focus_node, enabled = true}) {
     return Container(
-      margin: margin_edges,
+      margin: marginEdges,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("$title", style: Theme.of(context).textTheme.headline6),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextFormField(
             enabled: enabled,
             focusNode: focus_node,
             textAlign: TextAlign.left,
-            controller: _controller,
-            style: Theme.of(context).textTheme.headline6,
+            controller: controller,
+            style: const TextStyle(color: Colors.black),
             keyboardType: keyboardType,
-            decoration: GetTextFormFieldDecorationWithBorder("$lable_text"),
+            decoration: GetTextFormFieldDecorationWithBorder("$lableText"),
           )
         ],
       ),
     );
   }
 
-  static InputDecoration GetTextFormFieldDecorationWithBorder(hint_text) {
+  static InputDecoration GetTextFormFieldDecorationWithBorder(hintText) {
     return InputDecoration(
-      contentPadding: EdgeInsets.only(top: 10, left: 10, right: 10),
-      hintText: hint_text,
-      fillColor: Colors.transparent,
+      contentPadding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      hintText: hintText,
+      fillColor: Colors.black,
       focusedBorder: OutlineInputBorder(
-          // borderRadius: BorderRadius.circular(25.0),
-          // borderSide: BorderSide.none,
-          ),
-      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25.0),
+        // borderSide: BorderSide.none,
+      ),
+      enabledBorder: const OutlineInputBorder(
           // borderRadius: BorderRadius.circular(25.0),
           // borderSide: BorderSide.none,
           ),
     );
   }
 
-  static TextFormField GetTextFormField01(context, _controller, lable_text,
+  static TextFormField GetTextFormField01(context, controller, lableText,
       {keyboardType = TextInputType.text}) {
     return TextFormField(
-        controller: _controller,
-        style: Theme.of(context).textTheme.headline6,
+        controller: controller,
+        // style: Theme.of(context).textTheme.headline6,
         keyboardType: keyboardType,
         decoration: GetTextFormFieldDecoration01(
-            context, _controller, lable_text, null, null, "Enter $lable_text"));
+            context, controller, lableText, null, null, "Enter $lableText"));
   }
 
-  static TextFormField GetTextFormField02(context, _controller, lable_text,
+  static TextFormField GetTextFormField02(context, controller, lableText,
       {keyboardType = TextInputType.text}) {
     return TextFormField(
-      controller: _controller,
+      controller: controller,
       style: Theme.of(context).textTheme.headline6,
       keyboardType: keyboardType,
       decoration: GetTextFormFieldDecoration02(
-          context, _controller, lable_text, null, null, "Enter $lable_text"),
+          context, controller, lableText, null, null, "Enter $lableText"),
     );
   }
 
-  static InputDecoration GetTextFormFieldDecorationOnlyBorder(hint_text) {
+  static InputDecoration GetTextFormFieldDecorationOnlyBorder(hintText) {
     return InputDecoration(
-      hintText: hint_text,
-      fillColor: Colors.transparent,
-      focusedBorder: OutlineInputBorder(
+      hintText: hintText,
+      fillColor: Colors.black,
+      focusedBorder: const OutlineInputBorder(
           // borderRadius: BorderRadius.circular(25.0),
           // borderSide: BorderSide.none,
           ),
@@ -81,7 +81,7 @@ class TextFormFieldTheme {
   }
 
   static InputDecoration GetTextFormFieldDecoration02(
-      context, _controller, labelText, suffixIcon, prefixIcon, hintText) {
+      context, controller, labelText, suffixIcon, prefixIcon, hintText) {
     return InputDecoration(
       prefixIcon: prefixIcon,
       labelText: labelText,
@@ -98,7 +98,7 @@ class TextFormFieldTheme {
   }
 
   static InputDecoration GetTextFormFieldDecoration01(
-      context, _controller, labelText, suffixIcon, prefixIcon, hintText) {
+      context, controller, labelText, suffixIcon, prefixIcon, hintText) {
     return InputDecoration(
       prefixIcon: prefixIcon,
       labelText: null,

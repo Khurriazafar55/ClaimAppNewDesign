@@ -2,101 +2,147 @@ import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/sidebar/screens/CustomDialogBox.dart';
 import 'package:flutter/material.dart';
 
+import '../../app_theme_work/theme_colors.dart';
+import '../widgets/widget_bottomnavbar.dart';
+
 class PageReports extends StatelessWidget {
   PageReports({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(height: 40),
-          InkWell(
-            onTap: () {
-              ShowDialog(context, "Roof Type", roof_string);
-            },
-            child: GetMenuList(context, Icons.format_list_bulleted, "Roof Type",
-                Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {
-              ShowDialog(context, "Roof Style", roof_string);
-            },
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Roof Style", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {},
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Edge Metal", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {},
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Dwelling Metarial", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {},
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Dwelling Type", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {},
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Garage Material", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {
-              ShowDialog(context, "Roof Style", roof_string);
-            },
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Roof Summery", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {
-              ShowDialog(context, "Roof Style", roof_string);
-            },
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Roof Component", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {
-              ShowDialog(context, "Elevation Summery", elevation_string);
-            },
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Elevation Summery", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          InkWell(
-            onTap: () {
-              ShowDialog(context, "Interior Summery", Interior_string);
-            },
-            child: GetMenuList(context, Icons.format_list_bulleted,
-                "Interior Summery", Colors.black87),
-          ),
-          Divider(thickness: 1.5, color: Colors.grey, endIndent: 20, indent: 5),
-          WidgetsReusing.GetTextButton(context, "Restore Default", null,
-              EdgeInsets.symmetric(vertical: 10, horizontal: 20))
-        ],
+      child: Container(
+        color: ThemeColors.background_color,
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {
+                ShowDialog(context, "Roof Type", roof_string);
+              },
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Roof Type", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {
+                ShowDialog(context, "Roof Style", roof_string);
+              },
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Roof Style", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {},
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Edge Metal", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {},
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Dwelling Metarial", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {},
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Dwelling Type", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {},
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Garage Material", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {
+                ShowDialog(context, "Roof Style", roof_string);
+              },
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Roof Summery", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {
+                ShowDialog(context, "Roof Style", roof_string);
+              },
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Roof Component", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {
+                ShowDialog(context, "Elevation Summery", elevation_string);
+              },
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Elevation Summery", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            InkWell(
+              onTap: () {
+                ShowDialog(context, "Interior Summery", Interior_string);
+              },
+              child: GetMenuList(context, Icons.format_list_bulleted,
+                  "Interior Summery", Colors.black87),
+            ),
+            const Divider(
+              thickness: 2,
+              color: ThemeColors.headline6_color_lt,
+              endIndent: 10,
+            ),
+            WidgetsReusing.GetTextButton(context, "Restore Default", null,
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
+            ResusableBottomNavBar(),
+          ],
+        ),
       ),
     );
   }
 
-  void ShowDialog(context, title, string_list) {
+  void ShowDialog(context, title, stringList) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return CustomDialogBox(
             title: title,
-            descriptions: string_list,
+            descriptions: stringList,
             text: "Save",
           );
         });
@@ -184,7 +230,7 @@ class PageReports extends StatelessWidget {
     "Does the property still smell like smoke?",
   ];
 
-  Widget GetMenuList(context, IconData iconData, String title, Color _color) {
+  Widget GetMenuList(context, IconData iconData, String title, Color color) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
       child: Row(
@@ -198,11 +244,11 @@ class PageReports extends StatelessWidget {
                     fontWeight: FontWeight.w500)),
           ),
           Container(
-            padding: EdgeInsets.only(left: 20, right: 10),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 20, right: 10),
+            child: const Icon(
               Icons.arrow_forward_ios,
-              size: 18,
-              color: Colors.grey,
+              size: 22,
+              color: ThemeColors.headline6_color_lt,
             ),
           )
         ],

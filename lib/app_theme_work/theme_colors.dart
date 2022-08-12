@@ -1,14 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ThemeColors {
   ThemeColors._();
 
   //Light theme colors
-  static const Color primary_dark_lt = Color.fromRGBO(255, 102, 0, 1);
-
+  static const Color primary_dark_lt = Color.fromRGBO(255, 94, 0, 1);
+  static const Color dark_orange = Color.fromRGBO(255, 94, 0, 1);
   static const Color orange_button = Color.fromRGBO(255, 102, 0, 1);
-  static const Color background_color = Color.fromRGBO(249, 198, 153, 1);
+  static const Color background_color = Colors.deepOrange;
   static const Color background_color1 = Color.fromRGBO(248, 240, 234, 1);
   static const Color primary_light_lt = primary_dark_lt;
   static const Color primary_varient_lt = Color(0xff6B2D5C);

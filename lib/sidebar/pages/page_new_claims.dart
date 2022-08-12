@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/sidebar/screens/CustomDialogBox.dart';
+import 'package:claim_core/sidebar/widgets/widget_bottomnavbar.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:flutter/material.dart';
 
 class PageNewClaims extends StatefulWidget {
-  PageNewClaims({Key? key}) : super(key: key);
+  const PageNewClaims({Key? key}) : super(key: key);
 
   @override
   State<PageNewClaims> createState() => _PageNewClaimsState();
@@ -137,11 +138,12 @@ class _PageNewClaimsState extends State<PageNewClaims> {
                 )
               : Container(
                   alignment: Alignment.center,
-                  child: Text('No saved data found'),
+                  child: const Text('No saved data found'),
                 ),
         ),
         WidgetsReusing.GetTextButton(context, "+", null,
-            EdgeInsets.symmetric(vertical: 10, horizontal: 20))
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
+        ResusableBottomNavBar(),
       ],
     );
   }
@@ -171,12 +173,12 @@ class _PageNewClaimsState extends State<PageNewClaims> {
           children: [
             Text(
               "$title : $text",
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                   color: Colors.black87),
             ),
-            Divider()
+            const Divider()
           ],
         ),
       ),

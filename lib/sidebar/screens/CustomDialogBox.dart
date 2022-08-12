@@ -33,14 +33,14 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
     return Stack(
       children: [
         Container(
-          padding:
-              EdgeInsets.only(left: 10, top: 20 + 10, right: 10, bottom: 10),
-          margin: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(
+              left: 10, top: 20 + 10, right: 10, bottom: 10),
+          margin: const EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
               ]),
@@ -49,9 +49,10 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
             children: <Widget>[
               Text(
                 widget.title!,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Expanded(
@@ -59,12 +60,15 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                   itemCount: widget.descriptions!.length,
                   itemBuilder: (context, index) {
                     return Column(
-                      children: [Text(widget.descriptions![index]), Divider()],
+                      children: [
+                        Text(widget.descriptions![index]),
+                        const Divider()
+                      ],
                     );
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 22,
               ),
               Align(
@@ -75,7 +79,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     },
                     child: Text(
                       widget.text!,
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     )),
               ),
             ],
@@ -88,7 +92,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
             onTap: () {
               Navigator.of(context).pop();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               size: 30,
             ),

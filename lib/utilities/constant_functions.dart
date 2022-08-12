@@ -31,7 +31,7 @@ class ConstantFunctions {
         child: Container(
           width: 145,
           height: 145,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(
               Radius.circular(5),
@@ -42,12 +42,12 @@ class ConstantFunctions {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Load a Lottie file from your assets
-              Container(
+              SizedBox(
                 width: 60,
                 height: 60,
                 child: Lottie.asset(AppAssets.loading_response, width: 120),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               Text(
@@ -60,50 +60,50 @@ class ConstantFunctions {
         ),
       );
 
-  static Future<bool> getSharePrefModebool(String _key) async {
+  static Future<bool> getSharePrefModebool(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool return_key = (prefs.getBool(_key) ?? false);
-    print("isDarkMode isDarkModeOn $return_key");
-    return return_key;
+    bool returnKey = (prefs.getBool(key) ?? false);
+    print("isDarkMode isDarkModeOn $returnKey");
+    return returnKey;
   }
 
-  static Future<String> getSharePrefModeString(String _key) async {
+  static Future<String> getSharePrefModeString(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String return_key = (prefs.getString(_key) ?? "no_value");
-    print("isDarkMode return_key $return_key");
-    return return_key;
+    String returnKey = (prefs.getString(key) ?? "no_value");
+    print("isDarkMode return_key $returnKey");
+    return returnKey;
   }
 
-  static Future<int> getSharePrefModeInt(String _key) async {
+  static Future<int> getSharePrefModeInt(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int return_key = (prefs.getInt(_key) ?? 1);
-    print("isDarkMode return_key $return_key");
-    return return_key;
+    int returnKey = (prefs.getInt(key) ?? 1);
+    print("isDarkMode return_key $returnKey");
+    return returnKey;
   }
 
-  static void saveSharePrefModebool(String _key, bool _value) async {
+  static void saveSharePrefModebool(String key, bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_key, _value);
-    print("isDarkMode isDarkModeOn $_value");
+    await prefs.setBool(key, value);
+    print("isDarkMode isDarkModeOn $value");
   }
 
-  static void saveSharePrefModeString(String _key, String _value) async {
+  static void saveSharePrefModeString(String key, String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_key, _value);
-    print("isDarkMode isDarkMfodeOn $_value");
+    await prefs.setString(key, value);
+    print("isDarkMode isDarkMfodeOn $value");
   }
 
-  static void saveSharePrefModeInt(String _key, int _value) async {
+  static void saveSharePrefModeInt(String key, int value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_key, _value);
-    print("isDarkMode isDarkModeOn $_value");
+    await prefs.setInt(key, value);
+    print("isDarkMode isDarkModeOn $value");
   }
 
   static getSnakeBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           // behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
           content: Text(message,
               style: Theme.of(context)
                   .appBarTheme
@@ -113,20 +113,20 @@ class ConstantFunctions {
     );
   }
 
-  static Widget GetContactBox(image_path, _title, text_form_style, _size) {
+  static Widget GetContactBox(imagePath, title, textFormStyle, size) {
     return Column(
       children: [
         Image.asset(
-          image_path,
-          width: _size,
-          height: _size,
+          imagePath,
+          width: size,
+          height: size,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Text(
-          _title,
-          style: text_form_style,
+          title,
+          style: textFormStyle,
         ),
       ],
     );
@@ -194,16 +194,16 @@ class ConstantFunctions {
     );
   }
 
-  static PageRouteBuilder? OpenNewScreenClean(context, material_route_page) {
+  static PageRouteBuilder? OpenNewScreenClean(context, materialRoutePage) {
     Navigator.of(context).pushAndRemoveUntil(
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 200),
           pageBuilder: (context, animation, _) {
-            return FadeTransition(
-                opacity: animation, child: material_route_page);
+            return FadeTransition(opacity: animation, child: materialRoutePage);
           },
         ),
         (Route<dynamic> route) => false);
+    return null;
   }
 
   // static Widget GetImageBackground(BuildContext context) {
@@ -235,13 +235,13 @@ class ConstantFunctions {
   //   );
   // }
 
-  static Widget GetKardaanRow(String kardaan_image, String kardaan_name,
-      String kardaan_rating, String category_name) {
+  static Widget GetKardaanRow(String kardaanImage, String kardaanName,
+      String kardaanRating, String categoryName) {
     return Row(
       children: [
         Container(
-          padding: EdgeInsets.only(left: 10, right: 10),
-          child: CircleAvatar(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: const CircleAvatar(
             backgroundImage: NetworkImage(
               "kardaan_image",
             ),
@@ -256,32 +256,32 @@ class ConstantFunctions {
               Row(
                 children: [
                   Text(
-                    "${kardaan_name}",
+                    kardaanName,
                     // "${snapshot.data.order.dateTime}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Colors.black87),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
-                    "${kardaan_rating}",
+                    kardaanRating,
                     // "${snapshot.data.order.dateTime}",
                     style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w400,
                         color: Colors.grey[600]),
                   ),
-                  SizedBox(width: 5),
-                  Icon(
+                  const SizedBox(width: 5),
+                  const Icon(
                     Icons.grade,
                     color: Colors.grey,
                   )
                 ],
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text(
-                "${category_name}",
+                categoryName,
                 // "${snapshot.data.order.dateTime}",
                 style: TextStyle(
                     fontSize: 17,
@@ -295,16 +295,15 @@ class ConstantFunctions {
     );
   }
 
-  static Widget GetDivider(Color container_color, Color divider_color,
-      double _vertical, double _horizontal) {
+  static Widget GetDivider(Color containerColor, Color dividerColor,
+      double vertical, double horizontal) {
     return Container(
-      color: container_color,
-      padding:
-          EdgeInsets.symmetric(vertical: _vertical, horizontal: _horizontal),
+      color: containerColor,
+      padding: EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
       child: Divider(
         height: 1,
         thickness: 1,
-        color: divider_color,
+        color: dividerColor,
       ),
     );
   }

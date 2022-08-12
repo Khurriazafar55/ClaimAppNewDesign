@@ -4,10 +4,8 @@ import 'dart:io';
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
-import 'package:claim_core/claim/screens/screen_my_claims.dart';
 import 'package:claim_core/claim/screens/screen_new_claim.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
-import 'package:claim_core/dashboard/models/model_weather.dart';
 import 'package:claim_core/dashboard/models/model_weather1.dart';
 import 'package:claim_core/dashboard/screens/screen_calendar.dart';
 import 'package:claim_core/dashboard/screens/screen_contacts.dart';
@@ -16,19 +14,17 @@ import 'package:claim_core/dashboard/screens/screen_measure_assist.dart';
 import 'package:claim_core/dashboard/screens/screen_on_demand.dart';
 import 'package:claim_core/dashboard/screens/screen_profile.dart';
 import 'package:claim_core/screen_map.dart';
+import 'package:claim_core/sidebar/screens/alerts_screen.dart';
 import 'package:claim_core/sidebar/screens/screen_drawer.dart';
-import 'package:claim_core/sidebar/screens/screen_setting.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:claim_core/utilities/rest_api_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:intl/intl.dart';
+
+import '../../claim/screens/screen_my_claims.dart';
+import '../../sidebar/settings_screens/settings_screen.dart';
 
 class ScreenDashboard extends StatefulWidget {
   @override
@@ -36,7 +32,7 @@ class ScreenDashboard extends StatefulWidget {
 }
 
 class _ScreenDashboardState extends State<ScreenDashboard> {
-  GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
 //  DateFormat("yyyy-MM-ddTHH:mm:ss").parse(dateTime)
 
@@ -72,6 +68,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
   late GestureTapCallback onSetting;
   late GestureTapCallback onContactsTap;
   late GestureTapCallback onGuideTap;
+  late GestureTapCallback onDrawerTap;
 
   @override
   Widget build(BuildContext context) {
@@ -86,31 +83,36 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
       // print("onMapTap333 ${nums}");
     };
 
+    onDrawerTap = () {
+      _drawerKey.currentState!.openDrawer();
+    };
+
     onSetting = () {
-      Navigator.push(
-          context, ConstantFunctions.OpenNewActivity(ScreenSetting()));
+      Navigator.of(context, rootNavigator: true)
+          .push(ConstantFunctions.OpenNewActivity(const ScreenSetting()));
     };
     onGuideTap = () {
-      Navigator.push(context, ConstantFunctions.OpenNewActivity(ScreenGuide()));
+      Navigator.push(
+          context, ConstantFunctions.OpenNewActivity(const ScreenGuide()));
     };
     onContactsTap = () {
       Navigator.push(
-          context, ConstantFunctions.OpenNewActivity(ScreenContacts()));
+          context, ConstantFunctions.OpenNewActivity(const ScreenContacts()));
     };
     onCalendarTap = () {
       ConstantFunctions.getSharePrefModeString("login_token").then(
-        (login_token) {
-          print("object : login_token : $login_token");
+        (loginToken) {
+          print("object : login_token : $loginToken");
 
           RestApiUtils.ShowLoadingDialog(context);
-          ServiceClaim.GetClaimFunction(context, login_token).then((value) {
+          ServiceClaim.GetClaimFunction(context, loginToken).then((value) {
             Navigator.pop(context);
 
             List<DataSingleClaim> data = value.data!;
 
             if (data == null) {
               ConstantFunctions.getSnakeBar(context, "data is null");
-            } else if (data.length > 0) {
+            } else if (data.isNotEmpty) {
               Navigator.push(
                   context,
                   ConstantFunctions.OpenNewActivity(
@@ -124,18 +126,18 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     };
     onProfile = () {
       Navigator.push(
-          context, ConstantFunctions.OpenNewActivity(ScreenProfile()));
+          context, ConstantFunctions.OpenNewActivity(const ScreenProfile()));
     };
     onNewClaimTap = () {
       ConstantFunctions.getSharePrefModeString("login_token").then(
-        (login_token) {
+        (loginToken) {
           RestApiUtils.ShowLoadingDialog(context);
-          ServiceClaim.GetAllDropDown(context, login_token)
+          ServiceClaim.GetAllDropDown(context, loginToken)
               .then((modelAllDropdown) {
-            ServiceClaim.GetServiceTypeDropDown(context, login_token)
+            ServiceClaim.GetServiceTypeDropDown(context, loginToken)
                 .then((modelservices) {
               if (modelAllDropdown.data != null &&
-                  modelAllDropdown.data!.length > 0) {
+                  modelAllDropdown.data!.isNotEmpty) {
                 Navigator.pop(context);
 
                 Navigator.push(
@@ -159,13 +161,13 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     onOnDemandTap = () {
       Navigator.push(
         context,
-        ConstantFunctions.OpenNewActivity(ScreenOnDemand()),
+        ConstantFunctions.OpenNewActivity(const ScreenOnDemand()),
       );
     };
     onMeasureAssistTap = () {
       Navigator.push(
         context,
-        ConstantFunctions.OpenNewActivity(ScreenMeasureAssist()),
+        ConstantFunctions.OpenNewActivity(const ScreenMeasureAssist()),
       );
     };
     return Scaffold(key: _drawerKey, drawer: ScreenDrawer(), body: GetBody());
@@ -181,36 +183,36 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                 child: Column(
                   children: [
                     Container(
-                      decoration: new BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color.fromRGBO(255, 94, 0, 1),
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(95),
                           )),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
                       child: Column(
                         children: [
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
                           Row(
                             children: [
                               InkWell(
                                 onTap: onProfile,
                                 child: Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color.fromRGBO(255, 94, 0, 1),
                                   ),
                                   // color: Color.fromRGBO(255, 102, 0, 1),
-                                  padding: EdgeInsets.all(10),
-                                  margin: EdgeInsets.only(left: 7),
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(left: 7),
                                   // decoration: WidgetsReusing.getListBoxDecoration(),
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.person_pin,
                                     size: 30,
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
-                              Expanded(
+                              const Expanded(
                                 child: Center(
                                   child: Text(
                                     'Dashboard',
@@ -224,13 +226,13 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                               InkWell(
                                 onTap: onSetting,
                                 child: Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color.fromRGBO(255, 94, 0, 1),
                                   ),
-                                  padding: EdgeInsets.all(10),
-                                  margin: EdgeInsets.only(right: 7),
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 7),
                                   // decoration: WidgetsReusing.getListBoxDecoration(),
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.settings,
                                     size: 30,
                                     color: Colors.white,
@@ -242,7 +244,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                           Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   // center: Alignment.center,
                                   begin: Alignment.topCenter,
 
@@ -255,16 +257,16 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                                   ],
                                   colors: [
                                     Color.fromRGBO(55, 121, 253, 1),
-                                    const Color.fromRGBO(86, 201, 250, 1)
+                                    Color.fromRGBO(86, 201, 250, 1)
                                   ],
                                   // tileMode: TileMode.clamp,
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               height: MediaQuery.of(context).size.height / 5.8,
-                              margin: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.symmetric(
                                   horizontal: 5, vertical: 5),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 10),
                               child: Column(
                                 children: [
@@ -288,7 +290,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                                         const Color.fromRGBO(86, 201, 250, 1),
                                     height: MediaQuery.of(context).size.height /
                                         10.5,
-                                    child: FutureBuilder<List>(
+                                    child: FutureBuilder<List<ModelWeather>>(
                                       future: fetchWeather(),
                                       builder: (context, snapshot) {
                                         final weather = snapshot.data;
@@ -325,9 +327,9 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                             width: double.infinity,
                             // height: 120,
 
-                            margin: EdgeInsets.symmetric(
+                            margin: const EdgeInsets.symmetric(
                                 horizontal: 7, vertical: 20),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 10),
                             decoration: WidgetsReusing.getListBoxDecoration(),
                             child: Column(
@@ -337,11 +339,19 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     getIconText(Icons.list_alt, "Archive"),
-                                    Spacer(),
-                                    getIconText(
-                                        Icons.notifications_none_outlined,
-                                        "Alerts"),
-                                    Spacer(),
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (_) {
+                                          return const Alerts();
+                                        }));
+                                      },
+                                      child: getIconText(
+                                          Icons.notifications_none_outlined,
+                                          "Alerts"),
+                                    ),
+                                    const Spacer(),
                                     getIconText(
                                         Icons.construction, "Roof Tools"),
                                   ],
@@ -360,10 +370,9 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                         ],
                       ),
                     ),
-
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
                       child: Column(
                         children: [
                           getGridContainer(
@@ -393,19 +402,19 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                         ],
                       ),
                     ),
-                    // )),
                   ],
                 ),
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: Container(
                 //  width: double.infinity,
                 // height: 120,
 
-                margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 decoration: WidgetsReusing.getListBoxDecoration(),
 
                 child: Row(
@@ -416,9 +425,9 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                         _drawerKey.currentState!.openDrawer();
                       },
                       child: Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(left: 15),
-                        child: Icon(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(left: 15),
+                        child: const Icon(
                           Icons.menu,
                           size: 30,
                           color: Color.fromRGBO(255, 102, 0, 1),
@@ -426,26 +435,35 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(255, 102, 0, 1),
-                                  spreadRadius: 2),
-                              BoxShadow(
-                                  color: Color.fromRGBO(255, 102, 0, 1),
-                                  // color: Colors.black.withOpacity(.25),
-                                  offset: Offset(1, 1),
-                                  blurRadius: 5,
-                                  spreadRadius: 1)
-                            ]),
-                        child: Icon(
-                          Icons.home,
-                          size: 30,
-                          color: Color.fromRGBO(255, 102, 0, 1),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            ConstantFunctions.OpenNewActivity(
+                                ScreenDashboard()),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(255, 102, 0, 1),
+                                    spreadRadius: 2),
+                                BoxShadow(
+                                    color: Color.fromRGBO(255, 102, 0, 1),
+                                    // color: Colors.black.withOpacity(.25),
+                                    offset: Offset(1, 1),
+                                    blurRadius: 5,
+                                    spreadRadius: 1)
+                              ]),
+                          child: const Icon(
+                            Icons.home,
+                            size: 30,
+                            color: Color.fromRGBO(255, 102, 0, 1),
+                          ),
                         ),
                       ),
                     ),
@@ -453,10 +471,11 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                       onTap: () async {
                         Navigator.push(
                           context,
-                          ConstantFunctions.OpenNewActivity(ScreenMyClaims()),
+                          ConstantFunctions.OpenNewActivity(
+                              const ScreenMyClaims()),
                         );
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.list_alt,
                         size: 30,
                         color: Color.fromRGBO(255, 102, 0, 1),
@@ -465,7 +484,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ));
   }
@@ -485,7 +504,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                     .textTheme
                     .headline6!
                     .copyWith(fontSize: 13.5)),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(summary,
@@ -493,7 +512,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                     .textTheme
                     .headline6!
                     .copyWith(fontSize: 13.5)),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(temp,
@@ -507,7 +526,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
 
   Widget getWeatherUpdate1(
     time,
-    icon_data,
+    iconData,
     temp,
   ) {
     return Column(
@@ -517,8 +536,9 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                 .textTheme
                 .headline6!
                 .copyWith(fontSize: 13.5)),
+
         Icon(
-          icon_data,
+          iconData,
           size: 30,
           color: Colors.white,
         ),
@@ -536,13 +556,13 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     );
   }
 
-  Widget getIconText(icon_data, title) {
+  Widget getIconText(iconData, title) {
     return Column(
       children: [
         Icon(
-          icon_data,
+          iconData,
           size: 30,
-          color: Color.fromRGBO(205, 13, 30, 1),
+          color: const Color.fromRGBO(205, 13, 30, 1),
         ),
         Text(title, style: Theme.of(context).textTheme.headline4),
       ],
@@ -550,37 +570,37 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
   }
 
   Widget getGridContainer(
-      icon_data1, title1, onTapFirst, icon_data2, title2, onTapSecond) {
+      iconData1, title1, onTapFirst, iconData2, title2, onTapSecond) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        InkWell(onTap: onTapFirst, child: GridContainer(icon_data1, title1)),
-        Spacer(),
+        InkWell(onTap: onTapFirst, child: GridContainer(iconData1, title1)),
+        const Spacer(),
         InkWell(
           onTap: onTapSecond,
-          child: GridContainer(icon_data2, title2),
+          child: GridContainer(iconData2, title2),
         )
       ],
     );
   }
 
-  Widget GridContainer(icon_data, title) {
-    double width_height = MediaQuery.of(context).size.width / 2.5;
+  Widget GridContainer(iconData, title) {
+    double widthHeight = MediaQuery.of(context).size.width / 2.5;
     return Container(
       // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      margin: EdgeInsets.all(7),
+      margin: const EdgeInsets.all(7),
       decoration: WidgetsReusing.getListBoxDecoration(),
-      height: width_height - 35,
-      width: width_height,
+      height: widthHeight - 35,
+      width: widthHeight,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            icon_data,
+            iconData,
             size: 50,
-            color: Color.fromRGBO(205, 13, 30, 1),
+            color: const Color.fromRGBO(205, 13, 30, 1),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(title, style: Theme.of(context).textTheme.bodyText1),
         ],
       ),
@@ -608,7 +628,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
   }
 
   Widget getWeatherhead3(
-    icon_data,
+    iconData,
     text,
     hummadity,
     latitude,
@@ -616,7 +636,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     return Row(
       children: [
         Icon(
-          icon_data,
+          iconData,
           size: 30,
           color: Colors.yellow,
         ),
@@ -650,7 +670,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     );
   }
 
-  Future<List> fetchWeather() async {
+  Future<List<ModelWeather>> fetchWeather() async {
     const baseUrl = 'https://insurancefapp.azurewebsites.net';
     try {
       final response = await http.get(

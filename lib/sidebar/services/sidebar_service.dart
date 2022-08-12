@@ -75,8 +75,8 @@ class SidebarService {
         final _model = modelNotificationsFromMap(response.body);
         return _model;
       } else if (response.statusCode == 401) {
-        ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        // ConstantFunctions.saveSharePrefModeString("login_token", "");
+        // ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
         return null!;
       } else {
         return ModelNotifications(data: null);

@@ -1,11 +1,13 @@
 import 'package:camera/camera.dart';
 import 'package:claim_core/app_theme_work/light_theme_data.dart';
-import 'package:claim_core/dashboard/screens/dashboard2.dart';
-import 'package:claim_core/login/screens/screen_login.dart';
-import 'package:claim_core/sidebar/screens/alerts_screen.dart';
-import 'package:claim_core/sidebar/screens/rooftools_screen.dart';
-import 'package:claim_core/splas_screen.dart';
+
+import 'package:claim_core/claim/screens/my_claims.dart';
+import 'package:claim_core/claim/screens/screen_my_claims.dart';
+import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
+import 'package:claim_core/provider/userprovider.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 List<CameraDescription>? cameras;
 Future<void> main() async {
@@ -19,18 +21,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: LightThemeData.light_theme,
-
-      // darkTheme: DarkThemeData.dark_theme,
-      themeMode: isDarkMode ? ThemeMode.light : ThemeMode.light,
-      home: Scaffold(
-        body: ScreenLogin(),
+    return MultiProvider(
+      providers: [
+        Provider<UserProvider>(create: (_) => UserProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: LightThemeData.light_theme,
+        themeMode: isDarkMode ? ThemeMode.light : ThemeMode.light,
+        home: Scaffold(
+          body: ScreenDashboard(),
+        ),
       ),
-      // home: ScreenLogin(),
-      // home: ScreenDashboard(),
     );
+
+    //   return MaterialApp(
+    //     debugShowCheckedModeBanner: false,
+    //     title: 'Flutter Demo',
+    //     theme: LightThemeData.light_theme,
+
+    //     // darkTheme: DarkThemeData.dark_theme,
+    //     themeMode: isDarkMode ? ThemeMode.light : ThemeMode.light,
+    //     home: Scaffold(
+    //       body: Alerts(),
+    //     ),
+    //     // home: ScreenLogin(),
+    //     // home: ScreenDashboard(),
+    //   );
+    // }
   }
 }
