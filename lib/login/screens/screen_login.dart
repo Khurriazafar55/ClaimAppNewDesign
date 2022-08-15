@@ -1,6 +1,4 @@
 import 'package:claim_core/app_theme_work/theme_colors.dart';
-import 'package:claim_core/app_theme_work/widgets_reusing.dart';
-import 'package:claim_core/dashboard/screens/dashboard.dart';
 import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
 import 'package:claim_core/data/database_user.dart';
 import 'package:claim_core/login/screens/forgot_screen.dart';
@@ -12,14 +10,14 @@ import 'package:flutter/material.dart';
 
 import '../../utilities/constant_functions.dart';
 
-class ScreenLogin extends StatefulWidget {
-  const ScreenLogin({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _ScreenLoginState createState() => _ScreenLoginState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _ScreenLoginState extends State<ScreenLogin> {
+class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -35,7 +33,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
   String? fcm_token = "";
 
-  DatabaseUser _databaseUser = DatabaseUser();
+  final DatabaseUser _databaseUser = DatabaseUser();
 
   @override
   void initState() {
@@ -58,8 +56,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
       String email = _emailController.text.toString();
       String password = _passwordController.text.toString();
 
-      print("HelloImranKhana : ${email}");
-      print("HelloImranKhana : ${password}");
+      print("HelloImranKhana : $email");
+      print("HelloImranKhana : $password");
 
       RestApiUtils.ShowLoadingDialog(context);
       LoginServices.LoginFunction(email, password).then((value) {
@@ -67,7 +65,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
         if (value.isSuccess!) {
           ConstantFunctions.saveSharePrefModeString(
               "login_token", value.message!);
-          ConstantFunctions.OpenNewScreenClean(context, ScreenDashboard());
+          ConstantFunctions.OpenNewScreenClean(context, DashBoardScreen());
         } else {
           ConstantFunctions.getSnakeBar(context, value.message!);
         }
@@ -81,9 +79,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
       String email = _emailController.text.toString();
       // String password = _passwordController.text.toString();
 
-      print("HelloImranKhana : ${email}");
+      print("HelloImranKhana : $email");
 
-      if (_emailController.text.length > 0) {
+      if (_emailController.text.isNotEmpty) {
         RestApiUtils.ShowLoadingDialog(context);
         LoginServices.ForgotPasswordFunction(email).then((value) {
           Navigator.pop(context);
@@ -106,7 +104,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back),
+          child: const Icon(Icons.arrow_back),
         ),
         // backgroundColor: Colors.transparent,
         elevation: 0,
@@ -128,7 +126,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
         child: Container(
           // margin: EdgeInsets,
           color: Colors.transparent,
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 60),
+          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 60),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -140,7 +138,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
               Align(
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                     Text(
                       "Claim",
                       style: TextStyle(
@@ -167,7 +165,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                       ),
                     ),
                   ])),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -175,7 +173,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   style: Theme.of(context).textTheme.headline1,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -183,10 +181,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ),
-              SizedBox(height: 35),
+              const SizedBox(height: 35),
               _textheading('Email'),
               Container(
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 child: TextFormField(
                   controller: _emailController,
                   focusNode: _focusEmail,
@@ -202,7 +200,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
               ),
               _textheading('Password'),
               Container(
-                margin: EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 10),
                 child: TextFormField(
                   controller: _passwordController,
                   focusNode: _focusPassword,
@@ -212,7 +210,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   obscureText: !isPasswordVisible,
 
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock, color: Colors.grey),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.grey),
                     suffixIcon: IconButton(
                       icon: Icon(isPasswordVisible
                           ? Icons.visibility
@@ -239,14 +237,15 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ForgotPasswordScreen()));
+                                builder: (context) =>
+                                    const ForgotPasswordScreen()));
                       },
                       child: _text('Forgot Password?'),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 35),
+              const SizedBox(height: 35),
               SizedBox(
                 width: double.infinity,
                 child: MaterialButton(
@@ -256,14 +255,14 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   // color:Color(FFF6EE),
                   textColor: Colors.white,
                   padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "log in",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
-                  ),
                   onPressed: onSingInTap,
 
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
+                  child: const Text(
+                    "Log In",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                  ),
                 ),
               ),
             ],
@@ -274,7 +273,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
   }
 
   _text(text1) {
-    TextStyle style1 = TextStyle(
+    TextStyle style1 = const TextStyle(
         color: Color.fromRGBO(205, 13, 30, 1),
         fontSize: 12,
         fontWeight: FontWeight.bold);
@@ -284,7 +283,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
   }
 
   _textheading(text) {
-    TextStyle style1 = TextStyle(
+    TextStyle style1 = const TextStyle(
         color: Color.fromRGBO(205, 13, 30, 1),
         fontSize: 20,
         fontWeight: FontWeight.bold);

@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:claim_core/claim/reports/data/database_images.dart';
-import 'package:claim_core/dashboard/dashboard_services.dart';
 import 'package:claim_core/login/screens/screen_login.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:flutter/material.dart';
 
-import 'dashboard/screens/screen_dashboard.dart';
 import 'data/model_user.dart';
 
 class ScreenSplash extends StatefulWidget {
@@ -30,9 +28,9 @@ class _ScreenSplashState extends State<ScreenSplash> {
 
       if (login_token.length > 20) {
         // ConstantFunctions.OpenNewScreenClean(context, ScreenDashboard());
-        ConstantFunctions.OpenNewScreenClean(context, ScreenLogin());
+        ConstantFunctions.OpenNewScreenClean(context, LoginScreen());
       } else {
-        ConstantFunctions.OpenNewScreenClean(context, ScreenLogin());
+        ConstantFunctions.OpenNewScreenClean(context, LoginScreen());
       }
     });
   }

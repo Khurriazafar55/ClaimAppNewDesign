@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:claim_core/app_theme_work/textformfield_theme.dart';
+import 'package:claim_core/app_theme_work/textformfield_theme1.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
 import 'package:claim_core/claim/models/model_get_claim_id.dart';
@@ -219,7 +220,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
             Expanded(
               child: ListView(
                 children: [
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "",
                     txtEdtCntrlr1,
@@ -228,7 +229,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     enabled: false,
                   ),
                   Divider(thickness: 2, endIndent: 5, indent: 1),
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Main Contact Phone Number",
                     txtEdtCntrlr2,
@@ -236,7 +237,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     paddding,
                     enabled: false,
                   ),
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Policy Holder Email",
                     txtEdtCntrlr3,
@@ -244,7 +245,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     paddding,
                     enabled: false,
                   ),
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Policy Holder Phone Number",
                     txtEdtCntrlr4,
@@ -252,7 +253,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     paddding,
                     enabled: false,
                   ),
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Adjuster Name",
                     txtEdtCntrlr5,
@@ -260,7 +261,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     paddding,
                     enabled: false,
                   ),
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Adjuster Email",
                     txtEdtCntrlr6,
@@ -268,7 +269,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     paddding,
                     enabled: false,
                   ),
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Adjuster Phone Number",
                     txtEdtCntrlr7,
@@ -291,7 +292,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Address",
                           txtEdtCntrlr8,
@@ -301,7 +302,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                         ),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "City",
                           txtEdtCntrlr9,
@@ -315,7 +316,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "State",
                           txtEdtCntrlr18,
@@ -325,7 +326,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                         ),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context, "Zip", txtEdtCntrlr10, "Zip", paddding,
                             enabled: false),
                       ),
@@ -334,7 +335,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Catastrope Event",
                           txtEdtCntrlr19,
@@ -344,7 +345,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                         ),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Re-Inspection?",
                           txtEdtCntrlr20,
@@ -356,7 +357,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     ],
                   ),
                   //are you adjuster
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Are you an independent Adjuster ? ",
                     txtEdtCntrlr21,
@@ -368,7 +369,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Claim Number",
                           txtEdtCntrlr11,
@@ -378,7 +379,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                         ),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Service Type",
                           txtEdtCntrlr22,
@@ -393,7 +394,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Inspection Date",
                           txtEdtCntrlr16,
@@ -403,7 +404,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                         ),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Inspection Time",
                           txtEdtCntrlr17,
@@ -418,7 +419,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context,
                             "Damage Type",
                             txtEdtCntrlr23,
@@ -427,7 +428,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                             enabled: false),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context,
                             "Damage Location",
                             txtEdtCntrlr12,
@@ -441,12 +442,12 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context, "Pitch", txtEdtCntrlr24, "Pitch", paddding,
                             enabled: false),
                       ),
                       Expanded(
-                          child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                          child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                               context,
                               "Stories",
                               txtEdtCntrlr13,
@@ -459,7 +460,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context,
                             "Photo Submission Type",
                             txtEdtCntrlr25,
@@ -468,7 +469,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                             enabled: false),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context,
                             "Scope Submission Type",
                             txtEdtCntrlr26,
@@ -482,7 +483,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context,
                             "Report Submission Type",
                             txtEdtCntrlr26,
@@ -491,7 +492,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                             enabled: false),
                       ),
                       Expanded(
-                        child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                        child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                             context,
                             "Measurement Submission Type",
                             txtEdtCntrlr27,
@@ -502,7 +503,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     ],
                   ),
 
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Aditional File Submission",
                     txtEdtCntrlr14,
@@ -511,7 +512,7 @@ class _ScreenNamePHClaimDetailState extends State<ScreenNamePHClaimDetail> {
                     enabled: false,
                   ),
 
-                  TextFormFieldTheme.GetTextFormFieldWithBorder(
+                  TextFormFieldTheme1.GetTextFormFieldWithBorder(
                     context,
                     "Aditional Information",
                     txtEdtCntrlr15,

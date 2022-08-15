@@ -1,20 +1,18 @@
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
 import 'package:claim_core/claim/screens/screen_archive.dart';
-import 'package:claim_core/claim/screens/screen_name_ph_claim_detail.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
-import 'package:claim_core/utilities/app_assets.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:flutter/material.dart';
 
-class ScreenMyClaims extends StatefulWidget {
-  const ScreenMyClaims({Key? key}) : super(key: key);
+class MyClaimsScreen extends StatefulWidget {
+  const MyClaimsScreen({Key? key}) : super(key: key);
 
   @override
-  _ScreenMyClaimsState createState() => _ScreenMyClaimsState();
+  _MyClaimsScreenState createState() => _MyClaimsScreenState();
 }
 
-class _ScreenMyClaimsState extends State<ScreenMyClaims> {
+class _MyClaimsScreenState extends State<MyClaimsScreen> {
   Future<ModelGetClaim>? future_get_claim;
 
   String login_token = "";
@@ -24,12 +22,11 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
     super.initState();
 
     ConstantFunctions.getSharePrefModeString("login_token").then(
-      (login_token) {
-        print("object : login_token : $login_token");
-        this.login_token = login_token;
+      (loginToken) {
+        print("object : login_token : $loginToken");
+        login_token = loginToken;
         setState(() {
-          future_get_claim =
-              ServiceClaim.GetClaimFunction(context, login_token);
+          future_get_claim = ServiceClaim.GetClaimFunction(context, loginToken);
         });
       },
     );
@@ -48,7 +45,7 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
       // key: _drawerKey,
       // drawer: ScreenDrawer(),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             Expanded(
@@ -60,9 +57,9 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
                       InkWell(
                         onTap: () => Navigator.of(context).pop(),
                         child: Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.only(left: 15),
-                          child: Icon(
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(left: 15),
+                          child: const Icon(
                             Icons.arrow_back,
                             size: 30,
                           ),
@@ -79,14 +76,15 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            ConstantFunctions.OpenNewActivity(ScreenArchive()),
+                            ConstantFunctions.OpenNewActivity(
+                                const ScreenArchive()),
                           );
                         },
                         child: Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.only(right: 7),
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(right: 7),
                           decoration: WidgetsReusing.getListBoxDecoration(),
-                          child: Icon(
+                          child: const Icon(
                             Icons.search,
                             size: 30,
                           ),
@@ -195,7 +193,7 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
                           return Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(25),
@@ -216,7 +214,7 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
                             ),
                           );
                         } else {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         }
@@ -234,8 +232,8 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
 
   Widget getIconText(title, Color color) {
     return Container(
-      margin: EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 5),
-      padding: EdgeInsets.only(bottom: 5),
+      margin: const EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 5),
+      padding: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
@@ -248,34 +246,34 @@ class _ScreenMyClaimsState extends State<ScreenMyClaims> {
   }
 
   Widget getGridContainer(
-      icon_data1, title1, onTapFirst, icon_data2, title2, onTapSecond) {
+      iconData1, title1, onTapFirst, iconData2, title2, onTapSecond) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         InkWell(
             onTap: onTapFirst,
-            child: GridContainer(icon_data1, title1, onTapFirst)),
-        Spacer(),
+            child: GridContainer(iconData1, title1, onTapFirst)),
+        const Spacer(),
         InkWell(
           onTap: onTapFirst,
-          child: GridContainer(icon_data2, title2, onTapSecond),
+          child: GridContainer(iconData2, title2, onTapSecond),
         )
       ],
     );
   }
 
-  Widget GridContainer(icon_data, title, onTap) {
-    double width_height = MediaQuery.of(context).size.width / 2.5;
+  Widget GridContainer(iconData, title, onTap) {
+    double widthHeight = MediaQuery.of(context).size.width / 2.5;
     return Container(
-      margin: EdgeInsets.all(7),
+      margin: const EdgeInsets.all(7),
       decoration: WidgetsReusing.getListBoxDecoration(),
-      height: width_height - 35,
-      width: width_height,
+      height: widthHeight - 35,
+      width: widthHeight,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon_data, size: 50),
-          SizedBox(height: 10),
+          Icon(iconData, size: 50),
+          const SizedBox(height: 10),
           Text(title, style: Theme.of(context).textTheme.bodyText1),
         ],
       ),

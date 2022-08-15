@@ -4,9 +4,10 @@ import 'dart:io';
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
-import 'package:claim_core/claim/screens/screen_new_claim.dart';
+import 'package:claim_core/claim/screens/new_claim.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
 import 'package:claim_core/dashboard/models/model_weather1.dart';
+import 'package:claim_core/dashboard/screens/compass_screen.dart';
 import 'package:claim_core/dashboard/screens/screen_calendar.dart';
 import 'package:claim_core/dashboard/screens/screen_contacts.dart';
 import 'package:claim_core/dashboard/screens/screen_guide.dart';
@@ -26,12 +27,12 @@ import 'package:intl/intl.dart';
 import '../../claim/screens/screen_my_claims.dart';
 import '../../sidebar/settings_screens/settings_screen.dart';
 
-class ScreenDashboard extends StatefulWidget {
+class DashBoardScreen extends StatefulWidget {
   @override
-  _ScreenDashboardState createState() => _ScreenDashboardState();
+  _DashBoardScreenState createState() => _DashBoardScreenState();
 }
 
-class _ScreenDashboardState extends State<ScreenDashboard> {
+class _DashBoardScreenState extends State<DashBoardScreen> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
 //  DateFormat("yyyy-MM-ddTHH:mm:ss").parse(dateTime)
@@ -81,6 +82,9 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
 
       // nums.sort((a, b) => a.to > b.bitLength);
       // print("onMapTap333 ${nums}");
+
+      Navigator.push(
+          context, ConstantFunctions.OpenNewActivity(const CompassScreen()));
     };
 
     onDrawerTap = () {
@@ -142,7 +146,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
 
                 Navigator.push(
                     context,
-                    ConstantFunctions.OpenNewActivity(ScreenNewClaims(
+                    ConstantFunctions.OpenNewActivity(NewClaims(
                         modelAllDropdown: modelAllDropdown,
                         modelservices: modelservices)));
               } else {
@@ -440,7 +444,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                           Navigator.push(
                             context,
                             ConstantFunctions.OpenNewActivity(
-                                ScreenDashboard()),
+                                DashBoardScreen()),
                           );
                         },
                         child: Container(
@@ -472,7 +476,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                         Navigator.push(
                           context,
                           ConstantFunctions.OpenNewActivity(
-                              const ScreenMyClaims()),
+                              const MyClaimsScreen()),
                         );
                       },
                       child: const Icon(

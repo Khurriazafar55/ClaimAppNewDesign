@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:claim_core/app_theme_work/textformfield_theme.dart';
+import 'package:claim_core/app_theme_work/textformfield_theme1.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_service.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
@@ -558,7 +559,7 @@ class _ScreenNewClaimsState extends State<ScreenNewClaims> {
                 Row(
                   children: [
                     Expanded(
-                      child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                      child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Address",
                           txtEdtCntrlr8,
@@ -566,7 +567,7 @@ class _ScreenNewClaimsState extends State<ScreenNewClaims> {
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                     ),
                     Expanded(
-                      child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                      child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "City",
                           txtEdtCntrlr9,
@@ -620,7 +621,7 @@ class _ScreenNewClaimsState extends State<ScreenNewClaims> {
                       ),
                     ),
                     Expanded(
-                      child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                      child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Zip",
                           txtEdtCntrlr10,
@@ -764,7 +765,7 @@ class _ScreenNewClaimsState extends State<ScreenNewClaims> {
                 Row(
                   children: [
                     Expanded(
-                      child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                      child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Claim Number",
                           txtEdtCntrlr11,
@@ -936,7 +937,7 @@ class _ScreenNewClaimsState extends State<ScreenNewClaims> {
                       ),
                     ),
                     Expanded(
-                      child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                      child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Damage Location",
                           txtEdtCntrlr12,
@@ -991,7 +992,7 @@ class _ScreenNewClaimsState extends State<ScreenNewClaims> {
                       ),
                     ),
                     Expanded(
-                      child: TextFormFieldTheme.GetTextFormFieldWithBorder(
+                      child: TextFormFieldTheme1.GetTextFormFieldWithBorder(
                           context,
                           "Stories",
                           txtEdtCntrlr13,

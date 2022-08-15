@@ -220,11 +220,10 @@ class WidgetsReusing {
             tabController.index = 1;
           }
         },
+        indicatorColor: Colors.transparent,
         controller: tabController,
         isScrollable: false,
         labelColor: Colors.black,
-
-        // indicator: Decoration(),
         labelStyle: Theme.of(context)
             .textTheme
             .headline4!

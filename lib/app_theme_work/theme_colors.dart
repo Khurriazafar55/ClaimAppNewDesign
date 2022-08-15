@@ -7,6 +7,8 @@ class ThemeColors {
   static const Color primary_dark_lt = Color.fromRGBO(255, 94, 0, 1);
   static const Color dark_orange = Color.fromRGBO(255, 94, 0, 1);
   static const Color orange_button = Color.fromRGBO(255, 102, 0, 1);
+  static const Color primary_light_color1 = Color.fromRGBO(255, 246, 238, 1);
+  static const Color primary_light_color = Color.fromRGBO(248, 198, 153, 1);
   static const Color background_color = Colors.deepOrange;
   static const Color background_color1 = Color.fromRGBO(248, 240, 234, 1);
   static const Color primary_light_lt = primary_dark_lt;

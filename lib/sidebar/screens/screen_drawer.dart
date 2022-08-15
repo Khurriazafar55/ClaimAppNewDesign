@@ -1,15 +1,18 @@
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/screens/screen_my_claims.dart';
+import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
 import 'package:claim_core/data/database_user.dart';
 import 'package:claim_core/data/model_user.dart';
 import 'package:claim_core/login/screens/screen_login.dart';
 import 'package:claim_core/sidebar/services/sidebar_service.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
+import 'package:claim_core/utilities/icon_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../dashboard/screens/compass_screen.dart';
 import '../settings_screens/settings_screen.dart';
+import 'rooftools_screen.dart';
 
 class ScreenDrawer extends StatefulWidget {
   @override
@@ -86,15 +89,25 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
       width: MediaQuery.of(context).size.width - 60,
       height: MediaQuery.of(context).size.height,
       decoration: const BoxDecoration(
-          color: ThemeColors.background_color_lt,
+          color: ThemeColors.background_color,
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(25),
             bottomRight: Radius.circular(25),
           )),
       child: Column(
         children: [
+          const SizedBox(height: 16),
+          Align(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.close_outlined, size: 28),
+            ),
+          ),
           Container(
-            padding: const EdgeInsets.only(top: 60, left: 0, bottom: 0),
+            padding: const EdgeInsets.only(top: 20, left: 0, bottom: 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -128,7 +141,13 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                     child: Column(
                       children: [
                         InkWell(
-                          onTap: () async {},
+                          onTap: () async {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  DashBoardScreen()),
+                            );
+                          },
                           child: GetMenuList(Icons.person_outline_outlined,
                               "Home", Colors.black87),
                         ),
@@ -137,7 +156,7 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                             Navigator.push(
                               context,
                               ConstantFunctions.OpenNewActivity(
-                                  const ScreenMyClaims()),
+                                  const MyClaimsScreen()),
                             );
                           },
                           child: GetMenuList(
@@ -159,8 +178,33 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                         ),
                         InkWell(
                           onTap: () {},
-                          child: GetMenuList(
-                              Icons.calendar_today, "Contacts", Colors.black87),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(
+                                    left: 15, right: 10, top: 7, bottom: 7),
+                                child: CircleAvatar(
+                                  radius: 14,
+                                  backgroundColor: Colors.transparent,
+                                  child: SvgPicture.asset(
+                                    IconAsset.contacts,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text('Contacts',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2!
+                                        .copyWith(
+                                            color: Colors.black87,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w500)),
+                              ),
+                            ],
+                          ),
                         ),
                         InkWell(
                           onTap: () {},
@@ -168,24 +212,20 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                               "Measure Assist", Colors.black87),
                         ),
                         InkWell(
-                          onTap: () {},
-                          child: GetMenuList(Icons.calendar_today, "Roof Tools",
-                              Colors.black87),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  const RoofToolsScreen()),
+                            );
+                          },
+                          child: GetMenuList(
+                              Icons.construction, "Roof Tools", Colors.black87),
                         ),
                         InkWell(
                           onTap: () {},
                           child: GetMenuList(
                               Icons.calendar_today, "Guides", Colors.black87),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) {
-                              return const CompassScreen();
-                            }));
-                          },
-                          child: GetMenuList(
-                              Icons.calendar_today, "Compass", Colors.black87),
                         ),
                         InkWell(
                           onTap: () {
@@ -196,7 +236,7 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                                 if (value.status == 200) {
                                   databaseUser.DeleteAllRecord();
                                   ConstantFunctions.OpenNewScreenClean(
-                                      context, const ScreenLogin());
+                                      context, const LoginScreen());
                                   ConstantFunctions.getSnakeBar(
                                       context, value.message);
                                 } else {
@@ -292,11 +332,13 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
           ),
         ),
         Expanded(
-          child: Text(title,
-              style: Theme.of(context).textTheme.headline2!.copyWith(
-                  color: Colors.black87,
-                  fontSize: 19,
-                  fontWeight: FontWeight.w500)),
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headline2!.copyWith(
+                color: Colors.black87,
+                fontSize: 19,
+                fontWeight: FontWeight.w500),
+          ),
         ),
         /* Container(
           padding: EdgeInsets.only(left: 15, right: 10),

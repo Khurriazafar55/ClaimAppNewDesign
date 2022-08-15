@@ -21,21 +21,21 @@ class _ScreenOnDemandState extends State<ScreenOnDemand> {
       // key: _drawerKey,
       // drawer: ScreenDrawer(),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             Expanded(
               child: Column(
                 children: [
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Row(
                     children: [
                       InkWell(
                         onTap: () => Navigator.of(context).pop(),
                         child: Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.only(left: 15),
-                          child: Icon(
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(left: 15),
+                          child: const Icon(
                             Icons.arrow_back,
                             size: 30,
                           ),
@@ -49,10 +49,10 @@ class _ScreenOnDemandState extends State<ScreenOnDemand> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(right: 7),
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 7),
                         decoration: WidgetsReusing.getListBoxDecoration(),
-                        child: Icon(
+                        child: const Icon(
                           Icons.search,
                           size: 30,
                         ),
@@ -63,7 +63,7 @@ class _ScreenOnDemandState extends State<ScreenOnDemand> {
                     child: ListView.builder(
                       itemCount: 10,
                       itemBuilder: (context, index) {
-                        return WidgetsReusing.GetClaimListItem(null!);
+                        return WidgetsReusing.GetClaimListItem(null);
                       },
                     ),
                   )
@@ -74,31 +74,31 @@ class _ScreenOnDemandState extends State<ScreenOnDemand> {
               //  width: double.infinity,
               // height: 120,
 
-              margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               decoration: WidgetsReusing.getListBoxDecoration(),
 
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.menu,
                     size: 30,
                   ),
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.black.withOpacity(.25),
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 blurRadius: 5,
                                 spreadRadius: 1)
                           ]),
-                      child: Icon(
+                      child: const Icon(
                         Icons.home,
                         size: 30,
                       ),
@@ -111,7 +111,7 @@ class _ScreenOnDemandState extends State<ScreenOnDemand> {
                       //   ConstantFunctions.OpenNewActivity(ScreenMyClaims()),
                       // );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.list_alt,
                       size: 30,
                     ),
@@ -127,8 +127,8 @@ class _ScreenOnDemandState extends State<ScreenOnDemand> {
 
   Widget getIconText(title, Color color) {
     return Container(
-      margin: EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 5),
-      padding: EdgeInsets.only(bottom: 5),
+      margin: const EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 5),
+      padding: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
@@ -140,34 +140,34 @@ class _ScreenOnDemandState extends State<ScreenOnDemand> {
   }
 
   Widget getGridContainer(
-      icon_data1, title1, onTapFirst, icon_data2, title2, onTapSecond) {
+      iconData1, title1, onTapFirst, iconData2, title2, onTapSecond) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         InkWell(
             onTap: onTapFirst,
-            child: GridContainer(icon_data1, title1, onTapFirst)),
-        Spacer(),
+            child: GridContainer(iconData1, title1, onTapFirst)),
+        const Spacer(),
         InkWell(
           onTap: onTapFirst,
-          child: GridContainer(icon_data2, title2, onTapSecond),
+          child: GridContainer(iconData2, title2, onTapSecond),
         )
       ],
     );
   }
 
-  Widget GridContainer(icon_data, title, onTap) {
-    double width_height = MediaQuery.of(context).size.width / 2.5;
+  Widget GridContainer(iconData, title, onTap) {
+    double widthHeight = MediaQuery.of(context).size.width / 2.5;
     return Container(
-      margin: EdgeInsets.all(7),
+      margin: const EdgeInsets.all(7),
       decoration: WidgetsReusing.getListBoxDecoration(),
-      height: width_height - 35,
-      width: width_height,
+      height: widthHeight - 35,
+      width: widthHeight,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon_data, size: 50),
-          SizedBox(height: 10),
+          Icon(iconData, size: 50),
+          const SizedBox(height: 10),
           Text(title, style: Theme.of(context).textTheme.bodyText1),
         ],
       ),
