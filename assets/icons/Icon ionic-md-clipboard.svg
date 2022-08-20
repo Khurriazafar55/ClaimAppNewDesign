@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="41.143" height="48" viewBox="0 0 41.143 48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ce091a;
+      }
+    </style>
+  </defs>
+  <path id="Icon_ionic-md-clipboard" data-name="Icon ionic-md-clipboard" class="cls-1" d="M42.571,8.143H33.212a6.859,6.859,0,0,0-13.282,0H10.571A4.585,4.585,0,0,0,6,12.714V46.428A4.585,4.585,0,0,0,10.571,51h32a4.585,4.585,0,0,0,4.571-4.572V12.714A4.585,4.585,0,0,0,42.571,8.143Zm-16,0a2.286,2.286,0,1,1-2.286,2.286A2.293,2.293,0,0,1,26.571,8.143ZM42.857,46.714H10.286V12.429h4.286v7.714h24V12.429h4.286Z" transform="translate(-6 -3)"/>
+</svg>

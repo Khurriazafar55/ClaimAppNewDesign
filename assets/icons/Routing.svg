@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #8f8e8e;
+        stroke: #fff;
+        stroke-width: 1.5px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Routing" transform="translate(-285 -698)">
+    <g id="Rectangle_70" data-name="Rectangle 70" class="cls-1" transform="translate(285 698)">
+      <rect class="cls-3" width="36" height="36" rx="10"/>
+      <rect class="cls-4" x="0.75" y="0.75" width="34.5" height="34.5" rx="9.25"/>
+    </g>
+    <path id="Icon_map-compass" data-name="Icon map-compass" class="cls-2" d="M13.72,26.72a13,13,0,1,1,13-13,13.015,13.015,0,0,1-13,13Zm0-23.833A10.833,10.833,0,1,0,24.553,13.72,10.846,10.846,0,0,0,13.72,2.887Zm.024,1.76s-3.816,6.538-3.816,8.531v1.083c0,1.992,3.827,8.667,3.827,8.667s3.756-6.536,3.756-8.528V13.175c0-1.993-3.767-8.528-3.767-8.528Zm-.024,11.24a2.167,2.167,0,1,1,2.167-2.167,2.167,2.167,0,0,1-2.167,2.167Z" transform="translate(289.28 702.28)"/>
+  </g>
+</svg>

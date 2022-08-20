@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="48" viewBox="0 0 52 48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ce091a;
+      }
+    </style>
+  </defs>
+  <g id="Icon_ionic-ios-calendar" data-name="Icon ionic-ios-calendar" transform="translate(-2.25 -3)">
+    <path id="Path_13" data-name="Path 13" class="cls-1" d="M49.25,4.5h-5V7.484a1,1,0,0,1-1,.995h-2a1,1,0,0,1-1-.995V4.5h-24V7.484a1,1,0,0,1-1,.995h-2a1,1,0,0,1-1-.995V4.5h-5a5,5,0,0,0-5,4.974V43.295a5,5,0,0,0,5,4.974h42a5,5,0,0,0,5-4.974V9.474A5,5,0,0,0,49.25,4.5Zm1,37.3a2.5,2.5,0,0,1-2.5,2.487h-39A2.5,2.5,0,0,1,6.25,41.8V19.421a1,1,0,0,1,1-.995h42a1,1,0,0,1,1,.995Z" transform="translate(0 2.731)"/>
+    <path id="Path_14" data-name="Path 14" class="cls-1" d="M10.231,4.058A1.061,1.061,0,0,0,9.174,3H7.058A1.061,1.061,0,0,0,6,4.058V7.231h4.231Z" transform="translate(6.202)"/>
+    <path id="Path_15" data-name="Path 15" class="cls-1" d="M20.731,4.058A1.061,1.061,0,0,0,19.674,3H17.558A1.061,1.061,0,0,0,16.5,4.058V7.231h4.231Z" transform="translate(23.567)"/>
+  </g>
+</svg>
