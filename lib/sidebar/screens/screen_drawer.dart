@@ -1,16 +1,21 @@
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
-import 'package:claim_core/claim/screens/screen_my_claims.dart';
+import 'package:claim_core/claim/screens/my_claims.dart';
+import 'package:claim_core/dashboard/screens/compass_screen.dart';
+import 'package:claim_core/dashboard/screens/screen_calendar.dart';
 import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
+import 'package:claim_core/dashboard/screens/screen_guide.dart';
+import 'package:claim_core/dashboard/screens/screen_measure_assist.dart';
 import 'package:claim_core/data/database_user.dart';
 import 'package:claim_core/data/model_user.dart';
 import 'package:claim_core/login/screens/screen_login.dart';
-import 'package:claim_core/sidebar/services/sidebar_service.dart';
+import 'package:claim_core/screen_map.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:claim_core/utilities/icon_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../dashboard/screens/screen_contacts.dart';
 import '../settings_screens/settings_screen.dart';
 import 'rooftools_screen.dart';
 
@@ -156,28 +161,53 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                             Navigator.push(
                               context,
                               ConstantFunctions.OpenNewActivity(
-                                  const MyClaimsScreen()),
+                                  const MyClaims()),
                             );
                           },
                           child: GetMenuList(
                               Icons.list_alt, "My Claims", Colors.black87),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  const CalendarScreen(
+                                claim_list: [],
+                              )),
+                            );
+                          },
                           child: GetMenuList(
                               Icons.calendar_today, "Calendar", Colors.black87),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(MapScreen()),
+                            );
+                          },
                           child: GetMenuList(Icons.map, "Map", Colors.black87),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  const CompassScreen()),
+                            );
+                          },
                           child: GetMenuList(
                               Icons.explore, "Routing", Colors.black87),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  const ContactsScreen()),
+                            );
+                          },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -207,7 +237,13 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  const MeasureAssistScreen()),
+                            );
+                          },
                           child: GetMenuList(Icons.calendar_today,
                               "Measure Assist", Colors.black87),
                         ),
@@ -223,29 +259,40 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                               Icons.construction, "Roof Tools", Colors.black87),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  const GuideScreen()),
+                            );
+                          },
                           child: GetMenuList(
                               Icons.calendar_today, "Guides", Colors.black87),
                         ),
                         InkWell(
                           onTap: () {
-                            SidebarService.LogoutFunction(
-                                    context, modalUser!.bearer)
-                                .then(
-                              (value) {
-                                if (value.status == 200) {
-                                  databaseUser.DeleteAllRecord();
-                                  ConstantFunctions.OpenNewScreenClean(
-                                      context, const LoginScreen());
-                                  ConstantFunctions.getSnakeBar(
-                                      context, value.message);
-                                } else {
-                                  ConstantFunctions.getSnakeBar(
-                                      context, value.message);
-                                }
-                                Navigator.pop(context);
-                              },
+                            Navigator.pushReplacement(
+                              context,
+                              ConstantFunctions.OpenNewActivity(
+                                  const LoginScreen()),
                             );
+                            // SidebarService.LogoutFunction(
+                            //         context, modalUser!.bearer)
+                            //     .then(
+                            //   (value) {
+                            //     if (value.status == 200) {
+                            //       databaseUser.DeleteAllRecord();
+                            //       ConstantFunctions.OpenNewScreenClean(
+                            //           context, const LoginScreen());
+                            //       ConstantFunctions.getSnakeBar(
+                            //           context, value.message);
+                            //     } else {
+                            //       ConstantFunctions.getSnakeBar(
+                            //           context, value.message);
+                            //     }
+                            //     Navigator.pop(context);
+                            //   },
+                            // );
                           },
                           child: GetMenuList(
                               Icons.logout, "Logout", Colors.black87),
@@ -261,7 +308,7 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  ConstantFunctions.OpenNewActivity(const ScreenSetting()));
+                  ConstantFunctions.OpenNewActivity(const SettingScreen()));
             },
             child: GetMenuList(Icons.settings, "Setting", Colors.black87),
           ),

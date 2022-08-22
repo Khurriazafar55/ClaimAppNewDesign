@@ -3,20 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class ScreenMap extends StatefulWidget {
+class MapScreen extends StatefulWidget {
   @override
-  State<ScreenMap> createState() => ScreenMapState();
+  State<MapScreen> createState() => MapScreenState();
 }
 
-class ScreenMapState extends State<ScreenMap> {
-  Completer<GoogleMapController> _controller = Completer();
+class MapScreenState extends State<MapScreen> {
+  final Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static final CameraPosition _kGooglePlex = const CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
+  static final CameraPosition _kLake = const CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
       tilt: 59.440717697143555,
@@ -26,11 +26,11 @@ class ScreenMapState extends State<ScreenMap> {
   Widget build(BuildContext context) {
     const Color primaryColor = Colors.white;
 
-    return new Scaffold(
+    return Scaffold(
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black87,
           ),
@@ -46,8 +46,8 @@ class ScreenMapState extends State<ScreenMap> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
+        label: const Text('To the lake!'),
+        icon: const Icon(Icons.directions_boat),
       ),
     );
   }

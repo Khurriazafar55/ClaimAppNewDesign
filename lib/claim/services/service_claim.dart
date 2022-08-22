@@ -23,32 +23,32 @@ class ServiceClaim {
   //done handling
   static Future<ModelGetClaim> GetClaimFunction(context, String bearer) async {
     try {
-      Map<String, String> _header = {
+      Map<String, String> header = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $bearer',
       };
 
       var response = await client
-          .get(Uri.parse(RestApiUtils.get_all_claim), headers: _header)
+          .get(Uri.parse(RestApiUtils.get_all_claim), headers: header)
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          RestApiUtils.get_all_claim, _header, null, response);
+          RestApiUtils.get_all_claim, header, null, response);
 
       if (response.statusCode == 200) {
-        final _model = modelGetClaimFromMap(response.body);
-        if (_model.data!.length == 0) {
-          _model.message = "No claims found";
-          _model.status = 200;
+        final model = modelGetClaimFromMap(response.body);
+        if (model.data!.length == 0) {
+          model.message = "No claims found";
+          model.status = 200;
         } else {
-          _model.message = "Claims found";
-          _model.status = 200;
+          model.message = "Claims found";
+          model.status = 200;
         }
-        return _model;
+        return model;
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelGetClaim(
@@ -80,9 +80,9 @@ class ServiceClaim {
 
   //done handling
   static Future<ModelMessage> CreateClaimFunction(
-      context, String bearer, value_map) async {
+      context, String bearer, valueMap) async {
     try {
-      Map<String, String> _header = {
+      Map<String, String> header = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $bearer',
@@ -90,18 +90,18 @@ class ServiceClaim {
 
       var response = await client
           .post(Uri.parse(RestApiUtils.claim_create),
-              headers: _header, body: jsonEncode(value_map))
+              headers: header, body: jsonEncode(valueMap))
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          RestApiUtils.claim_create, _header, jsonEncode(value_map), response);
+          RestApiUtils.claim_create, header, jsonEncode(valueMap), response);
 
       if (response.statusCode == 200) {
         return ModelMessage(
             response.statusCode, "Claim Submitted Successfully");
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelMessage(
@@ -112,36 +112,36 @@ class ServiceClaim {
     } on SocketException {
       return ModelMessage(2, RestApiUtils.GetResponse(2));
     } catch (ex) {
-      return ModelMessage(600, "${ex.toString()}");
+      return ModelMessage(600, ex.toString());
     }
   }
 
   //done handling
   static Future<ModelGetReport> GetReportFunction(
-      context, String bearer, String claim_id) async {
+      context, String bearer, String claimId) async {
     try {
-      Map<String, String> _header = {
+      Map<String, String> header = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $bearer',
       };
 
       var response = await client
-          .get(Uri.parse("${RestApiUtils.get_report}?id=$claim_id"),
-              headers: _header)
+          .get(Uri.parse("${RestApiUtils.get_report}?id=$claimId"),
+              headers: header)
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          "${RestApiUtils.get_report}/id=$claim_id", _header, null, response);
+          "${RestApiUtils.get_report}/id=$claimId", header, null, response);
 
       if (response.statusCode == 200) {
-        final _model = modelGetReportFromMap(response.body);
-        _model.status = 200;
-        _model.message = "Reports getting successfully";
-        return _model;
+        final model = modelGetReportFromMap(response.body);
+        model.status = 200;
+        model.message = "Reports getting successfully";
+        return model;
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelGetReport(
@@ -156,18 +156,17 @@ class ServiceClaim {
       return ModelGetReport(
           status: 2, data: null, message: RestApiUtils.GetResponse(2));
     } catch (ex) {
-      return ModelGetReport(
-          status: 600, data: null, message: "${ex.toString()}");
+      return ModelGetReport(status: 600, data: null, message: ex.toString());
     }
   }
 
   //done handling
   static Future<ModelDoReport> CreateReportFunction(
-      context, String bearer, value_map) async {
-    print("HelloSifat : ${value_map}");
+      context, String bearer, valueMap) async {
+    print("HelloSifat : $valueMap");
 
     try {
-      Map<String, String> _header = {
+      Map<String, String> header = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $bearer',
@@ -175,20 +174,20 @@ class ServiceClaim {
 
       var response = await client
           .post(Uri.parse(RestApiUtils.do_create_report),
-              headers: _header, body: jsonEncode(value_map))
+              headers: header, body: jsonEncode(valueMap))
           .timeout(time_out);
 
-      RestApiUtils.GetPrintHeaderBody(RestApiUtils.do_create_report, _header,
-          jsonEncode(value_map), response);
+      RestApiUtils.GetPrintHeaderBody(RestApiUtils.do_create_report, header,
+          jsonEncode(valueMap), response);
 
       if (response.statusCode == 200) {
-        final _model = modelDoReportFromMap(response.body);
-        _model.status = 200;
-        _model.message = "Report created successfully";
-        return _model;
+        final model = modelDoReportFromMap(response.body);
+        model.status = 200;
+        model.message = "Report created successfully";
+        return model;
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelDoReport(
@@ -209,30 +208,30 @@ class ServiceClaim {
     } catch (ex) {
       print("HelloGetResponse  error exx ${ex.toString()}");
       return ModelDoReport(
-          status: 600, claimReportModel: null, message: "${ex.toString()}");
+          status: 600, claimReportModel: null, message: ex.toString());
     }
   }
 
   //done handling
   static Future<ModelAllDropdown> GetAllDropDown(context, String bearer) async {
     try {
-      Map<String, String> _header = {
+      Map<String, String> header = {
         'Authorization': 'Bearer $bearer',
       };
 
       var response = await client
-          .get(Uri.parse(RestApiUtils.drop_down_get_all), headers: _header)
+          .get(Uri.parse(RestApiUtils.drop_down_get_all), headers: header)
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          RestApiUtils.drop_down_get_all, _header, null, response);
+          RestApiUtils.drop_down_get_all, header, null, response);
 
       if (response.statusCode == 200) {
-        final _model = modelAllDropdownFromJson(response.body);
-        _model.status = 200;
-        _model.message = "values getting successful";
-        if (_model.data != null && _model.data!.length > 0) {
-          return _model;
+        final model = modelAllDropdownFromJson(response.body);
+        model.status = 200;
+        model.message = "values getting successful";
+        if (model.data != null && model.data!.length > 0) {
+          return model;
         } else {
           return ModelAllDropdown(
               status: response.statusCode,
@@ -241,7 +240,7 @@ class ServiceClaim {
         }
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelAllDropdown(
@@ -264,21 +263,21 @@ class ServiceClaim {
   static Future<ModelService> GetServiceTypeDropDown(
       context, String bearer) async {
     try {
-      Map<String, String> _header = {
+      Map<String, String> header = {
         'Authorization': 'Bearer $bearer',
       };
 
       var response = await client
-          .get(Uri.parse(RestApiUtils.get_services), headers: _header)
+          .get(Uri.parse(RestApiUtils.get_services), headers: header)
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          RestApiUtils.get_services, _header, null, response);
+          RestApiUtils.get_services, header, null, response);
 
       if (response.statusCode == 200) {
-        final _model = modelServiceFromMap(response.body);
-        if (_model.data != null && _model.data!.length > 0) {
-          return _model;
+        final model = modelServiceFromMap(response.body);
+        if (model.data != null && model.data!.length > 0) {
+          return model;
         } else {
           return ModelService(
               status: response.statusCode,
@@ -287,7 +286,7 @@ class ServiceClaim {
         }
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelService(
@@ -308,32 +307,32 @@ class ServiceClaim {
 
   //done handling
   static Future<ModelGetClaimId> GetClaimById(
-      context, String bearer, String claim_id) async {
+      context, String bearer, String claimId) async {
     try {
-      Map<String, String> _header = {'Authorization': 'Bearer $bearer'};
+      Map<String, String> header = {'Authorization': 'Bearer $bearer'};
 
       var response = await client
-          .get(Uri.parse("${RestApiUtils.get_claim}?id=$claim_id"),
-              headers: _header)
+          .get(Uri.parse("${RestApiUtils.get_claim}?id=$claimId"),
+              headers: header)
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          "${RestApiUtils.get_claim}?id=$claim_id", _header, null, response);
+          "${RestApiUtils.get_claim}?id=$claimId", header, null, response);
 
       if (response.statusCode == 200) {
-        final _model = modelGetClaimIdFromMap(response.body);
+        final model = modelGetClaimIdFromMap(response.body);
 
-        if (_model.data != null && _model.data!.length > 0) {
-          _model.status = 200;
-          _model.message = "Records found";
-          return _model;
+        if (model.data != null && model.data!.length > 0) {
+          model.status = 200;
+          model.message = "Records found";
+          return model;
         } else {
           return ModelGetClaimId(
               status: 200, message: "No record found", data: null);
         }
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelGetClaimId(
@@ -367,8 +366,8 @@ class ServiceClaim {
       required String reportId,
       required File image_file}) async {
     try {
-      Map<String, String> _header = {'Authorization': "Bearer $bearer"};
-      Map<String, String> _body = {
+      Map<String, String> header = {'Authorization': "Bearer $bearer"};
+      Map<String, String> body = {
         "Damage_type": Damage_type,
         "Image_name": Image_name,
         "Image_format": Image_format,
@@ -382,14 +381,12 @@ class ServiceClaim {
       };
       var request =
           http.MultipartRequest("POST", Uri.parse(RestApiUtils.Camera))
-            ..fields.addAll(_body)
-            ..headers.addAll(_header);
+            ..fields.addAll(body)
+            ..headers.addAll(header);
 
-      if (image_file != null) {
-        var pic = await http.MultipartFile.fromPath("upfiles", image_file.path);
-        //add multipart to request
-        request.files.add(pic);
-      }
+      var pic = await http.MultipartFile.fromPath("upfiles", image_file.path);
+      //add multipart to request
+      request.files.add(pic);
       var response = await request.send();
 
       print("HelloGetResponse  statusCode ${response.statusCode}");
@@ -400,10 +397,10 @@ class ServiceClaim {
 
         var responseString = String.fromCharCodes(responseData);
 
-        print("HelloGetResponse  responseString ${responseString}");
+        print("HelloGetResponse  responseString $responseString");
 
         RestApiUtils.GetPrintHeaderBody(
-            RestApiUtils.Camera, _header, _body, null);
+            RestApiUtils.Camera, header, body, null);
 
         final modelCamera = modelCameraFromMap(responseString);
         modelCamera.status = 200;
@@ -411,7 +408,7 @@ class ServiceClaim {
         return modelCamera;
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelCamera(

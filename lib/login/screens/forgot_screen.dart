@@ -81,7 +81,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             children: [
               Align(
                 alignment: Alignment.center,
-                child: Image.asset(AppAssets.sign_in_logo, scale: 5),
+                child: Image.asset(AppAssets.claim_core_logo, scale: 5),
               ),
               Align(
                   child: Row(

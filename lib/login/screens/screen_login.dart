@@ -5,7 +5,6 @@ import 'package:claim_core/login/screens/forgot_screen.dart';
 import 'package:claim_core/login/services/login_services.dart';
 import 'package:claim_core/utilities/app_assets.dart';
 import 'package:claim_core/utilities/rest_api_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../utilities/constant_functions.dart';
@@ -100,12 +99,12 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: ThemeColors.background_color1,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Icon(Icons.arrow_back),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Navigator.pop(context);
+        //   },
+        //   child: const Icon(Icons.arrow_back),
+        // ),
         // backgroundColor: Colors.transparent,
         elevation: 0,
         /*actions: [
@@ -133,37 +132,40 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Align(
                 alignment: Alignment.center,
-                child: Image.asset(AppAssets.sign_in_logo, scale: 5),
+                child: Image.asset(
+                  AppAssets.claim_core_logo,
+                  scale: 1,
+                ),
               ),
               Align(
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                    Text(
-                      "Claim",
-                      style: TextStyle(
-                        color: Color.fromRGBO(205, 13, 30, 1),
-                        fontSize: 40,
-                        fontFamily: "circulat_std_bold",
-                        fontWeight: FontWeight.w700,
+                    // Text(
+                    //   "Claim",
+                    //   style: TextStyle(
+                    //     color: Color.fromRGBO(205, 13, 30, 1),
+                    //     fontSize: 40,
+                    //     fontFamily: "circulat_std_bold",
+                    //     fontWeight: FontWeight.w700,
 
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    //     // fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
                     // SizedBox(
                     //   width: 1,
                     // ),
-                    Text(
-                      "Core",
-                      style: TextStyle(
-                        color: ThemeColors.primary_dark_lt,
-                        fontSize: 40,
-                        fontFamily: 'circulat_std_bold.ttf',
+                    // Text(
+                    //   "Core",
+                    //   style: TextStyle(
+                    //     color: ThemeColors.primary_dark_lt,
+                    //     fontSize: 40,
+                    //     fontFamily: 'circulat_std_bold.ttf',
 
-                        fontWeight: FontWeight.w700,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    //     fontWeight: FontWeight.w700,
+                    //     // fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
                   ])),
               const SizedBox(height: 20),
               Align(

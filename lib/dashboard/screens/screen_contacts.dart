@@ -3,14 +3,14 @@ import 'package:claim_core/dashboard/models/model_get_contact.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:flutter/material.dart';
 
-class ScreenContacts extends StatefulWidget {
-  const ScreenContacts({Key? key}) : super(key: key);
+class ContactsScreen extends StatefulWidget {
+  const ContactsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ScreenContacts> createState() => _ScreenContactsState();
+  State<ContactsScreen> createState() => _ContactsScreenState();
 }
 
-class _ScreenContactsState extends State<ScreenContacts> {
+class _ContactsScreenState extends State<ContactsScreen> {
   late GestureTapCallback onContacts;
 
   late GestureTapCallback onProfile;
@@ -21,7 +21,7 @@ class _ScreenContactsState extends State<ScreenContacts> {
   void initState() {
     super.initState();
     ConstantFunctions.getSharePrefModeString("login_token").then(
-      (login_token) {
+      (loginToken) {
         setState(() {
           // _future_contact_list =
           // DashboardService.GetContact(context, login_token);
@@ -34,7 +34,7 @@ class _ScreenContactsState extends State<ScreenContacts> {
   Widget build(BuildContext context) {
     onContacts = () {
       Navigator.push(
-          context, ConstantFunctions.OpenNewActivity(ScreenContacts()));
+          context, ConstantFunctions.OpenNewActivity(const ContactsScreen()));
     };
 
     return Scaffold(
@@ -47,10 +47,10 @@ class _ScreenContactsState extends State<ScreenContacts> {
                 InkWell(
                   // onTap: onContacts,
                   child: Container(
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.only(left: 7),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(left: 7),
                     decoration: WidgetsReusing.getListBoxDecoration(),
-                    child: Icon(
+                    child: const Icon(
                       Icons.person,
                       size: 30,
                       color: Colors.black87,
@@ -79,9 +79,9 @@ class _ScreenContactsState extends State<ScreenContacts> {
                 InkWell(
                   onTap: () => Navigator.of(context).pop(),
                   child: Container(
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.only(right: 7),
-                    child: Icon(
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(right: 7),
+                    child: const Icon(
                       Icons.close,
                       size: 30,
                     ),
@@ -89,8 +89,8 @@ class _ScreenContactsState extends State<ScreenContacts> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Divider(
+            const SizedBox(height: 10),
+            const Divider(
               indent: 20,
               endIndent: 10,
               height: 12,
@@ -104,24 +104,24 @@ class _ScreenContactsState extends State<ScreenContacts> {
                   print("HelloData snapshot data ${snapshot.data!.data}");
                   print("HelloData snapshot data ${snapshot.data}");
                   if (snapshot.data != null &&
-                      snapshot.data!.data!.length > 0) {
+                      snapshot.data!.data!.isNotEmpty) {
                     return ListView.builder(
                         itemCount: snapshot.data!.data!.length,
                         itemBuilder: (context, index) {
-                          var contact_data = snapshot.data!.data![index];
+                          var contactData = snapshot.data!.data![index];
                           return Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  CircleAvatar(
+                                  const CircleAvatar(
                                     backgroundColor: Colors.white,
                                     child: Icon(Icons.person,
                                         color: Colors.black87),
                                   ),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Expanded(
                                     child: Column(
                                       mainAxisAlignment:
@@ -130,15 +130,15 @@ class _ScreenContactsState extends State<ScreenContacts> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "${contact_data.name}",
+                                          "${contactData.name}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline3,
                                           textAlign: TextAlign.center,
                                         ),
                                         Text(
-                                          contact_data.phoneNo != null
-                                              ? "${contact_data.phoneNo}"
+                                          contactData.phoneNo != null
+                                              ? "${contactData.phoneNo}"
                                               : "",
                                           style: Theme.of(context)
                                               .textTheme
@@ -150,35 +150,35 @@ class _ScreenContactsState extends State<ScreenContacts> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      if (contact_data.phoneNo != null) {
+                                      if (contactData.phoneNo != null) {
                                         ConstantFunctions.openPhoneCall(
-                                            phoneNumber: contact_data.phoneNo
-                                                .toString());
+                                            phoneNumber:
+                                                contactData.phoneNo.toString());
                                       } else {
                                         ConstantFunctions.getSnakeBar(context,
                                             "Phone number not available");
                                       }
                                     },
-                                    child: CircleAvatar(
+                                    child: const CircleAvatar(
                                       backgroundColor: Colors.white,
                                       child: Icon(Icons.call,
                                           color: Colors.black87),
                                     ),
                                   ),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   InkWell(
                                     onTap: () {
-                                      if (contact_data.phoneNo != null) {
+                                      if (contactData.phoneNo != null) {
                                         ConstantFunctions.openSMS(
                                             phoneNumber:
-                                                contact_data.phoneNo.toString(),
+                                                contactData.phoneNo.toString(),
                                             message: "");
                                       } else {
                                         ConstantFunctions.getSnakeBar(context,
                                             "Phone number not available");
                                       }
                                     },
-                                    child: CircleAvatar(
+                                    child: const CircleAvatar(
                                       backgroundColor: Colors.white,
                                       child: Icon(Icons.message,
                                           color: Colors.black87),

@@ -11,12 +11,26 @@ class TextFormFieldTheme1 {
     return Container(
       margin: marginEdges,
       // color: Colors.black,
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("$title",
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+          // SizedBox(
+          //   width: 5,
+          // ),
+          Row(
+            children: [
+              SizedBox(
+                width: 2,
+              ),
+              Text("$title",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17)),
+            ],
+          ),
+
           const SizedBox(height: 2),
           Card(
               elevation: 8,

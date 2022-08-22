@@ -12,20 +12,20 @@ import 'package:http/http.dart' as http;
 import '../../splas_screen.dart';
 
 class SidebarService {
-  static final time_out = const Duration(seconds: 10);
+  static const time_out = const Duration(seconds: 10);
   static final client = http.Client();
 
   static Future<ModelUpdateProfile> UpdateProfileImage(
-      String bearer, String name, String email, File? image_file) async {
+      String bearer, String name, String email, File? imageFile) async {
     try {
-      Map<String, String> _header = {'Authorization': "Bearer $bearer"};
-      Map<String, String> _body = {"name": name, "email": email};
+      Map<String, String> header = {'Authorization': "Bearer $bearer"};
+      Map<String, String> body = {"name": name, "email": email};
       var request = http.MultipartRequest("POST", Uri.parse(RestApiUtils.login))
-        ..fields.addAll(_body)
-        ..headers.addAll(_header);
+        ..fields.addAll(body)
+        ..headers.addAll(header);
 
-      if (image_file != null) {
-        var pic = await http.MultipartFile.fromPath("avatar", image_file.path);
+      if (imageFile != null) {
+        var pic = await http.MultipartFile.fromPath("avatar", imageFile.path);
         //add multipart to request
         request.files.add(pic);
       }
@@ -58,22 +58,22 @@ class SidebarService {
   static Future<ModelNotifications> GetAllNotificationFunction(
       context, String bearer) async {
     try {
-      Map<String, String> _header = {
+      Map<String, String> header = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $bearer',
       };
 
       var response = await client
-          .get(Uri.parse(RestApiUtils.get_all_notification), headers: _header)
+          .get(Uri.parse(RestApiUtils.get_all_notification), headers: header)
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          RestApiUtils.get_all_notification, _header, null, response);
+          RestApiUtils.get_all_notification, header, null, response);
 
       if (response.statusCode == 200) {
-        final _model = modelNotificationsFromMap(response.body);
-        return _model;
+        final model = modelNotificationsFromMap(response.body);
+        return model;
       } else if (response.statusCode == 401) {
         // ConstantFunctions.saveSharePrefModeString("login_token", "");
         // ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
@@ -93,14 +93,14 @@ class SidebarService {
   static Future<ModelMessage> LogoutFunction(
       BuildContext context, String bearer) async {
     try {
-      Map<String, String> _header = {'Authorization': "Bearer $bearer"};
+      Map<String, String> header = {'Authorization': "Bearer $bearer"};
 
       var response = await client
-          .post(Uri.parse("${RestApiUtils.logout}"), headers: _header)
+          .post(Uri.parse(RestApiUtils.logout), headers: header)
           .timeout(time_out);
 
       RestApiUtils.GetPrintHeaderBody(
-          RestApiUtils.logout, _header, null, response);
+          RestApiUtils.logout, header, null, response);
 
       if (response.statusCode == 200) {
         final modelMessage = modelMessageFromJson(response.body);
@@ -113,7 +113,7 @@ class SidebarService {
         }
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelMessage(

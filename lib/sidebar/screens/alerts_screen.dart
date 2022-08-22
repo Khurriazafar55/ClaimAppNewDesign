@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/screens/screen_my_claims.dart';
+import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
 import 'package:claim_core/sidebar/models/model_notifications.dart';
 import 'package:claim_core/sidebar/screens/screen_drawer.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
@@ -51,7 +52,11 @@ class _AlertsState extends State<Alerts> {
                             flex: 1,
                             child: InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  ConstantFunctions.OpenNewActivity(
+                                      DashBoardScreen()),
+                                );
                               },
                               child: Container(
                                 decoration: const BoxDecoration(
@@ -135,6 +140,7 @@ class _AlertsState extends State<Alerts> {
                             },
                           ))),
                     ),
+
                     const SizedBox(
                       height: 10,
                     ),
@@ -418,7 +424,7 @@ class _AlertsState extends State<Alerts> {
         return model;
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelNotifications(data: null);

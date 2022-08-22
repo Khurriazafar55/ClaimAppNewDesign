@@ -74,6 +74,21 @@ class ConstantFunctions {
     return returnKey;
   }
 
+  static Future<String> getSharePrefModeString3(
+      String key, String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String returnKey = (prefs.getString(key) ?? value);
+    print("isDarkMode return_key $returnKey");
+    return returnKey;
+  }
+
+  static Future<String> getSharePrefModeString1(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String returnKey = (prefs.getString(key) ?? "no_value");
+    print("isDarkMode return_key $returnKey");
+    return returnKey;
+  }
+
   static Future<int> getSharePrefModeInt(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int returnKey = (prefs.getInt(key) ?? 1);
@@ -87,15 +102,33 @@ class ConstantFunctions {
     print("isDarkMode isDarkModeOn $value");
   }
 
-  static void saveSharePrefModeString(String key, String value) async {
+  static void saveSharePrefModeString(
+    String key,
+    String value,
+  ) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(key, value);
     print("isDarkMode isDarkMfodeOn $value");
   }
 
-  static void saveSharePrefModeInt(String key, int value) async {
+  static void saveSharePrefModeString3(String value, String id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(key, value);
+    await prefs.setString(
+      value,
+      id,
+    );
+    print("isDarkMode isDarkMfodeOn $value,");
+  }
+
+  static void saveSharePrefModeInt(
+    String key,
+    int value,
+  ) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(
+      key,
+      value,
+    );
     print("isDarkMode isDarkModeOn $value");
   }
 

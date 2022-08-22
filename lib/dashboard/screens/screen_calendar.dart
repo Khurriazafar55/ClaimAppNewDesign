@@ -2,16 +2,16 @@ import 'package:claim_core/claim/models/model_get_claim.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class ScreenCalendar extends StatefulWidget {
+class CalendarScreen extends StatefulWidget {
   final claim_list;
 
-  ScreenCalendar({required this.claim_list});
+  const CalendarScreen({required this.claim_list});
 
   @override
-  _ScreenCalendarState createState() => _ScreenCalendarState();
+  _CalendarScreenState createState() => _CalendarScreenState();
 }
 
-class _ScreenCalendarState extends State<ScreenCalendar> {
+class _CalendarScreenState extends State<CalendarScreen> {
   Map<DateTime, List<String>>? _events;
 
   CalendarFormat format = CalendarFormat.month;
@@ -23,8 +23,8 @@ class _ScreenCalendarState extends State<ScreenCalendar> {
   String minCounter = '00';
   String temp = "";
 
-  TextEditingController _eventController = TextEditingController();
-  TextEditingController _timeController = TextEditingController();
+  final TextEditingController _eventController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -54,7 +54,7 @@ class _ScreenCalendarState extends State<ScreenCalendar> {
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black87,
           ),
@@ -62,14 +62,14 @@ class _ScreenCalendarState extends State<ScreenCalendar> {
         backgroundColor: primaryColor,
         title: Text(
           "Calendar ${widget.claim_list.length}",
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-              padding: EdgeInsets.only(right: 25),
+              padding: const EdgeInsets.only(right: 25),
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.playlist_add_outlined,
                 color: Colors.black,
                 size: 30,
@@ -83,9 +83,9 @@ class _ScreenCalendarState extends State<ScreenCalendar> {
             firstDay: DateTime(1990),
             lastDay: DateTime(2050),
             calendarFormat: format,
-            onFormatChanged: (CalendarFormat _format) {
+            onFormatChanged: (CalendarFormat format) {
               setState(() {
-                format = _format;
+                format = format;
               });
             },
             startingDayOfWeek: StartingDayOfWeek.sunday,
@@ -113,7 +113,7 @@ class _ScreenCalendarState extends State<ScreenCalendar> {
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(25.0),
               ),
-              selectedTextStyle: TextStyle(color: Colors.white),
+              selectedTextStyle: const TextStyle(color: Colors.white),
               todayDecoration: BoxDecoration(
                 color: Colors.blue[300],
                 shape: BoxShape.rectangle,
@@ -129,7 +129,8 @@ class _ScreenCalendarState extends State<ScreenCalendar> {
               ),
             ),
             headerStyle: HeaderStyle(
-              headerMargin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+              headerMargin:
+                  const EdgeInsets.only(left: 10, right: 10, bottom: 20),
               formatButtonVisible: true,
               titleCentered: true,
               formatButtonShowsNext: false,
@@ -137,36 +138,36 @@ class _ScreenCalendarState extends State<ScreenCalendar> {
                 color: Colors.blue[300],
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              formatButtonTextStyle: TextStyle(
+              formatButtonTextStyle: const TextStyle(
                 color: Colors.white,
               ),
             ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
             thickness: 1,
           ),
           Container(
-            margin: EdgeInsets.all(15.0),
+            margin: const EdgeInsets.all(15.0),
             width: double.infinity,
             height: 15,
-            child: Text('Event List'),
+            child: const Text('Event List'),
           ),
-          Container(
+          SizedBox(
             height: 320,
             width: double.infinity,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   ..._getEventsfromDay(selectedDay).map((event) => ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.arrow_forward,
                           size: 20,
                         ),
                         title: Text(
                           event.state.toString(),
                         ),
-                        trailing: Icon(Icons.delete_outline),
+                        trailing: const Icon(Icons.delete_outline),
                         // subtitle: Text(event.),
                       )),
                 ],

@@ -10,14 +10,14 @@ import 'help_support_screen/help_support_setting_screen.dart';
 import 'notification_screens/notification_setting_screen.dart';
 import 'security_screens/security_setting_screen.dart';
 
-class ScreenSetting extends StatefulWidget {
-  const ScreenSetting({Key? key}) : super(key: key);
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({Key? key}) : super(key: key);
 
   @override
-  State<ScreenSetting> createState() => _ScreenSettingState();
+  State<SettingScreen> createState() => _SettingScreenState();
 }
 
-class _ScreenSettingState extends State<ScreenSetting> {
+class _SettingScreenState extends State<SettingScreen> {
   @override
   void initState() {
     super.initState();

@@ -113,4 +113,35 @@ class TextFormFieldTheme {
       floatingLabelStyle: Theme.of(context).textTheme.headline6,
     );
   }
+
+  static Widget GetTextFormFieldWithBorder1(controller, lableText, marginEdges,
+      {keyboardType = TextInputType.text, focus_node, enabled = true}) {
+    return Container(
+      child: TextFormField(
+        enabled: enabled,
+        focusNode: focus_node,
+        textAlign: TextAlign.left,
+        controller: controller,
+        style: const TextStyle(color: Colors.black),
+        keyboardType: keyboardType,
+        decoration: GetTextFormFieldDecorationWithBorder("$lableText"),
+      ),
+    );
+  }
+
+  static InputDecoration GetTextFormFieldDecorationWithBorder1(hintText) {
+    return InputDecoration(
+      contentPadding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      hintText: hintText,
+      fillColor: Colors.black,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25.0),
+        // borderSide: BorderSide.none,
+      ),
+      enabledBorder: const OutlineInputBorder(
+          // borderRadius: BorderRadius.circular(25.0),
+          // borderSide: BorderSide.none,
+          ),
+    );
+  }
 }

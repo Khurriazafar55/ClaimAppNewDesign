@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ScreenMeasureAssist extends StatefulWidget {
-  const ScreenMeasureAssist({Key? key}) : super(key: key);
+class MeasureAssistScreen extends StatefulWidget {
+  const MeasureAssistScreen({Key? key}) : super(key: key);
 
   @override
-  _ScreenMeasureAssistState createState() => _ScreenMeasureAssistState();
+  _MeasureAssistScreenState createState() => _MeasureAssistScreenState();
 }
 
-class _ScreenMeasureAssistState extends State<ScreenMeasureAssist> {
+class _MeasureAssistScreenState extends State<MeasureAssistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +18,14 @@ class _ScreenMeasureAssistState extends State<ScreenMeasureAssist> {
           onTap: () {
             Navigator.of(context).pop();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black87,
           ),
         ),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 35),
+        margin: const EdgeInsets.symmetric(vertical: 35),
         alignment: Alignment.center,
         child: Text(
           "Measure Assist",

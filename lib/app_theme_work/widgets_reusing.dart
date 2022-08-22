@@ -273,13 +273,60 @@ class WidgetsReusing {
   static Widget getElevatedButton(context, String text, onTap) {
     return SizedBox(
       width: double.infinity,
-      height: 55,
+      height: 40,
       child: ElevatedButton(
         style: Theme.of(context).elevatedButtonTheme.style,
         onPressed: onTap,
         child: Text(
           text,
           style: const TextStyle(fontSize: 18, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  static Widget getMaterialButton(context, text, onTap) {
+    return SizedBox(
+      width: double.infinity,
+      height: 40,
+      child: MaterialButton(
+        // color: Colors.blue,
+        color: ThemeColors.orange_button,
+        // color: Color.fromRGBO(255, 102, 0, 1),
+        // color:Color(FFF6EE),
+        textColor: Colors.white,
+        padding: const EdgeInsets.all(10.0),
+        onPressed: onTap,
+
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+        ),
+      ),
+    );
+  }
+
+  static Widget getMaterialButton1(context, text, onTap) {
+    return SizedBox(
+      width: double.infinity,
+      height: 40,
+      child: MaterialButton(
+        // color: Colors.blue,
+        color: ThemeColors.orange_button,
+        elevation: 2,
+        // color: Color.fromRGBO(255, 102, 0, 1),
+        // color:Color(FFF6EE),
+        textColor: Colors.white,
+        padding: const EdgeInsets.all(10.0),
+        onPressed: onTap,
+
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
         ),
       ),
     );

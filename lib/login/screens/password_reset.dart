@@ -23,7 +23,7 @@ class _PasswordResetState extends State<PasswordReset> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             // color: Colors.black,
           ),
@@ -35,19 +35,19 @@ class _PasswordResetState extends State<PasswordReset> {
         child: Container(
           // margin: EdgeInsets,
           color: Colors.transparent,
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 60),
+          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 60),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Align(
                 alignment: Alignment.center,
-                child: Image.asset(AppAssets.sign_in_logo, scale: 5),
+                child: Image.asset(AppAssets.claim_core_logo, scale: 5),
               ),
               Align(
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                     Text(
                       "Claim",
                       style: TextStyle(
@@ -70,8 +70,8 @@ class _PasswordResetState extends State<PasswordReset> {
                       ),
                     ),
                   ])),
-              SizedBox(height: 20),
-              Align(
+              const SizedBox(height: 20),
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Password Reset",
@@ -82,7 +82,7 @@ class _PasswordResetState extends State<PasswordReset> {
                   ),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -90,7 +90,7 @@ class _PasswordResetState extends State<PasswordReset> {
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ),
-              SizedBox(height: 35),
+              const SizedBox(height: 35),
               SizedBox(
                 width: double.infinity,
                 child: MaterialButton(
@@ -98,15 +98,15 @@ class _PasswordResetState extends State<PasswordReset> {
                   color: ThemeColors.orange_button,
                   textColor: Colors.white,
                   padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Return",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
-                  ),
                   onPressed: () {
                     // onSingInTap;
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
+                  child: Text(
+                    "Return",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                  ),
                 ),
               ),
             ],
@@ -117,7 +117,7 @@ class _PasswordResetState extends State<PasswordReset> {
   }
 
   _textheading(text) {
-    TextStyle style1 = TextStyle(
+    TextStyle style1 = const TextStyle(
         color: Color.fromRGBO(205, 13, 30, 1),
         fontSize: 20,
         fontWeight: FontWeight.bold);

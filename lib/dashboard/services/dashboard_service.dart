@@ -70,7 +70,7 @@ class DashboardService {
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
 
-        ConstantFunctions.OpenNewScreenClean(context, ScreenSplash());
+        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
         return null!;
       } else {
         return ModelGetContact(data: null);

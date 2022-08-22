@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ScreenGuide extends StatefulWidget {
-  const ScreenGuide({Key? key}) : super(key: key);
+class GuideScreen extends StatefulWidget {
+  const GuideScreen({Key? key}) : super(key: key);
 
   @override
-  State<ScreenGuide> createState() => _ScreenGuideState();
+  State<GuideScreen> createState() => _GuideScreenState();
 }
 
-class _ScreenGuideState extends State<ScreenGuide> {
+class _GuideScreenState extends State<GuideScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class _ScreenGuideState extends State<ScreenGuide> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black87,
           ),

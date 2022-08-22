@@ -17,22 +17,21 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../app_theme_work/textformfield_theme1.dart';
 import '../../utilities/rest_api_utils.dart';
 
-class NewClaims extends StatefulWidget {
+class CreatReport extends StatefulWidget {
   final ModelAllDropdown modelAllDropdown;
   final ModelService modelservices;
-  const NewClaims({
+  const CreatReport({
     Key? key,
     required this.modelAllDropdown,
     required this.modelservices,
   }) : super(key: key);
 
   @override
-  State<NewClaims> createState() => _NewClaimsState();
+  State<CreatReport> createState() => _CreatReportState();
 }
 
-class _NewClaimsState extends State<NewClaims> {
+class _CreatReportState extends State<CreatReport> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-  bool Checkboxvalue = false;
   List<DataAllDropDown> carrier_name = [];
   List<DataAllDropDown> state = [];
   List<DataAllDropDown> catastrophe_event = [];
@@ -60,8 +59,6 @@ class _NewClaimsState extends State<NewClaims> {
   List<String> measurment_submission_type_dropdown = [];
 
   List<DataServiceType> service_type = [];
-
-  onTapSubmit() {}
 
   void DropDownDataAssigning() {
     for (var element in widget.modelservices.data!) {
@@ -1598,9 +1595,7 @@ class _NewClaimsState extends State<NewClaims> {
     return Row(
       children: [
         InkWell(
-          onTap: () {
-            showAlertDialog(context);
-          },
+          onTap: () {},
           child: Container(
             decoration: const BoxDecoration(
               color: ThemeColors.background_color,
@@ -1610,7 +1605,7 @@ class _NewClaimsState extends State<NewClaims> {
             margin: const EdgeInsets.only(left: 15),
             // decoration: WidgetsReusing.getListBoxDecoration(),
             child: const Icon(
-              Icons.format_clear_sharp,
+              Icons.arrow_back,
               size: 30,
               color: Colors.white,
             ),
@@ -1619,7 +1614,7 @@ class _NewClaimsState extends State<NewClaims> {
         const Expanded(
           child: Center(
             child: Text(
-              'New Claim',
+              'Report',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -1637,7 +1632,7 @@ class _NewClaimsState extends State<NewClaims> {
             margin: const EdgeInsets.only(right: 10),
             // decoration: WidgetsReusing.getListBoxDecoration(),
             child: const Icon(
-              Icons.format_paint,
+              Icons.camera_alt_rounded,
               size: 30,
               color: Colors.white,
             ),
@@ -1645,102 +1640,6 @@ class _NewClaimsState extends State<NewClaims> {
         ),
       ],
     );
-  }
-
-  void showAlertDialog(
-    BuildContext context,
-  ) {
-    AlertDialog alert = AlertDialog(
-      content: Container(
-        height: 200.0,
-        width: double.infinity,
-        // color: Colors.amber,
-        child: Column(
-          children: <Widget>[
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    iconSize: 30,
-                  ),
-                ),
-                SizedBox(
-                  width: 40,
-                ),
-                Text(
-                  'WARNING!',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-
-            const Align(
-              alignment: Alignment.center,
-              child: Text(
-                  'You are about to clear all the text on this claim Submission Are you sure you went to do this',
-                  style: TextStyle(color: Colors.black, fontSize: 10)),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
-              child: WidgetsReusing.getMaterialButton1(
-                  context, "Continue", onTapSubmit),
-            ),
-
-            Container(
-              child: Row(
-                children: <Widget>[
-                  new Checkbox(
-                    activeColor: Colors.blue,
-                    value: this.Checkboxvalue,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    onChanged: (value) {
-                      setState(() {
-                        Checkboxvalue = !Checkboxvalue;
-                      });
-                    },
-                  ),
-                  Text(
-                    'Dont show me this again',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Center(
-
-            //   child: Text(
-            //     'You are about to clear all the text on this claim\nSubmission Are you sure you went to do this',
-            //     style: TextStyle(color: Colors.black, fontSize: 10),
-            //   ),
-            // ),
-          ],
-        ),
-      ),
-    );
-
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        });
   }
 
   Widget getIconText(title, Color color) {
