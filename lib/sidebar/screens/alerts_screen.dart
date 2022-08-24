@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/screens/screen_my_claims.dart';
+import 'package:claim_core/dashboard/screens/dashboard2.dart';
 import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
 import 'package:claim_core/sidebar/models/model_notifications.dart';
-import 'package:claim_core/sidebar/screens/screen_drawer.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:claim_core/utilities/rest_api_utils.dart';
 import 'package:flutter/material.dart';
@@ -25,319 +25,376 @@ class Alerts extends StatefulWidget {
 
 class _AlertsState extends State<Alerts> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  List<String> notificationList = ['a', 'b', 'c'];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(key: _drawerKey, drawer: ScreenDrawer(), body: GetBody());
+    return Scaffold(
+        // backgroundColor: ThemeColors.background_color,
+        // key: _drawerKey, drawer: ScreenDrawer(),
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text('Alerts'),
+          centerTitle: true,
+        ),
+        body: Stack(
+          children: [
+            BackGroundColor(),
+            Column(
+              children: [
+                const SizedBox(height: 8),
+                Expanded(
+                  flex: 5,
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: InkWell(
+                      child: Container(
+                        height: 40,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          border: Border.all(
+                            color: Colors.white,
+                          ),
+                          borderRadius: BorderRadius.circular(14.0),
+                        ),
+                        child: const Center(
+                            child: Text(
+                          'clear all',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      ),
+                      onTap: () {
+                        // ScaffoldMessenger.of(context)
+                        //     .showSnackBar(const SnackBar(
+                        //   content: Text("Sending Message"),
+                        // ));
+                        setState(() {
+                          notificationList.clear();
+                        });
+
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => DashBoardScreen(),
+                        //     ));
+                      },
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Expanded(
+                  flex: 113,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: notificationList.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 2),
+                          child: alertsData(notificationList[1],
+                              "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
+                        );
+                      }),
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 
   Widget GetBody() {
     var userdata = Provider.of<UserProvider>(context);
     var message = userdata.userModel.message;
+
     return Container(
         color: ThemeColors.orange_button,
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  ConstantFunctions.OpenNewActivity(
-                                      DashBoardScreen()),
-                                );
-                              },
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(255, 94, 0, 1),
-                                ),
-                                // color: Color.fromRGBO(255, 102, 0, 1),
-                                padding: const EdgeInsets.all(10),
-                                margin: const EdgeInsets.only(left: 7),
-                                // decoration: WidgetsReusing.getListBoxDecoration(),
-                                child: const Icon(
-                                  Icons.arrow_back,
-                                  size: 30,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 113,
-                            child: Center(
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                        width: 2.0, color: Colors.white),
-                                  ),
-                                ),
-                                child: Column(children: const [
-                                  Text(
-                                    'Alerts',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                ]),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 37.0,
-                      width: 180.0,
-                      child: Padding(
-                          padding: const EdgeInsets.only(top: 2.0),
-                          child: Container(
-                              child: InkWell(
-                            child: Container(
-                              height: 40,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                border: Border.all(
-                                  color: Colors.white,
-                                ),
-                                borderRadius: BorderRadius.circular(14.0),
-                              ),
-                              child: const Center(
-                                  child: Text(
-                                'clear all',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                            ),
-                            onTap: () {
-                              // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              //   content: Text("Sending Message"),
-                              // ));
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => login_screen(),
-                              //     ));
-                            },
-                          ))),
-                    ),
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //               Container(
-                    //                 child:
-                    //                 FutureBuilder(
-                    //                future: getAllNotificationFunction(message!),
-                    //                builder: (context, snapshot) {
-                    //                if (snapshot.hasData) {
-                    //               ModelNotifications data = snapshot.data.data;
-                    //               return CustomInfoSubways(
-                    //                 markers: data,
-                    //               );
-                    //             } else {
-                    //             return Center(
-                    //              child: CircularProgressIndicator(),
-                    //              );
-                    //     }
-                    //   },
-                    // ),),
-
-                    // Container(
-                    //   child: FutureBuilder(
-                    //     future: getAllNotificationFunction(message),
-                    //     builder: (context, snapshot) {
-                    //       if (snapshot.hasData) {
-                    //         ModelNotifications notificationsmodel =
-                    //             snapshot.data;
-                    //         return Container(
-                    //           width: MediaQuery.of(context).size.width,
-                    //           height: MediaQuery.of(context).size.height,
-                    //           decoration: BoxDecoration(
-                    //               color: Colors.white,
-                    //               borderRadius: BorderRadius.only(
-                    //                   topLeft: Radius.circular(25),
-                    //                   topRight: Radius.circular(25))),
-                    //           child: ListView.builder(
-                    //             itemCount: notificationsmodel.data.length,
-                    //             itemBuilder: (context, index) {
-                    //               return ListTile(
-                    //                 title: Text(
-                    //                     notificationsmodel.data[index].title),
-                    //                 subtitle: Text(
-                    //                     notificationsmodel.data[index].body),
-                    //                 trailing: Text(
-                    //                     "${timeago.format(notificationsmodel.data[index].createdOn)}"),
-                    //               );
-                    //             },
-                    //           ),
-                    //         );
-                    //       } else {
-                    //         return Center(
-                    //           child: CircularProgressIndicator(),
-                    //         );
-                    //       }
-                    //     },
-                    //   ),
-                    // ),
-
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 2),
-                      child: alertsData("Claim Assigned",
-                          "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
-                    ),
-                  ],
-                ),
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              const SizedBox(
+                height: 40,
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              child: Container(
-                //  width: double.infinity,
-                // height: 120,
-
-                margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                decoration: WidgetsReusing.getListBoxDecoration(),
-
+              Container(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        _drawerKey.currentState!.openDrawer();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(left: 15),
-                        child: const Icon(
-                          Icons.menu,
-                          size: 30,
-                          color: Color.fromRGBO(255, 102, 0, 1),
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            ConstantFunctions.OpenNewActivity(
+                                DashBoardScreen()),
+                          );
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Color.fromRGBO(255, 94, 0, 1),
+                          ),
+                          // color: Color.fromRGBO(255, 102, 0, 1),
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(left: 7),
+                          // decoration: WidgetsReusing.getListBoxDecoration(),
+                          child: const Icon(
+                            Icons.arrow_back,
+                            size: 30,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(255, 102, 0, 1),
-                                  spreadRadius: 2),
-                              BoxShadow(
-                                  color: Color.fromRGBO(255, 102, 0, 1),
-                                  // color: Colors.black.withOpacity(.25),
-                                  offset: Offset(1, 1),
-                                  blurRadius: 5,
-                                  spreadRadius: 1)
-                            ]),
-                        child: const Icon(
-                          Icons.home,
-                          size: 30,
-                          color: Color.fromRGBO(255, 102, 0, 1),
+                      flex: 113,
+                      child: Center(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom:
+                                  BorderSide(width: 2.0, color: Colors.white),
+                            ),
+                          ),
+                          child: Column(children: const [
+                            Text(
+                              'Alerts',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ]),
                         ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          ConstantFunctions.OpenNewActivity(
-                              const MyClaimsScreen()),
-                        );
-                      },
-                      child: const Icon(
-                        Icons.list_alt,
-                        size: 30,
-                        color: Color.fromRGBO(255, 102, 0, 1),
-                      ),
-                    )
                   ],
                 ),
               ),
-            )
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 37.0,
+                width: 180.0,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 2.0),
+                  child: InkWell(
+                    child: Container(
+                      height: 40,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        border: Border.all(
+                          color: Colors.white,
+                        ),
+                        borderRadius: BorderRadius.circular(14.0),
+                      ),
+                      child: const Center(
+                          child: Text(
+                        'clear all',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Sending Message"),
+                      ));
+
+                      // notificationList.clear();
+
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => DashBoardScreen(),
+                      //     ));
+                    },
+                  ),
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+              ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, index) {
+                    return Text(notificationList[2]);
+                    // Container(
+                    //   width: double.infinity,
+                    //   padding: const EdgeInsets.symmetric(
+                    //       horizontal: 15, vertical: 2),
+                    //   child: alertsData("Claim Assigned",
+                    //       "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
+                    // );
+                  }),
+
+              //               Container(
+              //                 child:
+              //                 FutureBuilder(
+              //                future: getAllNotificationFunction(message!),
+              //                builder: (context, snapshot) {
+              //                if (snapshot.hasData) {
+              //               ModelNotifications data = snapshot.data.data;
+              //               return CustomInfoSubways(
+              //                 markers: data,
+              //               );
+              //             } else {
+              //             return Center(
+              //              child: CircularProgressIndicator(),
+              //              );
+              //     }
+              //   },
+              // ),),
+
+              // Container(
+              //   child: FutureBuilder(
+              //     future: getAllNotificationFunction(message),
+              //     builder: (context, snapshot) {
+              //       if (snapshot.hasData) {
+              //         ModelNotifications notificationsmodel =
+              //             snapshot.data;
+              //         return Container(
+              //           width: MediaQuery.of(context).size.width,
+              //           height: MediaQuery.of(context).size.height,
+              //           decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.only(
+              //                   topLeft: Radius.circular(25),
+              //                   topRight: Radius.circular(25))),
+              //           child: ListView.builder(
+              //             itemCount: notificationsmodel.data.length,
+              //             itemBuilder: (context, index) {
+              //               return ListTile(
+              //                 title: Text(
+              //                     notificationsmodel.data[index].title),
+              //                 subtitle: Text(
+              //                     notificationsmodel.data[index].body),
+              //                 trailing: Text(
+              //                     "${timeago.format(notificationsmodel.data[index].createdOn)}"),
+              //               );
+              //             },
+              //           ),
+              //         );
+              //       } else {
+              //         return Center(
+              //           child: CircularProgressIndicator(),
+              //         );
+              //       }
+              //     },
+              //   ),
+              // ),
+
+              // Container(
+              //   width: double.infinity,
+              //   padding: const EdgeInsets.symmetric(
+              //       horizontal: 15, vertical: 2),
+              //   child: alertsData("Claim Assigned",
+              //       "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
+              // ),
+              // Container(
+              //   width: double.infinity,
+              //   padding: const EdgeInsets.symmetric(
+              //       horizontal: 15, vertical: 2),
+              //   child: alertsData("Claim Assigned",
+              //       "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
+              // ),
+              // Container(
+              //   width: double.infinity,
+              //   padding: const EdgeInsets.symmetric(
+              //       horizontal: 15, vertical: 2),
+              //   child: alertsData("Claim Assigned",
+              //       "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
+              // ),
+              // Container(
+              //   width: double.infinity,
+              //   padding: const EdgeInsets.symmetric(
+              //       horizontal: 15, vertical: 2),
+              //   child: alertsData("Claim Assigned",
+              //       "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
+              // ),
+              // Container(
+              //   width: double.infinity,
+              //   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+              //   child: alertsData("Claim Assigned",
+              //       "Aaasign for 07/12/2022 at 2.00", "Today at2:00"),
+              // ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                child: Container(
+                  //  width: double.infinity,
+                  // height: 120,
+
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: WidgetsReusing.getListBoxDecoration(),
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          _drawerKey.currentState!.openDrawer();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(left: 15),
+                          child: const Icon(
+                            Icons.menu,
+                            size: 30,
+                            color: Color.fromRGBO(255, 102, 0, 1),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(255, 102, 0, 1),
+                                    spreadRadius: 2),
+                                BoxShadow(
+                                    color: Color.fromRGBO(255, 102, 0, 1),
+                                    // color: Colors.black.withOpacity(.25),
+                                    offset: Offset(1, 1),
+                                    blurRadius: 5,
+                                    spreadRadius: 1)
+                              ]),
+                          child: const Icon(
+                            Icons.home,
+                            size: 30,
+                            color: Color.fromRGBO(255, 102, 0, 1),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            ConstantFunctions.OpenNewActivity(
+                                const MyClaimsScreen()),
+                          );
+                        },
+                        child: const Icon(
+                          Icons.list_alt,
+                          size: 30,
+                          color: Color.fromRGBO(255, 102, 0, 1),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ));
   }
 
@@ -359,33 +416,34 @@ class _AlertsState extends State<Alerts> {
       fontSize: 10,
     );
     return Card(
-        color: Colors.white,
-        margin: const EdgeInsets.all(2),
-        // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        // elevation: 0,
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 10, top: 10),
-              child: Row(children: [
-                Text(text1, style: style1),
-              ]),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 10, top: 5),
-              child: Row(children: [
-                Text(text2, style: style2),
-              ]),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
-              child: Row(children: [
-                Text(text3, style: style3),
-              ]),
-            ),
-          ],
-        ));
+      color: Colors.white,
+      margin: const EdgeInsets.all(2),
+      // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      // elevation: 0,
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 10, top: 10),
+            child: Row(children: [
+              Text(text1, style: style1),
+            ]),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 10, top: 5),
+            child: Row(children: [
+              Text(text2, style: style2),
+            ]),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
+            child: Row(children: [
+              Text(text3, style: style3),
+            ]),
+          ),
+        ],
+      ),
+    );
   }
 
   // Future<ModelNotifications> getAllNotificationFunction(String message) async {
@@ -424,7 +482,7 @@ class _AlertsState extends State<Alerts> {
         return model;
       } else if (response.statusCode == 401) {
         ConstantFunctions.saveSharePrefModeString("login_token", "");
-        ConstantFunctions.OpenNewScreenClean(context, SplashScreen());
+        ConstantFunctions.OpenNewScreenClean(context, const SplashScreen());
         return null!;
       } else {
         return ModelNotifications(data: null);

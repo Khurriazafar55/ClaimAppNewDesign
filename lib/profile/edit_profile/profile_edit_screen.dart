@@ -67,7 +67,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
               ],
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               GeneralProfileEditView(),
               AvailProfileEditView(),

@@ -40,7 +40,7 @@ class _ScreenSettingSecurityState extends State<ScreenSettingSecurity> {
               color: ThemeColors.scaffold_color_lt),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           const Divider(
             thickness: 2,

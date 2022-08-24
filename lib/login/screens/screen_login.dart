@@ -99,12 +99,12 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: ThemeColors.background_color1,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        // leading: InkWell(
-        //   onTap: () {
-        //     Navigator.pop(context);
-        //   },
-        //   child: const Icon(Icons.arrow_back),
-        // ),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
         // backgroundColor: Colors.transparent,
         elevation: 0,
         /*actions: [

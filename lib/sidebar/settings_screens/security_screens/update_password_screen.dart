@@ -42,8 +42,8 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Divider(
               thickness: 2,

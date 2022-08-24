@@ -33,7 +33,7 @@ class TextFormFieldTheme1 {
 
           const SizedBox(height: 2),
           Card(
-              elevation: 8,
+              elevation: 5,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               color: ThemeColors.scaffold_color_lt,

@@ -1,6 +1,8 @@
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
-import 'package:claim_core/claim/screens/file_claim.dart';
+import 'package:claim_core/claim/screens/calim_tab/file_claim.dart';
+
+import 'package:claim_core/sidebar/screens/CustomDialogBox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -130,7 +132,7 @@ class _AotoFile123State extends State<AotoFile123> {
       content: Container(
         height: 200.0,
         width: double.infinity,
-        color: Colors.amber,
+        // color: Colors.amber,
         child: Column(
           children: <Widget>[
             Row(

@@ -35,7 +35,7 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
               color: ThemeColors.scaffold_color_lt),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           InkWell(
             onTap: () {},

@@ -3,7 +3,6 @@ import 'package:claim_core/login/screens/screen_login.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/widget_bottomnavbar.dart';
 import 'appearance_screens/appearance_settings_screen.dart';
 import 'autofill_screens/autofill_setting_screen.dart';
 import 'help_support_screen/help_support_setting_screen.dart';
@@ -26,10 +25,11 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeColors.background_color,
+      backgroundColor: const Color.fromRGBO(255, 87, 34, 1),
+      // bottomNavigationBar: ResusableBottomNavBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 40),
-        child: Column(
+        child: ListView(
           children: [
             const Text(
               'Settings',
@@ -70,7 +70,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 color: ThemeColors.headline6_color_lt,
                 endIndent: 20,
                 indent: 20),
-
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -130,6 +129,19 @@ class _SettingScreenState extends State<SettingScreen> {
                 color: ThemeColors.headline6_color_lt,
                 endIndent: 20,
                 indent: 20),
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    ConstantFunctions.OpenNewActivity(const LoginScreen()));
+              },
+              child:
+                  GetMenuList(Icons.logout_outlined, "Log Out", Colors.black87),
+            ),
+            // Expanded(
+            //   child: Align(
+            //       alignment: Alignment.bottomCenter,
+            //       child: ResusableBottomNavBar()),
+            // ),
             // InkWell(
             //   onTap: () {
             //     ConstantFunctions.getSharePrefModeString("login_token").then(
@@ -161,14 +173,7 @@ class _SettingScreenState extends State<SettingScreen> {
             //   endIndent: 20,
             //   indent: 20,
             // ),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    ConstantFunctions.OpenNewActivity(const LoginScreen()));
-              },
-              child:
-                  GetMenuList(Icons.logout_outlined, "Log Out", Colors.black87),
-            ),
+
             // const Divider(
             //   thickness: 1.5,
             //   color: Colors.grey,
@@ -299,11 +304,6 @@ class _SettingScreenState extends State<SettingScreen> {
             //     ),
             //   ),
             // )
-            Expanded(
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ResusableBottomNavBar()),
-            ),
           ],
         ),
       ),

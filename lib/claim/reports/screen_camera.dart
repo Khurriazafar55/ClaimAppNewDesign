@@ -2,16 +2,14 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:claim_core/app_theme_work/textformfield_theme.dart';
-
 import 'package:claim_core/claim/models/model_get_report.dart';
 import 'package:claim_core/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ScreenCamera extends StatefulWidget {
   final ModelGetReport modelGetReport;
 
-  ScreenCamera({required this.modelGetReport});
+  const ScreenCamera({required this.modelGetReport});
 
   @override
   _ScreenCameraState createState() => _ScreenCameraState();
@@ -21,12 +19,12 @@ class _ScreenCameraState extends State<ScreenCamera> {
   CameraController? _cameraController;
 
   //======== Dropdown data ==================================
-  final dropdown_style = TextStyle(color: Colors.orange);
-  final dropdown_padding = EdgeInsets.symmetric(horizontal: 5);
+  final dropdown_style = const TextStyle(color: Colors.orange);
+  final dropdown_padding = const EdgeInsets.symmetric(horizontal: 5);
   double dropdown_height = 45;
   final dropdown_decoration = BoxDecoration(
       border: Border.all(color: Colors.orange, width: 2),
-      borderRadius: BorderRadius.all(Radius.circular(5)));
+      borderRadius: const BorderRadius.all(Radius.circular(5)));
 
   List<DropdownMenuItem<String>> getDropdownMenuItem(
       {required List<String> room_dropdown}) {
@@ -37,7 +35,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
           value,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(color: Colors.orange),
+          style: const TextStyle(color: Colors.orange),
         ),
       );
     }).toList();
@@ -187,7 +185,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
     ddddd.add(thirteen);
     twilth != "" ? ddddd.add(twilth) : null;
 
-    print("dddddddddd : ${ddddd}");
+    print("dddddddddd : $ddddd");
     full_details_list = ddddd;
     full_details =
         "$first $second $third $forth $fifth $sixth $seventh $eight $ninth $tenth $elevanth $twilth $thirteen";
@@ -208,11 +206,11 @@ class _ScreenCameraState extends State<ScreenCamera> {
 
   bool is_camera_initionalize = false;
 
-  final textstyle =
-      TextStyle(fontSize: 14, letterSpacing: 0, fontWeight: FontWeight.w600);
+  final textstyle = const TextStyle(
+      fontSize: 14, letterSpacing: 0, fontWeight: FontWeight.w600);
 
   final charector_text_style =
-      TextStyle(fontWeight: FontWeight.w600, color: Colors.orange);
+      const TextStyle(fontWeight: FontWeight.w600, color: Colors.orange);
 
   @override
   void initState() {
@@ -221,8 +219,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
     setState(() {
       damage_type = "Damage";
       R_E_I_material_dropdown = interior_material;
-      R_E_I_material_dropdown_value = "${R_E_I_material_dropdown[1]}";
-      room_dropdown_value = "${room_dropdown[1]}";
+      R_E_I_material_dropdown_value = R_E_I_material_dropdown[1];
+      room_dropdown_value = room_dropdown[1];
       damage_dropdown_value = damage_dropdown[1];
       structure_dropdown_value = structure_dropdown[1];
       macro_dropdown_value = macro_dropdown[0];
@@ -240,7 +238,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
           }
           setState(() {
             is_camera_initionalize = true;
-            getLandscafe();
+            // getLandscafe();
           });
         },
       );
@@ -270,13 +268,13 @@ class _ScreenCameraState extends State<ScreenCamera> {
           elevation: 0,
           leading: InkWell(
             onTap: () => Navigator.pop(context),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.black87,
             ),
           ),
         ),
-        body: Center(
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       );
@@ -298,7 +296,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
               bottom: 0,
               left: 0,
               right: 0,
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: CameraPreview(_cameraController!),
@@ -345,7 +343,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                             : Colors.orange,
                                     width: 2,
                                   ),
-                                  borderRadius: BorderRadius.all(
+                                  borderRadius: const BorderRadius.all(
                                     Radius.circular(25),
                                   ),
                                 ),
@@ -382,8 +380,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                           : Colors.orange,
                                       width: 2,
                                     ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(25))),
                                 child: RotatedBox(
                                     quarterTurns: 0,
                                     child: Text(
@@ -418,8 +416,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                               : Colors.orange,
                                       width: 2,
                                     ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(25))),
                                 child: RotatedBox(
                                     quarterTurns: 0,
                                     child: Text(
@@ -430,7 +428,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                             ),
                           ],
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ],
               ),
             ),
@@ -443,7 +441,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 75,
                           height: 75,
                           child: Stack(
@@ -470,14 +468,14 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                                     ? Colors.orange
                                                     : Colors.orange,
                                             width: 2),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5))),
                                     child: RotatedBox(
                                       quarterTurns: 0,
                                       child: Container(
                                         width: 30,
                                         height: 30,
-                                        padding: EdgeInsets.all(7),
+                                        padding: const EdgeInsets.all(7),
                                         child: Text(
                                           "F",
                                           style: charector_text_style.copyWith(
@@ -513,14 +511,14 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                                 ? Colors.orange
                                                 : Colors.orange,
                                             width: 2),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5))),
                                     child: RotatedBox(
                                       quarterTurns: 0,
                                       child: Container(
                                         width: 30,
                                         height: 30,
-                                        padding: EdgeInsets.all(7),
+                                        padding: const EdgeInsets.all(7),
                                         child: Text(
                                           "B",
                                           style: charector_text_style.copyWith(
@@ -556,14 +554,14 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                                     ? Colors.orange
                                                     : Colors.orange,
                                             width: 2),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5))),
                                     child: RotatedBox(
                                       quarterTurns: 0,
                                       child: Container(
                                         width: 30,
                                         height: 30,
-                                        padding: EdgeInsets.all(7),
+                                        padding: const EdgeInsets.all(7),
                                         child: Text(
                                           "R",
                                           style: charector_text_style.copyWith(
@@ -600,14 +598,14 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                                 ? Colors.orange
                                                 : Colors.orange,
                                             width: 2),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5))),
                                     child: RotatedBox(
                                       quarterTurns: 0,
                                       child: Container(
                                         width: 30,
                                         height: 30,
-                                        padding: EdgeInsets.all(7),
+                                        padding: const EdgeInsets.all(7),
                                         child: Text(
                                           "L",
                                           style: charector_text_style.copyWith(
@@ -635,7 +633,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                         isExpanded: true,
                         dropdownColor: Colors.white,
                         focusColor: Colors.blue,
-                        underline: SizedBox(),
+                        underline: const SizedBox(),
                         value: room_dropdown_value,
                         style: dropdown_style,
                         iconEnabledColor: Colors.orange,
@@ -681,7 +679,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
                           vertical: 7, horizontal: 6),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.orange, width: 2),
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(25))),
                       child: RotatedBox(
                         quarterTurns: 4,
                         child: Icon(
@@ -692,17 +691,17 @@ class _ScreenCameraState extends State<ScreenCamera> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   InkWell(
                     onTap: () => takePhoto(context, structure, owner_name,
                         overview_close, damage_type),
-                    child: Icon(
+                    child: const Icon(
                       Icons.radio_button_checked_rounded,
                       color: Colors.orangeAccent,
                       size: 80,
                     ),
                   ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -733,8 +732,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                 width: 2,
                               ),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
-                          child: RotatedBox(
+                                  const BorderRadius.all(Radius.circular(25))),
+                          child: const RotatedBox(
                               quarterTurns: 0,
                               child: Text(
                                 'O',
@@ -770,8 +769,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                 width: 2,
                               ),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
-                          child: RotatedBox(
+                                  const BorderRadius.all(Radius.circular(25))),
+                          child: const RotatedBox(
                               quarterTurns: 0,
                               child: Text(
                                 'C',
@@ -783,7 +782,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                       ),
                     ],
                   ),
-                  SizedBox(width: 25),
+                  const SizedBox(width: 25),
                 ],
               ),
             ),
@@ -813,22 +812,24 @@ class _ScreenCameraState extends State<ScreenCamera> {
 
                               child: Container(
                                 alignment: Alignment.center,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                padding: EdgeInsets.symmetric(horizontal: 30),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 30),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 30),
                                 // width: MediaQuery.of(context).size.width - 80,
                                 width: 200,
                                 // height: MediaQuery.of(context).size.width - 100,
                                 height: 250,
-                                decoration: new BoxDecoration(
+                                decoration: BoxDecoration(
                                   color: Colors
                                       .white, //Colors.black.withOpacity(0.3),
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(10.0),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Colors.black26,
                                       blurRadius: 5,
-                                      offset: const Offset(0.0, 10.0),
+                                      offset: Offset(0.0, 10.0),
                                     ),
                                   ],
                                 ),
@@ -836,14 +837,14 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     Expanded(
                                       child: ListView.builder(
                                         itemCount: full_details_list.length,
                                         itemBuilder: (context, index) {
                                           return Text(
                                             full_details_list[index],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.black87,
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14),
@@ -851,15 +852,15 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                         },
                                       ),
                                     ),
-                                    SizedBox(height: 24.0),
+                                    const SizedBox(height: 24.0),
                                     ElevatedButton.icon(
                                       onPressed: () => Navigator.pop(context),
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.cancel,
                                         color: Colors.white,
                                         size: 20,
                                       ),
-                                      label: Text(
+                                      label: const Text(
                                         'Close',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -867,7 +868,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                   ],
                                 ),
                               ),
@@ -876,7 +877,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                     },
                     child: Container(
                       width: 150,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.white,
                           // border: Border.all(color: Colors.white, width: 2),
                           borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -884,9 +885,9 @@ class _ScreenCameraState extends State<ScreenCamera> {
                       child: RotatedBox(
                         quarterTurns: 0,
                         child: Container(
-                          padding: EdgeInsets.all(7),
+                          padding: const EdgeInsets.all(7),
                           child: Text(
-                            "$full_details",
+                            full_details,
                             overflow: TextOverflow.ellipsis,
                             style: textstyle,
                           ),
@@ -916,11 +917,11 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                       : Colors.orange,
                                   width: 2),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                                  const BorderRadius.all(Radius.circular(5))),
                           child: RotatedBox(
                             quarterTurns: 0,
                             child: Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               child: Text(
                                 "Material",
                                 style: textstyle.copyWith(
@@ -932,7 +933,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Column(
                         children: [
                           InkWell(
@@ -957,12 +958,12 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                           ? Colors.orange
                                           : Colors.orange,
                                       width: 2),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5))),
                               child: RotatedBox(
                                 quarterTurns: 0,
                                 child: Container(
-                                  padding: EdgeInsets.all(7),
+                                  padding: const EdgeInsets.all(7),
                                   child: Text(
                                     "   Damage   ",
                                     style: textstyle.copyWith(
@@ -974,7 +975,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           InkWell(
                             onTap: () {
                               setState(
@@ -997,12 +998,12 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                           ? Colors.orange
                                           : Colors.orange,
                                       width: 2),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5))),
                               child: RotatedBox(
                                 quarterTurns: 0,
                                 child: Container(
-                                  padding: EdgeInsets.all(7),
+                                  padding: const EdgeInsets.all(7),
                                   child: Text(
                                     "No Damage",
                                     style: textstyle.copyWith(
@@ -1016,7 +1017,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                           ),
                         ],
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Container(
                         padding: dropdown_padding,
                         height: dropdown_height,
@@ -1025,7 +1026,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                         child: DropdownButton<String>(
                           dropdownColor: Colors.white,
                           focusColor: Colors.blue,
-                          underline: SizedBox(),
+                          underline: const SizedBox(),
                           value: macro_dropdown_value,
                           //elevation: 5,
                           isExpanded: true,
@@ -1065,7 +1066,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                         child: DropdownButton<String>(
                           dropdownColor: Colors.white,
                           focusColor: Colors.blue,
-                          underline: SizedBox(),
+                          underline: const SizedBox(),
                           value: R_E_I_material_dropdown_value,
                           style: dropdown_style,
                           isExpanded: true,
@@ -1088,7 +1089,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                         ),
                       ),
 
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       // Damage Drop Down
                       Container(
                         padding: dropdown_padding,
@@ -1098,7 +1099,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                         child: DropdownButton<String>(
                           dropdownColor: Colors.white,
                           focusColor: Colors.blue,
-                          underline: SizedBox(),
+                          underline: const SizedBox(),
                           value: damage_dropdown_value,
                           style: dropdown_style,
                           isExpanded: true,
@@ -1144,9 +1145,9 @@ class _ScreenCameraState extends State<ScreenCamera> {
                               border:
                                   Border.all(color: Colors.orange, width: 2),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                                  const BorderRadius.all(Radius.circular(5))),
                           alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          padding: const EdgeInsets.symmetric(horizontal: 7),
                           child: Text(owner_name, style: charector_text_style),
                         ),
                       ),
@@ -1173,7 +1174,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                       children: [
                         InkWell(
                           onTap: () => Navigator.pop(context),
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back,
                             color: Colors.white,
                             size: 35,
@@ -1215,7 +1216,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                         : Colors.orange,
                                     width: 2,
                                   ),
-                                  borderRadius: BorderRadius.all(
+                                  borderRadius: const BorderRadius.all(
                                     Radius.circular(25),
                                   ),
                                 ),
@@ -1259,8 +1260,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                           : Colors.orange,
                                       width: 2,
                                     ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(25))),
                                 child: RotatedBox(
                                     quarterTurns: 0,
                                     child: Text(
@@ -1271,7 +1272,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                             ),
                           ],
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Container(
                           padding: dropdown_padding,
                           height: dropdown_height,
@@ -1280,7 +1281,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                           child: DropdownButton<String>(
                             dropdownColor: Colors.white,
                             focusColor: Colors.blue,
-                            underline: SizedBox(),
+                            underline: const SizedBox(),
                             value: structure_dropdown_value,
                             style: dropdown_style,
                             iconEnabledColor: Colors.orange,
@@ -1308,8 +1309,9 @@ class _ScreenCameraState extends State<ScreenCamera> {
                     height: 60,
                     decoration: BoxDecoration(
                         color: Colors.grey[400],
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                    child: Icon(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5))),
+                    child: const Icon(
                       Icons.perm_media,
                       color: Colors.grey,
                       size: 30,
@@ -1324,22 +1326,22 @@ class _ScreenCameraState extends State<ScreenCamera> {
     );
   }
 
-  void takePhoto(BuildContext context, structure, owner_name, is_over_view,
-      material_3_option) async {
+  void takePhoto(BuildContext context, structure, ownerName, isOverView,
+      material3Option) async {
     XFile file = await _cameraController!.takePicture();
 
     final file2 = File(file.path); //your file path
 
     String fdfdfd01 =
-        "${celling_wall_floor_option}-${DateTime.now().toString()}.jpg";
-    String fdfdfd02 = "${bottom_four_pole}-${DateTime.now().toString()}.jpg";
-    File file_name;
+        "$celling_wall_floor_option-${DateTime.now().toString()}.jpg";
+    String fdfdfd02 = "$bottom_four_pole-${DateTime.now().toString()}.jpg";
+    File fileName;
     if (structure == "Interior") {
-      file_name = await changeFileNameOnly(File(file.path), "${fdfdfd01}");
-      print("filefile : file name 01 : ${file_name.path}");
+      fileName = await changeFileNameOnly(File(file.path), fdfdfd01);
+      print("filefile : file name 01 : ${fileName.path}");
     } else {
-      file_name = await changeFileNameOnly(File(file.path), "${fdfdfd02}");
-      print("filefile : file name 02 : ${file_name.path}");
+      fileName = await changeFileNameOnly(File(file.path), fdfdfd02);
+      print("filefile : file name 02 : ${fileName.path}");
     }
 
     // String celling_wall_floor_option = "Celling";
@@ -1368,10 +1370,10 @@ class _ScreenCameraState extends State<ScreenCamera> {
       context,
       MaterialPageRoute(
         builder: (builder) => ShowImage(
-          file_name: file_name,
-          material_3_option: material_3_option,
+          file_name: fileName,
+          material_3_option: material3Option,
           modelGetReport: widget.modelGetReport,
-          is_over_view: is_over_view,
+          is_over_view: isOverView,
           structure: structure,
           celling_wall_floor_option: celling_wall_floor_option,
           bottom_four_pole: bottom_four_pole,
@@ -1379,7 +1381,8 @@ class _ScreenCameraState extends State<ScreenCamera> {
       ),
     );
 
-    getLandscafe();
+    // getLandscafe();
+
     //
     //         // https://insurancefapp.azurewebsites.net/Services//api/claim/GetAll
     //       ),
@@ -1388,19 +1391,19 @@ class _ScreenCameraState extends State<ScreenCamera> {
     // );
   }
 
-  void getLandscafe() {
-    setState(() {
-      if (Platform.isIOS) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeRight,
-        ]);
-      } else {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeLeft,
-        ]);
-      }
-    });
-  }
+  // void getLandscafe() {
+  //   setState(() {
+  //     if (Platform.isIOS) {
+  //       SystemChrome.setPreferredOrientations([
+  //         DeviceOrientation.landscapeRight,
+  //       ]);
+  //     } else {
+  //       SystemChrome.setPreferredOrientations([
+  //         DeviceOrientation.landscapeLeft,
+  //       ]);
+  //     }
+  //   });
+  // }
 
   Future<File> changeFileNameOnly(File file, String newFileName) {
     var path = file.path;
@@ -1409,7 +1412,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
     return file.rename(newPath);
   }
 
-  void GetAddItemFunction(dropdown_list, isMaterial) {
+  void GetAddItemFunction(dropdownList, isMaterial) {
     TextEditingController txtEdtCntrlr1 = TextEditingController();
     showDialog(
         context: context,
@@ -1420,21 +1423,21 @@ class _ScreenCameraState extends State<ScreenCamera> {
               alignment: Alignment.center,
               child: Container(
                 alignment: Alignment.center,
-                margin: EdgeInsets.symmetric(horizontal: 30),
-                padding: EdgeInsets.symmetric(horizontal: 30),
+                margin: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 // width: MediaQuery.of(context).size.width - 80,
                 width: 250,
                 // height: MediaQuery.of(context).size.width - 100,
                 height: 250,
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white, //Colors.black.withOpacity(0.3),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black26,
                       blurRadius: 5,
-                      offset: const Offset(0.0, 10.0),
+                      offset: Offset(0.0, 10.0),
                     ),
                   ],
                 ),
@@ -1442,24 +1445,25 @@ class _ScreenCameraState extends State<ScreenCamera> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     TextFormFieldTheme.GetTextFormFieldWithBorder(
                         context,
                         "Enter Item",
                         txtEdtCntrlr1,
                         "",
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
-                    SizedBox(height: 24.0),
+                        const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10)),
+                    const SizedBox(height: 24.0),
                     Row(
                       children: [
                         ElevatedButton.icon(
                           onPressed: () => Navigator.pop(context),
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.close,
                             color: Colors.white,
                             size: 20,
                           ),
-                          label: Text(
+                          label: const Text(
                             'Close',
                             style: TextStyle(
                               color: Colors.white,
@@ -1467,10 +1471,10 @@ class _ScreenCameraState extends State<ScreenCamera> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         ElevatedButton.icon(
                           onPressed: () {
-                            if (txtEdtCntrlr1.text.length > 0) {
+                            if (txtEdtCntrlr1.text.isNotEmpty) {
                               if (isMaterial) {
                                 if (structure == "Elevation") {
                                   elevation_material
@@ -1483,18 +1487,17 @@ class _ScreenCameraState extends State<ScreenCamera> {
                                       .add(txtEdtCntrlr1.text.toString());
                                 }
                               } else {
-                                dropdown_list
-                                    .add(txtEdtCntrlr1.text.toString());
+                                dropdownList.add(txtEdtCntrlr1.text.toString());
                               }
                               Navigator.pop(context);
                             }
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.add,
                             color: Colors.white,
                             size: 20,
                           ),
-                          label: Text(
+                          label: const Text(
                             'Add',
                             style: TextStyle(
                               color: Colors.white,
@@ -1504,7 +1507,7 @@ class _ScreenCameraState extends State<ScreenCamera> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -1523,7 +1526,7 @@ class ShowImage extends StatefulWidget {
   final bottom_four_pole;
   final ModelGetReport modelGetReport;
 
-  ShowImage({
+  const ShowImage({
     required this.file_name,
     required this.material_3_option,
     required this.structure,
@@ -1541,9 +1544,9 @@ class _ShowImageState extends State<ShowImage> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    // ]);
   }
 
   @override
@@ -1557,7 +1560,7 @@ class _ShowImageState extends State<ShowImage> {
         child: Stack(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 150),
+              padding: const EdgeInsets.symmetric(vertical: 150),
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -1606,7 +1609,7 @@ class _ShowImageState extends State<ShowImage> {
                   //   },
                   // );
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.upload,
                   color: Colors.blue,
                   size: 34,
@@ -1618,7 +1621,7 @@ class _ShowImageState extends State<ShowImage> {
               right: 20,
               child: InkWell(
                 onTap: () => Navigator.pop(context),
-                child: Icon(
+                child: const Icon(
                   Icons.save,
                   color: Colors.blue,
                   size: 34,

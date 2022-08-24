@@ -9,7 +9,6 @@ import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:claim_core/utilities/rest_api_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ScreenReports extends StatefulWidget {
   final ModelAllDropdown modelAllDropdown;
@@ -41,7 +40,7 @@ class _ScreenReportsState extends State<ScreenReports> {
   List<String> dwelling_material_dropdown = [];
 
   void DropDownDataAssigning() {
-    widget.modelAllDropdown.data!.forEach((element) {
+    for (var element in widget.modelAllDropdown.data!) {
       if (element.dropDown == "CauseofLoss_List") {
         cause_loss.add(element);
         cause_loss_dropdown.add(element.value!);
@@ -69,40 +68,40 @@ class _ScreenReportsState extends State<ScreenReports> {
         dwelling_type.add(element);
         dwelling_type_dropdown.add(element.value!);
       }
-    });
+    }
 
     setState(() {
-      if (edge_metal.length > 0) {
+      if (edge_metal.isNotEmpty) {
         edge_metal_select = edge_metal[0].value!;
         edge_metal_fullobject = edge_metal[0];
       }
-      if (garage_material.length > 0) {
+      if (garage_material.isNotEmpty) {
         garage_material_select = garage_material[0].value!;
         garage_material_fullobject = garage_material[0];
       }
 
-      if (cause_loss.length > 0) {
+      if (cause_loss.isNotEmpty) {
         cause_loss_select = cause_loss[0].value!;
         cause_loss_fullobject = cause_loss[0];
       }
-      if (dwelling.length > 0) {
+      if (dwelling.isNotEmpty) {
         dwelling_select = dwelling[0].value!;
         dwelling_fullobject = dwelling[0];
       }
-      if (dwelling_material.length > 0) {
+      if (dwelling_material.isNotEmpty) {
         dwelling_material_select = dwelling_material[0].value!;
         dwelling_material_fullobject = dwelling_material[0];
       }
-      if (dwelling_type.length > 0) {
+      if (dwelling_type.isNotEmpty) {
         dwelling_type_select = dwelling_type[0].value!;
         dwelling_type_fullobject = dwelling_type[0];
       }
-      if (roof_type.length > 0) {
+      if (roof_type.isNotEmpty) {
         roof_type_select = roof_type[0].value!;
         roof_type_fullobject = roof_type[0];
       }
 
-      if (roof_style.length > 0) {
+      if (roof_style.isNotEmpty) {
         roof_style_select = roof_style[0].value!;
         roof_style_fullobject = roof_style[0];
       }
@@ -146,7 +145,7 @@ class _ScreenReportsState extends State<ScreenReports> {
       txtEdtCntrlr17,
       txtEdtCntrlr18;
 
-  final textStyle = TextStyle(
+  final textStyle = const TextStyle(
       fontFamily: 'Varela',
       fontSize: 19,
       letterSpacing: .5,
@@ -155,9 +154,9 @@ class _ScreenReportsState extends State<ScreenReports> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    // ]);
     InitionalizeTextEditingController();
 
     DropDownDataAssigning();
@@ -192,8 +191,8 @@ class _ScreenReportsState extends State<ScreenReports> {
   String inspection_time =
       ConstantFunctions.calendar_formate.format(DateTime.now());
 
-  String _createdBy = "2022-02-18T09:10:53.508Z";
-  String _createdDate = "2022-02-18T09:10:53.508Z";
+  final String _createdBy = "2022-02-18T09:10:53.508Z";
+  final String _createdDate = "2022-02-18T09:10:53.508Z";
   bool _home_owner = false;
   bool _mortgagee = false;
   bool _different_claimant = false;
@@ -207,26 +206,26 @@ class _ScreenReportsState extends State<ScreenReports> {
   @override
   Widget build(BuildContext context) {
     GestureTapCallback onTapSubmit = () {
-      String policy_holder_name = txtEdtCntrlr1!.text.toString();
-      String home_owner_name = txtEdtCntrlr2!.text.toString();
-      String contractor_name = txtEdtCntrlr3!.text.toString();
-      String roof_age = txtEdtCntrlr4!.text.toString();
+      String policyHolderName = txtEdtCntrlr1!.text.toString();
+      String homeOwnerName = txtEdtCntrlr2!.text.toString();
+      String contractorName = txtEdtCntrlr3!.text.toString();
+      String roofAge = txtEdtCntrlr4!.text.toString();
       String layers = txtEdtCntrlr5!.text.toString();
       String pitch = txtEdtCntrlr6!.text.toString();
       String stories = txtEdtCntrlr7!.text.toString();
-      String roof_summery = txtEdtCntrlr8!.text.toString();
-      String roof_components = txtEdtCntrlr9!.text.toString();
-      String front_elevation_summery = txtEdtCntrlr10!.text.toString();
-      String left_elevation_summery = txtEdtCntrlr11!.text.toString();
-      String back_elevation_summery = txtEdtCntrlr12!.text.toString();
-      String right_elevation_summery = txtEdtCntrlr13!.text.toString();
-      String interior_summery = txtEdtCntrlr14!.text.toString();
-      String public_notes = txtEdtCntrlr15!.text.toString();
-      String private_notes = txtEdtCntrlr16!.text.toString();
+      String roofSummery = txtEdtCntrlr8!.text.toString();
+      String roofComponents = txtEdtCntrlr9!.text.toString();
+      String frontElevationSummery = txtEdtCntrlr10!.text.toString();
+      String leftElevationSummery = txtEdtCntrlr11!.text.toString();
+      String backElevationSummery = txtEdtCntrlr12!.text.toString();
+      String rightElevationSummery = txtEdtCntrlr13!.text.toString();
+      String interiorSummery = txtEdtCntrlr14!.text.toString();
+      String publicNotes = txtEdtCntrlr15!.text.toString();
+      String privateNotes = txtEdtCntrlr16!.text.toString();
       String garage = txtEdtCntrlr17!.text.toString();
-      String what_type = txtEdtCntrlr18!.text.toString();
+      String whatType = txtEdtCntrlr18!.text.toString();
 
-      Map<String, String> value_map = {
+      Map<String, String> valueMap = {
         "id": "0",
         "claimId": "24",
         "inspectorID": "string",
@@ -234,20 +233,20 @@ class _ScreenReportsState extends State<ScreenReports> {
         "claimPersonName": "sdfsdf",
         "roof_Type": jsonEncode(roof_type_fullobject),
         "roofStyle_Type": jsonEncode(roof_style_fullobject),
-        "roofAge": roof_age,
+        "roofAge": roofAge,
         "layer": layers,
         "edgeMetal_Type": jsonEncode(edge_metal_fullobject),
         "pitch_Type": jsonEncode(pitch),
-        "homeowner": "${_home_owner}",
-        "mortagee": "${_mortgagee}",
+        "homeowner": "$_home_owner",
+        "mortagee": "$_mortgagee",
         "homeName": "string",
-        "differentClaimant": "${_different_claimant}",
-        "contractor": "${_contractor}",
-        "noneWerePresento": "${_none_present}",
+        "differentClaimant": "$_different_claimant",
+        "contractor": "$_contractor",
+        "noneWerePresento": "$_none_present",
         "isFeltPresentCheck": isFeltPresent,
         "isIceWaterShieldPresent": IceWaterShieldPresent,
-        "whattype": what_type,
-        "contractorsName": contractor_name,
+        "whattype": whatType,
+        "contractorsName": contractorName,
         "inspection_Date": inspection_date,
         "inspection_Time": inspection_time,
         "mortgageeName": "string",
@@ -260,18 +259,18 @@ class _ScreenReportsState extends State<ScreenReports> {
         "garage": garage,
         "note": "string",
         "remarks": "string",
-        "attached": "${_attached}",
+        "attached": "$_attached",
         "garageMaterial": jsonEncode(dwelling_material_fullobject),
         "roofInformation": "string",
-        "roofSumary": roof_summery,
-        "roofComponents": roof_components,
-        "forontElevationSumary": front_elevation_summery,
-        "leftElevationSumary": left_elevation_summery,
-        "backElevationSumary": back_elevation_summery,
-        "rightElevationSumary": right_elevation_summery,
-        "interiorSumary": interior_summery,
-        "publicNotes": public_notes,
-        "privateNotes": private_notes,
+        "roofSumary": roofSummery,
+        "roofComponents": roofComponents,
+        "forontElevationSumary": frontElevationSummery,
+        "leftElevationSumary": leftElevationSummery,
+        "backElevationSumary": backElevationSummery,
+        "rightElevationSumary": rightElevationSummery,
+        "interiorSumary": interiorSummery,
+        "publicNotes": publicNotes,
+        "privateNotes": privateNotes,
         "workProformed": "string",
         "reportStatus": "string",
         "isActive": "true",
@@ -280,15 +279,15 @@ class _ScreenReportsState extends State<ScreenReports> {
       };
 
       ConstantFunctions.getSharePrefModeString("login_token").then(
-        (login_token) {
+        (loginToken) {
           RestApiUtils.ShowLoadingDialog(context);
-          ServiceClaim.CreateReportFunction(context, login_token, value_map)
+          ServiceClaim.CreateReportFunction(context, loginToken, valueMap)
               .then((value) {
             if (value.claimReportModel != null) {
               ConstantFunctions.getSnakeBar(context, "Data added successfully");
               Navigator.pop(context);
             } else {
-              ConstantFunctions.getSnakeBar(context, "${value.message}");
+              ConstantFunctions.getSnakeBar(context, value.message);
               Navigator.pop(context);
             }
           });
@@ -314,8 +313,8 @@ class _ScreenReportsState extends State<ScreenReports> {
                     "",
                     txtEdtCntrlr1,
                     "Policy Holder Name",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
-                Divider(thickness: 2, endIndent: 5, indent: 1),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                const Divider(thickness: 2, endIndent: 5, indent: 1),
 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -326,14 +325,14 @@ class _ScreenReportsState extends State<ScreenReports> {
                     Row(
                       children: [
                         Checkbox(
-                          value: this._home_owner,
+                          value: _home_owner,
                           onChanged: (bool? value) {
                             setState(() {
-                              this._home_owner = value!;
+                              _home_owner = value!;
                             });
                           },
                         ), //
-                        Text(
+                        const Text(
                           'Home Owner',
                           textAlign: TextAlign.left,
                           style: TextStyle(
@@ -344,14 +343,14 @@ class _ScreenReportsState extends State<ScreenReports> {
                     Row(
                       children: [
                         Checkbox(
-                          value: this._mortgagee,
+                          value: _mortgagee,
                           onChanged: (bool? value) {
                             setState(() {
-                              this._mortgagee = value!;
+                              _mortgagee = value!;
                             });
                           },
                         ), //
-                        Text(
+                        const Text(
                           'Mortgagee',
                           textAlign: TextAlign.left,
                           style: TextStyle(
@@ -362,14 +361,14 @@ class _ScreenReportsState extends State<ScreenReports> {
                     Row(
                       children: [
                         Checkbox(
-                          value: this._different_claimant,
+                          value: _different_claimant,
                           onChanged: (bool? value) {
                             setState(() {
-                              this._different_claimant = value!;
+                              _different_claimant = value!;
                             });
                           },
                         ), //
-                        Text(
+                        const Text(
                           'Different Claimant',
                           textAlign: TextAlign.left,
                           style: TextStyle(
@@ -380,14 +379,14 @@ class _ScreenReportsState extends State<ScreenReports> {
                     Row(
                       children: [
                         Checkbox(
-                          value: this._contractor,
+                          value: _contractor,
                           onChanged: (bool? value) {
                             setState(() {
-                              this._contractor = value!;
+                              _contractor = value!;
                             });
                           },
                         ), //
-                        Text(
+                        const Text(
                           'Contractor',
                           textAlign: TextAlign.left,
                           style: TextStyle(
@@ -398,14 +397,14 @@ class _ScreenReportsState extends State<ScreenReports> {
                     Row(
                       children: [
                         Checkbox(
-                          value: this._none_present,
+                          value: _none_present,
                           onChanged: (bool? value) {
                             setState(() {
-                              this._none_present = value!;
+                              _none_present = value!;
                             });
                           },
                         ), //
-                        Text(
+                        const Text(
                           'None ware present',
                           textAlign: TextAlign.left,
                           style: TextStyle(
@@ -421,13 +420,13 @@ class _ScreenReportsState extends State<ScreenReports> {
                     "Home Owner's Name",
                     txtEdtCntrlr2,
                     "Paul",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Contractor's Name",
                     txtEdtCntrlr3,
                     "Paul",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
@@ -443,22 +442,21 @@ class _ScreenReportsState extends State<ScreenReports> {
                               Text('Inspection Date', style: textStyle),
                               Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
                                     border: Border.all(
                                         width: 1.5,
                                         color: Colors.black87,
                                         style: BorderStyle.solid)),
-                                child:
-                                    Text('$inspection_date', style: textStyle),
+                                child: Text(inspection_date, style: textStyle),
                               ),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: InkWell(
                           onTap: () {
@@ -469,16 +467,15 @@ class _ScreenReportsState extends State<ScreenReports> {
                               Text('Inspection Time', style: textStyle),
                               Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
                                     border: Border.all(
                                         width: 1.5,
                                         color: Colors.black87,
                                         style: BorderStyle.solid)),
-                                child:
-                                    Text('$inspection_time', style: textStyle),
+                                child: Text(inspection_time, style: textStyle),
                               ),
                             ],
                           ),
@@ -487,7 +484,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                     ],
                   ),
                 ),
-                Divider(thickness: 2, endIndent: 5, indent: 1),
+                const Divider(thickness: 2, endIndent: 5, indent: 1),
                 Row(
                   children: [
                     Expanded(
@@ -499,29 +496,30 @@ class _ScreenReportsState extends State<ScreenReports> {
                           children: [
                             Text("Cause of Loss",
                                 style: Theme.of(context).textTheme.headline6),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               decoration: _decoration,
                               child: DropdownButton(
-                                icon: Icon(Icons.keyboard_arrow_down),
+                                icon: const Icon(Icons.keyboard_arrow_down),
                                 iconSize: 30,
                                 underline: Container(), //rem
                                 items: cause_loss_dropdown
                                     .map((value) => DropdownMenuItem(
-                                          child: Text(value),
                                           value: value,
+                                          child: Text(value),
                                         ))
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() {
                                     cause_loss_select = value ?? "";
-                                    cause_loss.forEach((full_object) {
+                                    for (var full_object in cause_loss) {
                                       if (cause_loss_select ==
                                           full_object.value) {
                                         cause_loss_fullobject = full_object;
                                       }
-                                    });
+                                    }
                                   });
                                 },
                                 // isExpanded: false,
@@ -544,15 +542,15 @@ class _ScreenReportsState extends State<ScreenReports> {
                             Text('Date of loss', style: textStyle),
                             Container(
                               width: double.infinity,
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5)),
                                   border: Border.all(
                                       width: 1.5,
                                       color: Colors.black87,
                                       style: BorderStyle.solid)),
-                              child: Text('$date_of_loss', style: textStyle),
+                              child: Text(date_of_loss, style: textStyle),
                             ),
                           ],
                         ),
@@ -572,28 +570,29 @@ class _ScreenReportsState extends State<ScreenReports> {
                           children: [
                             Text("Roof Type",
                                 style: Theme.of(context).textTheme.headline6),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               decoration: _decoration,
                               child: DropdownButton(
-                                icon: Icon(Icons.keyboard_arrow_down),
+                                icon: const Icon(Icons.keyboard_arrow_down),
                                 iconSize: 30,
                                 underline: Container(), //rem
                                 items: roof_type_dropdown
                                     .map((value) => DropdownMenuItem(
-                                          child: Text(value),
                                           value: value,
+                                          child: Text(value),
                                         ))
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() {
                                     roof_type_select = value ?? "";
-                                    roof_type.forEach((full_object) {
+                                    for (var full_object in roof_type) {
                                       if (value == full_object.value) {
                                         roof_type_fullobject = full_object;
                                       }
-                                    });
+                                    }
                                   });
                                 },
                                 // isExpanded: false,
@@ -611,7 +610,8 @@ class _ScreenReportsState extends State<ScreenReports> {
                           "Roof Age",
                           txtEdtCntrlr4,
                           "25 years",
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                          const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10)),
                     ),
                   ],
                 ),
@@ -627,28 +627,29 @@ class _ScreenReportsState extends State<ScreenReports> {
                           children: [
                             Text("Roof Style",
                                 style: Theme.of(context).textTheme.headline6),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               decoration: _decoration,
                               child: DropdownButton(
-                                icon: Icon(Icons.keyboard_arrow_down),
+                                icon: const Icon(Icons.keyboard_arrow_down),
                                 iconSize: 30,
                                 underline: Container(), //rem
                                 items: roof_style_dropdown
                                     .map((value) => DropdownMenuItem(
-                                          child: Text(value),
                                           value: value,
+                                          child: Text(value),
                                         ))
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() {
                                     roof_style_select = value ?? "";
-                                    roof_style.forEach((full_object) {
+                                    for (var full_object in roof_style) {
                                       if (value == full_object.value) {
                                         roof_style_fullobject = full_object;
                                       }
-                                    });
+                                    }
                                   });
                                 },
                                 // isExpanded: false,
@@ -666,7 +667,8 @@ class _ScreenReportsState extends State<ScreenReports> {
                           "Layers",
                           txtEdtCntrlr5,
                           "1 Layer",
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                          const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10)),
                     ),
                   ],
                 ),
@@ -678,28 +680,28 @@ class _ScreenReportsState extends State<ScreenReports> {
                     children: [
                       Text("Edge Matel",
                           style: Theme.of(context).textTheme.headline6),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         decoration: _decoration,
                         child: DropdownButton(
-                          icon: Icon(Icons.keyboard_arrow_down),
+                          icon: const Icon(Icons.keyboard_arrow_down),
                           iconSize: 30,
                           underline: Container(), //rem
                           items: edge_metal_dropdown
                               .map((value) => DropdownMenuItem(
-                                    child: Text(value),
                                     value: value,
+                                    child: Text(value),
                                   ))
                               .toList(),
                           onChanged: (String? value) {
                             setState(() {
                               edge_metal_select = value ?? "";
-                              edge_metal.forEach((full_object) {
+                              for (var full_object in edge_metal) {
                                 if (edge_metal_select == full_object.value) {
                                   edge_metal_fullobject = full_object;
                                 }
-                              });
+                              }
                             });
                           },
                           // isExpanded: false,
@@ -715,7 +717,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                     "Pitch",
                     txtEdtCntrlr6,
                     "5/12",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -732,7 +734,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                                 Expanded(
                                   child: ListTile(
                                     contentPadding: EdgeInsets.zero,
-                                    title: Text("Yes"),
+                                    title: const Text("Yes"),
                                     leading: Radio(
                                         value: "Yes",
                                         groupValue: isFeltPresent,
@@ -746,7 +748,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                                 Expanded(
                                   child: ListTile(
                                     contentPadding: EdgeInsets.zero,
-                                    title: Text("No"),
+                                    title: const Text("No"),
                                     leading: Radio(
                                         value: "No",
                                         groupValue: isFeltPresent,
@@ -766,7 +768,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                               "What Type",
                               txtEdtCntrlr18,
                               "30 LB",
-                              EdgeInsets.symmetric(
+                              const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 10)),
                         ),
                       ],
@@ -774,7 +776,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                   ],
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -786,7 +788,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                         Expanded(
                           child: ListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: Text("Yes"),
+                            title: const Text("Yes"),
                             leading: Radio(
                                 value: "Yes",
                                 groupValue: IceWaterShieldPresent,
@@ -800,7 +802,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                         Expanded(
                           child: ListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: Text("No"),
+                            title: const Text("No"),
                             leading: Radio(
                                 value: "No",
                                 groupValue: IceWaterShieldPresent,
@@ -811,13 +813,13 @@ class _ScreenReportsState extends State<ScreenReports> {
                                 }),
                           ),
                         ),
-                        Expanded(child: SizedBox())
+                        const Expanded(child: SizedBox())
                       ],
                     ),
                   ],
                 ),
 
-                Divider(thickness: 2, endIndent: 5, indent: 1),
+                const Divider(thickness: 2, endIndent: 5, indent: 1),
 
                 Row(
                   children: [
@@ -830,28 +832,29 @@ class _ScreenReportsState extends State<ScreenReports> {
                           children: [
                             Text("Dwelling",
                                 style: Theme.of(context).textTheme.headline6),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               decoration: _decoration,
                               child: DropdownButton(
-                                icon: Icon(Icons.keyboard_arrow_down),
+                                icon: const Icon(Icons.keyboard_arrow_down),
                                 iconSize: 30,
                                 underline: Container(), //rem
                                 items: dwelling_dropdown
                                     .map((value) => DropdownMenuItem(
-                                          child: Text(value),
                                           value: value,
+                                          child: Text(value),
                                         ))
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() {
                                     dwelling_select = value ?? "";
-                                    dwelling.forEach((full_object) {
+                                    for (var full_object in dwelling) {
                                       if (value == full_object.value) {
                                         dwelling_fullobject = full_object;
                                       }
-                                    });
+                                    }
                                   });
                                 },
                                 // isExpanded: false,
@@ -872,29 +875,30 @@ class _ScreenReportsState extends State<ScreenReports> {
                           children: [
                             Text("Dwelling Metail",
                                 style: Theme.of(context).textTheme.headline6),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               decoration: _decoration,
                               child: DropdownButton(
-                                icon: Icon(Icons.keyboard_arrow_down),
+                                icon: const Icon(Icons.keyboard_arrow_down),
                                 iconSize: 30,
                                 underline: Container(), //rem
                                 items: dwelling_material_dropdown
                                     .map((value) => DropdownMenuItem(
-                                          child: Text(value),
                                           value: value,
+                                          child: Text(value),
                                         ))
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() {
                                     dwelling_material_select = value ?? "";
-                                    dwelling_material.forEach((full_object) {
+                                    for (var full_object in dwelling_material) {
                                       if (value == full_object.value) {
                                         dwelling_material_fullobject =
                                             full_object;
                                       }
-                                    });
+                                    }
                                   });
                                 },
                                 // isExpanded: false,
@@ -920,28 +924,29 @@ class _ScreenReportsState extends State<ScreenReports> {
                           children: [
                             Text("Dwelling Type",
                                 style: Theme.of(context).textTheme.headline6),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               decoration: _decoration,
                               child: DropdownButton(
-                                icon: Icon(Icons.keyboard_arrow_down),
+                                icon: const Icon(Icons.keyboard_arrow_down),
                                 iconSize: 30,
                                 underline: Container(), //rem
                                 items: dwelling_type_dropdown
                                     .map((value) => DropdownMenuItem(
-                                          child: Text(value),
                                           value: value,
+                                          child: Text(value),
                                         ))
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() {
                                     dwelling_type_select = value ?? "";
-                                    dwelling_type.forEach((full_object) {
+                                    for (var full_object in dwelling_type) {
                                       if (value == full_object.value) {
                                         dwelling_type_fullobject = full_object;
                                       }
-                                    });
+                                    }
                                   });
                                 },
                                 // isExpanded: false,
@@ -959,7 +964,8 @@ class _ScreenReportsState extends State<ScreenReports> {
                           "Stories",
                           txtEdtCntrlr7,
                           "2 Stories",
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                          const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10)),
                     ),
                   ],
                 ),
@@ -972,7 +978,8 @@ class _ScreenReportsState extends State<ScreenReports> {
                           "Garage",
                           txtEdtCntrlr17,
                           "1 Car Garage",
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                          const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10)),
                     ),
                     Expanded(
                       child: Row(
@@ -980,14 +987,14 @@ class _ScreenReportsState extends State<ScreenReports> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Checkbox(
-                            value: this._attached,
+                            value: _attached,
                             onChanged: (bool? value) {
                               setState(() {
-                                this._attached = value!;
+                                _attached = value!;
                               });
                             },
                           ), //
-                          Text(
+                          const Text(
                             'Attached',
                             textAlign: TextAlign.left,
                             style: TextStyle(
@@ -1007,29 +1014,29 @@ class _ScreenReportsState extends State<ScreenReports> {
                     children: [
                       Text("Garage Material",
                           style: Theme.of(context).textTheme.headline6),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         decoration: _decoration,
                         child: DropdownButton(
-                          icon: Icon(Icons.keyboard_arrow_down),
+                          icon: const Icon(Icons.keyboard_arrow_down),
                           iconSize: 30,
                           underline: Container(), //rem
                           items: garage_material_dropdown
                               .map((value) => DropdownMenuItem(
-                                    child: Text(value),
                                     value: value,
+                                    child: Text(value),
                                   ))
                               .toList(),
                           onChanged: (String? value) {
                             setState(() {
                               garage_material_select = value ?? "";
-                              garage_material.forEach((full_object) {
+                              for (var full_object in garage_material) {
                                 if (garage_material_select ==
                                     full_object.value) {
                                   garage_material_fullobject = full_object;
                                 }
-                              });
+                              }
                             });
                           },
                           // isExpanded: false,
@@ -1040,7 +1047,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                     ],
                   ),
                 ),
-                Divider(thickness: 2, endIndent: 5, indent: 1),
+                const Divider(thickness: 2, endIndent: 5, indent: 1),
 
                 Align(
                   alignment: Alignment.centerLeft,
@@ -1055,14 +1062,14 @@ class _ScreenReportsState extends State<ScreenReports> {
                     "Roof Summery",
                     txtEdtCntrlr8,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Roof Components",
                     txtEdtCntrlr9,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
-                Divider(thickness: 2, endIndent: 5, indent: 1),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                const Divider(thickness: 2, endIndent: 5, indent: 1),
 
                 Align(
                   alignment: Alignment.centerLeft,
@@ -1077,49 +1084,49 @@ class _ScreenReportsState extends State<ScreenReports> {
                     "Front Elevation Summery",
                     txtEdtCntrlr10,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
 
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Left Elevation Summery",
                     txtEdtCntrlr11,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Back Elevation Summery",
                     txtEdtCntrlr12,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Right Elevation Summery",
                     txtEdtCntrlr13,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Interior Summery",
                     txtEdtCntrlr14,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
 
-                Divider(thickness: 2, endIndent: 5, indent: 1),
+                const Divider(thickness: 2, endIndent: 5, indent: 1),
 
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Public Notes",
                     txtEdtCntrlr15,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
 
                 TextFormFieldTheme.GetTextFormFieldWithBorder(
                     context,
                     "Private Notes",
                     txtEdtCntrlr16,
                     "",
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
-                Divider(thickness: 2, endIndent: 5, indent: 1),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                const Divider(thickness: 2, endIndent: 5, indent: 1),
 
                 Padding(
                   padding:
@@ -1129,7 +1136,7 @@ class _ScreenReportsState extends State<ScreenReports> {
                 ),
 
                 //sdfsdfsfsfdsdf
-                SizedBox(height: 30)
+                const SizedBox(height: 30)
               ],
             ),
           ))
@@ -1140,8 +1147,8 @@ class _ScreenReportsState extends State<ScreenReports> {
 
   Widget getIconText(title, Color color) {
     return Container(
-      margin: EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 5),
-      padding: EdgeInsets.only(bottom: 5),
+      margin: const EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 5),
+      padding: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
@@ -1153,34 +1160,34 @@ class _ScreenReportsState extends State<ScreenReports> {
   }
 
   Widget getGridContainer(
-      icon_data1, title1, onTapFirst, icon_data2, title2, onTapSecond) {
+      iconData1, title1, onTapFirst, iconData2, title2, onTapSecond) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         InkWell(
             onTap: onTapFirst,
-            child: GridContainer(icon_data1, title1, onTapFirst)),
-        Spacer(),
+            child: GridContainer(iconData1, title1, onTapFirst)),
+        const Spacer(),
         InkWell(
           onTap: onTapFirst,
-          child: GridContainer(icon_data2, title2, onTapSecond),
+          child: GridContainer(iconData2, title2, onTapSecond),
         )
       ],
     );
   }
 
-  Widget GridContainer(icon_data, title, onTap) {
-    double width_height = MediaQuery.of(context).size.width / 2.5;
+  Widget GridContainer(iconData, title, onTap) {
+    double widthHeight = MediaQuery.of(context).size.width / 2.5;
     return Container(
-      margin: EdgeInsets.all(7),
+      margin: const EdgeInsets.all(7),
       decoration: WidgetsReusing.getListBoxDecoration(),
-      height: width_height - 35,
-      width: width_height,
+      height: widthHeight - 35,
+      width: widthHeight,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon_data, size: 50),
-          SizedBox(height: 10),
+          Icon(iconData, size: 50),
+          const SizedBox(height: 10),
           Text(title, style: Theme.of(context).textTheme.bodyText1),
         ],
       ),
@@ -1189,7 +1196,7 @@ class _ScreenReportsState extends State<ScreenReports> {
 
   DataAllDropDown GetValue(mapObject, String value) {
     DataAllDropDown ssss =
-        DataAllDropDown.fromJson(jsonDecode(mapObject)["$value"]);
+        DataAllDropDown.fromJson(jsonDecode(mapObject)[value]);
     return ssss;
   }
 
@@ -1206,12 +1213,12 @@ class _ScreenReportsState extends State<ScreenReports> {
           children: [
             Text(
               "$title : $text",
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                   color: Colors.black87),
             ),
-            Divider()
+            const Divider()
           ],
         ),
       ),
@@ -1224,9 +1231,9 @@ class _ScreenReportsState extends State<ScreenReports> {
         InkWell(
           onTap: () => Navigator.of(context).pop(),
           child: Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(left: 15),
-            child: Icon(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.only(left: 15),
+            child: const Icon(
               Icons.arrow_back,
               size: 30,
             ),
@@ -1236,7 +1243,7 @@ class _ScreenReportsState extends State<ScreenReports> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.info_outline),
+              const Icon(Icons.info_outline),
               Text(
                 "Report",
                 style: Theme.of(context).textTheme.headline1,
@@ -1253,10 +1260,10 @@ class _ScreenReportsState extends State<ScreenReports> {
             //         ScreenCamera(dataClaimDetails: widget.dataSingleClaim)));
           },
           child: Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(right: 15),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.only(right: 15),
             decoration: WidgetsReusing.getListBoxDecoration(),
-            child: Icon(
+            child: const Icon(
               Icons.camera_alt_rounded,
               size: 30,
             ),
@@ -1266,7 +1273,7 @@ class _ScreenReportsState extends State<ScreenReports> {
     );
   }
 
-  final _decoration = ShapeDecoration(
+  final _decoration = const ShapeDecoration(
     shape: RoundedRectangleBorder(
       side: BorderSide(width: 1.0, style: BorderStyle.solid),
       borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -1290,18 +1297,17 @@ class _ScreenReportsState extends State<ScreenReports> {
                     child: CupertinoDatePicker(
                       initialDateTime: DateTime.now(),
                       // initialDateTime: DateTime(1990),
-                      onDateTimeChanged: (DateTime _date) {
+                      onDateTimeChanged: (DateTime date) {
                         setState(() {
                           if (isInspectionDate) {
-                            txtEdtCntrlr16!.text = _date.toString();
-                            txtEdtCntrlr16!.text = ConstantFunctions
-                                .calendar_formate
-                                .format(_date);
-                            inspection_date = ConstantFunctions.calendar_formate
-                                .format(_date);
+                            txtEdtCntrlr16!.text = date.toString();
+                            txtEdtCntrlr16!.text =
+                                ConstantFunctions.calendar_formate.format(date);
+                            inspection_date =
+                                ConstantFunctions.calendar_formate.format(date);
                           } else {
-                            date_of_loss = ConstantFunctions.calendar_formate
-                                .format(_date);
+                            date_of_loss =
+                                ConstantFunctions.calendar_formate.format(date);
                           }
                         });
                       },
@@ -1339,10 +1345,10 @@ class _ScreenReportsState extends State<ScreenReports> {
                     child: CupertinoDatePicker(
                       // initialDateTime: DateTime.now().subtract(Duration(days: 10021)),
                       initialDateTime: DateTime.now(),
-                      onDateTimeChanged: (DateTime _date) {
+                      onDateTimeChanged: (DateTime date) {
                         setState(() {
-                          inspection_time = ConstantFunctions.formattedTimefinal
-                              .format(_date);
+                          inspection_time =
+                              ConstantFunctions.formattedTimefinal.format(date);
                           // inspection_time = _date.toString();
                         });
                       },

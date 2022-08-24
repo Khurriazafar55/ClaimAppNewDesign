@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:flutter_compass/flutter_compass.dart';
 
 import 'compass_logic.dart';
@@ -22,6 +24,10 @@ class _CompassScreenState extends State<CompassScreen> {
 
   @override
   initState() {
+    SystemChrome.setPreferredOrientations([
+      // DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+    ]);
     FlutterCompass.events!.listen((event) {
       setState(() {
         _bearing = event.heading;

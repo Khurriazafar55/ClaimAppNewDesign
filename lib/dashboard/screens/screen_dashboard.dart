@@ -4,13 +4,12 @@ import 'dart:io';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
 import 'package:claim_core/claim/screens/new_claim.dart';
-import 'package:claim_core/claim/screens/screen_new_claim.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
 import 'package:claim_core/dashboard/models/model_weather1.dart';
+import 'package:claim_core/dashboard/screens/calander_screen.dart';
 import 'package:claim_core/dashboard/screens/compass_screen.dart';
+import 'package:claim_core/dashboard/screens/contacts_screen.dart';
 import 'package:claim_core/dashboard/screens/dashboard2.dart';
-import 'package:claim_core/dashboard/screens/screen_calendar.dart';
-import 'package:claim_core/dashboard/screens/screen_contacts.dart';
 import 'package:claim_core/dashboard/screens/screen_guide.dart';
 import 'package:claim_core/dashboard/screens/screen_measure_assist.dart';
 import 'package:claim_core/dashboard/screens/screen_on_demand.dart';
@@ -20,7 +19,6 @@ import 'package:claim_core/sidebar/screens/screen_drawer.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:claim_core/utilities/rest_api_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
@@ -53,10 +51,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   void initState() {
     super.initState();
 
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      // DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   // DeviceOrientation.portraitDown,
+    // ]);
   }
 
   late GestureTapCallback onMapTap;
@@ -102,7 +100,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     };
     onContactsTap = () {
       Navigator.push(
-          context, ConstantFunctions.OpenNewActivity(const ContactsScreen()));
+          context, ConstantFunctions.OpenNewActivity(const ContactsScreen1()));
     };
     onCalendarTap = () {
       ConstantFunctions.getSharePrefModeString("login_token").then(
@@ -121,7 +119,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               Navigator.push(
                   context,
                   ConstantFunctions.OpenNewActivity(
-                      CalendarScreen(claim_list: data)));
+                      CalanderScreen(claim_list: data)));
             } else {
               ConstantFunctions.getSnakeBar(context, "Sorry no claim found");
             }
@@ -267,58 +265,58 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           ),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        height: MediaQuery.of(context).size.height / 5.8,
+                        height: MediaQuery.of(context).size.height / 6,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 5, vertical: 5),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 10),
                         child: Column(
                           children: [
-                            Container(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  getWeatherhead2("FrankFort, IL", "92 F"),
-                                  getWeatherhead3(
-                                      Icons.sunny, "Sunny", "H:94", "L:60"),
-                                ],
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                getWeatherhead2("FrankFort, IL", "92 F"),
+                                getWeatherhead3(
+                                    Icons.sunny, "Sunny", "H:94", "L:60"),
+                              ],
                             ),
                             const SizedBox(
                               height: 5,
                             ),
-                            Container(
-                              color: const Color.fromRGBO(86, 201, 250, 1),
-                              height: MediaQuery.of(context).size.height / 10.5,
-                              child: FutureBuilder<List<ModelWeather>>(
-                                future: fetchWeather(),
-                                builder: (context, snapshot) {
-                                  final weather = snapshot.data;
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                  if (weather == null) {
-                                    return const Center(
-                                        child: Text('No user found'));
-                                  }
+                            Expanded(
+                              child: Container(
+                                color: const Color.fromRGBO(86, 201, 250, 1),
+                                height:
+                                    MediaQuery.of(context).size.height / 10.5,
+                                child: FutureBuilder<List<ModelWeather>>(
+                                  future: fetchWeather(),
+                                  builder: (context, snapshot) {
+                                    final weather = snapshot.data;
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                    if (weather == null) {
+                                      return const Center(
+                                          child: Text('No user found'));
+                                    }
 
-                                  return ListView.builder(
-                                    itemCount: weather.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      final temp = weather[index];
+                                    return ListView.builder(
+                                      itemCount: weather.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        final temp = weather[index];
 
-                                      return getWeatherUpdate(
-                                          getTime2(temp.date),
-                                          // temp.date,
-                                          temp.summary,
-                                          temp.temperatureC.toString());
-                                    },
-                                  );
-                                },
+                                        return getWeatherUpdate(
+                                            getTime2(temp.date),
+                                            // temp.date,
+                                            temp.summary,
+                                            temp.temperatureC.toString());
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ],

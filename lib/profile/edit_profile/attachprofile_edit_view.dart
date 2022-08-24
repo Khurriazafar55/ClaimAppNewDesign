@@ -22,12 +22,12 @@ class _AttachProfileEditViewState extends State<AttachProfileEditView> {
             // color: ThemeColors.headline6_color_lt,
             borderRadius: BorderRadius.circular(7),
           ),
-          child: Column(
+          child: ListView(
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
                       'Attached files (2)',
@@ -47,6 +47,11 @@ class _AttachProfileEditViewState extends State<AttachProfileEditView> {
                   ],
                 ),
               ),
+              // ListView.builder(
+              //     itemCount: 1,
+              //     itemBuilder: ((context, index) {
+              //       return ReusableText('filepath', 'certification.png');
+              //     })),
               ReusableText('filepath', 'certification.png'),
               ReusableText('filePath', 'resume.pdf'),
               ReusableText('filePath', 'resume.pdf'),
@@ -83,27 +88,41 @@ class _AttachProfileEditViewState extends State<AttachProfileEditView> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(12),
-          child: TextButton(
-            onPressed: () {},
-            child: const Text('Rename',
-                style: TextStyle(
-                    color: ThemeColors.headline7_color_lt, fontSize: 12)),
-          ),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text(txt2),
-              TextButton(
-                onPressed: () {},
-                child: const Text('Remove',
-                    style: TextStyle(
-                        color: ThemeColors.headline7_color_lt, fontSize: 12)),
-              )
-            ],
-          ),
+        // Padding(padding: const EdgeInsets.all(12), child: Text(txt2)
+        //  TextButton(
+        //   onPressed: () {},
+        //   child: const Text('Rename',
+        //       style: TextStyle(
+        //           color: ThemeColors.headline7_color_lt, fontSize: 12)),
+        // ),
+        // ),
+        Column(
+          children: [
+            Align(alignment: Alignment.centerLeft, child: Text(txt2)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Rename',
+                        style: TextStyle(
+                            color: ThemeColors.headline7_color_lt,
+                            fontSize: 12)),
+                  ),
+                  const SizedBox(width: 50),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Remove',
+                        style: TextStyle(
+                            color: ThemeColors.headline7_color_lt,
+                            fontSize: 12)),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     );

@@ -1,8 +1,8 @@
-import 'package:claim_core/sidebar/widgets/widget_bottomnavbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../app_theme_work/theme_colors.dart';
 import '../../dashboard/screens/dashboard2.dart';
+import '../../sidebar/widgets/widget_bottomnavbar.dart';
 
 class AttachProfileView extends StatefulWidget {
   const AttachProfileView({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class AattachProfileViewState extends State<AttachProfileView> {
             // color: ThemeColors.headline6_color_lt,
             borderRadius: BorderRadius.circular(7),
           ),
-          child: Column(
+          child: ListView(
             children: [
               const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -34,6 +34,12 @@ class AattachProfileViewState extends State<AttachProfileView> {
                       color: ThemeColors.headline7_color_lt),
                 ),
               ),
+              // ListView.builder(
+              //     itemCount: 1,
+              //     itemBuilder: (BuildContext context, index) {
+              //       return ReusableText('1', 'certification.png');
+              //     }),
+
               ReusableText('filepath', 'certification.png'),
               ReusableText('filePath', 'resume.pdf'),
               ReusableText('filePath', 'resume.pdf'),
@@ -53,6 +59,7 @@ class AattachProfileViewState extends State<AttachProfileView> {
 
   Widget ReusableText(String filePath, String txt2) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

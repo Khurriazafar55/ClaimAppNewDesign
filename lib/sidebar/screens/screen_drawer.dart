@@ -1,8 +1,9 @@
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/screens/my_claims.dart';
+import 'package:claim_core/dashboard/screens/calander_screen.dart';
 import 'package:claim_core/dashboard/screens/compass_screen.dart';
-import 'package:claim_core/dashboard/screens/screen_calendar.dart';
+import 'package:claim_core/dashboard/screens/contacts_screen.dart';
 import 'package:claim_core/dashboard/screens/screen_dashboard.dart';
 import 'package:claim_core/dashboard/screens/screen_guide.dart';
 import 'package:claim_core/dashboard/screens/screen_measure_assist.dart';
@@ -15,7 +16,6 @@ import 'package:claim_core/utilities/icon_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../dashboard/screens/screen_contacts.dart';
 import '../settings_screens/settings_screen.dart';
 import 'rooftools_screen.dart';
 
@@ -99,9 +99,9 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
             topRight: Radius.circular(25),
             bottomRight: Radius.circular(25),
           )),
-      child: Column(
+      child: ListView(
         children: [
-          const SizedBox(height: 16),
+          // const SizedBox(height: 12),
           Align(
             alignment: Alignment.topLeft,
             child: IconButton(
@@ -171,8 +171,7 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              ConstantFunctions.OpenNewActivity(
-                                  const CalendarScreen(
+                              ConstantFunctions.OpenNewActivity(CalanderScreen(
                                 claim_list: [],
                               )),
                             );
@@ -205,7 +204,7 @@ class _ScreenDrawerState extends State<ScreenDrawer> {
                             Navigator.push(
                               context,
                               ConstantFunctions.OpenNewActivity(
-                                  const ContactsScreen()),
+                                  const ContactsScreen1()),
                             );
                           },
                           child: Row(

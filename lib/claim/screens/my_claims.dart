@@ -1,7 +1,8 @@
 import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
-import 'package:claim_core/claim/screens/claim_tabs.dart';
+import 'package:claim_core/claim/screens/calim_tab/claim_tabs.dart';
+
 import 'package:claim_core/claim/screens/screen_my_claims.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
 import 'package:claim_core/dashboard/screens/dashboard2.dart';

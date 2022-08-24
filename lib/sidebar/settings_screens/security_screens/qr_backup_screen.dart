@@ -38,8 +38,8 @@ class QrAppBackupScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 30),
             const Text(

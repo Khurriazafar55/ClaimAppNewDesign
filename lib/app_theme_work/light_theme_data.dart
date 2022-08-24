@@ -1,26 +1,23 @@
 import 'package:claim_core/app_theme_work/text_themes.dart';
 import 'package:claim_core/app_theme_work/theme_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LightThemeData {
   LightThemeData._();
 
-  static final border_radius = BorderRadius.all(Radius.circular(5));
+  static const border_radius = const BorderRadius.all(Radius.circular(5));
   static double border_width = 2;
 
   static final light_theme = ThemeData(
       backgroundColor: ThemeColors.background_color_lt,
       primaryColorDark: ThemeColors.primary_dark_lt,
       scaffoldBackgroundColor: ThemeColors.scaffold_color_lt,
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: ThemeColors.primary_dark_lt,
       ),
-      colorScheme: ColorScheme(
+      colorScheme: const ColorScheme(
         primary: ThemeColors.primary_light_lt,
-        primaryVariant: ThemeColors.primary_varient_lt,
         secondary: ThemeColors.primary_dark_lt,
-        secondaryVariant: ThemeColors.primary_dark_lt,
         surface: Colors.grey,
         background: Colors.white,
         error: Colors.white,
@@ -64,17 +61,18 @@ class LightThemeData {
         style: ElevatedButton.styleFrom(
             elevation: 0,
             primary: ThemeColors.elevated_button_back_color_lt,
-            textStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
+            textStyle:
+                const TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
       ),
       appBarTheme: AppBarTheme(
           backgroundColor: ThemeColors.appbar_color_lt,
           elevation: 1,
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.white,
             size: 28,
           ),
           titleTextStyle: TextThemes.app_bar_title,
-          actionsIconTheme: IconThemeData(
+          actionsIconTheme: const IconThemeData(
             color: Colors.white,
             size: 28,
           )),
@@ -83,5 +81,5 @@ class LightThemeData {
         elevation: 0,
         // shape: BoxShape.rectangle
       ),
-      iconTheme: IconThemeData(color: Colors.black87, size: 25));
+      iconTheme: const IconThemeData(color: Colors.black87, size: 25));
 }
