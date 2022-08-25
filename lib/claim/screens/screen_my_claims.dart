@@ -189,7 +189,21 @@ class _MyClaimsScreenState extends State<MyClaimsScreen> {
                       future: future_get_claim,
                       builder:
                           (context, AsyncSnapshot<ModelGetClaim> snapshot) {
-                        if (snapshot.hasData) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            //   child: CircularProgressIndicator(
+                            //       color: Colors.white,
+                            //       backgroundColor: Colors.green),
+                            // );
+                            child: Text('Searching..'),
+                          );
+                        }
+                        if (snapshot.data == null) {
+                          return const Center(
+                            child: Text('No Claims found!'),
+                          );
+                        } else {
                           return Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height,
@@ -212,10 +226,6 @@ class _MyClaimsScreenState extends State<MyClaimsScreen> {
                                 );
                               },
                             ),
-                          );
-                        } else {
-                          return const Center(
-                            child: CircularProgressIndicator(),
                           );
                         }
                       },

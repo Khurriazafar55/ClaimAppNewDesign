@@ -2,7 +2,6 @@ import 'package:claim_core/app_theme_work/theme_colors.dart';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
 import 'package:claim_core/claim/screens/calim_tab/claim_tabs.dart';
-
 import 'package:claim_core/claim/screens/screen_my_claims.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
 import 'package:claim_core/dashboard/screens/dashboard2.dart';
@@ -87,7 +86,7 @@ class _MyClaimsState extends State<MyClaims> {
                             margin: const EdgeInsets.only(left: 7),
                             // decoration: WidgetsReusing.getListBoxDecoration(),
                             child: const Icon(
-                              Icons.note_alt_outlined,
+                              Icons.calendar_today,
                               size: 30,
                               color: Colors.white,
                             ),
@@ -128,7 +127,7 @@ class _MyClaimsState extends State<MyClaims> {
                     Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             '7/6/2022',
                             style: TextStyle(color: Colors.white, fontSize: 18),
@@ -148,12 +147,22 @@ class _MyClaimsState extends State<MyClaims> {
                         future: future_get_claim,
                         builder:
                             (context, AsyncSnapshot<ModelGetClaim> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator(
+                              semanticsLabel: 'loading..',
+                              color: Colors.white,
+                              backgroundColor: Colors.white54,
+                            ));
+                          }
+
                           if (snapshot.hasError) {
                             return Container(
                               child: const Text('Something Wents wrong'),
                             );
                           }
-                          if (snapshot.hasData) {
+                          if (snapshot.data != null) {
                             return Container(
                               margin:
                                   const EdgeInsets.only(top: 10, bottom: 10),
@@ -169,11 +178,13 @@ class _MyClaimsState extends State<MyClaims> {
                                   itemCount: snapshot.data!.data!.length,
                                   itemBuilder: (context, index) {
                                     final claim = snapshot.data!.data![index];
+
                                     if (snapshot.connectionState ==
                                         ConnectionState.waiting) {
                                       return const Center(
                                           child: CircularProgressIndicator());
                                     }
+                                    if (snapshot.data == null) {}
                                     return GestureDetector(
                                       onTap: () {
                                         Navigator.push(
@@ -202,7 +213,7 @@ class _MyClaimsState extends State<MyClaims> {
                             );
                           } else {
                             return const Center(
-                              child: CircularProgressIndicator(),
+                              child: Text('No Claims found!'),
                             );
                           }
                         },

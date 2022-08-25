@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:claim_core/app_theme_work/widgets_reusing.dart';
 import 'package:claim_core/claim/models/model_get_claim.dart';
 import 'package:claim_core/claim/screens/new_claim.dart';
+import 'package:claim_core/claim/screens/screen_archive.dart';
 import 'package:claim_core/claim/services/service_claim.dart';
 import 'package:claim_core/dashboard/models/model_weather1.dart';
 import 'package:claim_core/dashboard/screens/calander_screen.dart';
@@ -15,6 +16,7 @@ import 'package:claim_core/dashboard/screens/screen_measure_assist.dart';
 import 'package:claim_core/dashboard/screens/screen_on_demand.dart';
 import 'package:claim_core/screen_map.dart';
 import 'package:claim_core/sidebar/screens/alerts_screen.dart';
+import 'package:claim_core/sidebar/screens/rooftools_screen.dart';
 import 'package:claim_core/sidebar/screens/screen_drawer.dart';
 import 'package:claim_core/utilities/constant_functions.dart';
 import 'package:claim_core/utilities/rest_api_utils.dart';
@@ -61,6 +63,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   late GestureTapCallback onRoutingTap;
   late GestureTapCallback onMeasureAssistTap;
   late GestureTapCallback onNewClaimTap;
+  late GestureTapCallback onAlertTap;
+  late GestureTapCallback onArchiveTap;
+  late GestureTapCallback onRoofToolsTap;
 
   late GestureTapCallback onOnDemandTap;
   late GestureTapCallback onProfile;
@@ -74,6 +79,22 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     onMapTap = () {
       Navigator.push(context, ConstantFunctions.OpenNewActivity(MapScreen()));
+    };
+
+    onAlertTap = () {
+      Navigator.push(context, MaterialPageRoute(builder: (_) {
+        return const Alerts();
+      }));
+    };
+    onArchiveTap = () {
+      Navigator.push(context, MaterialPageRoute(builder: (_) {
+        return const ScreenArchive();
+      }));
+    };
+    onRoofToolsTap = () {
+      Navigator.push(context, MaterialPageRoute(builder: (_) {
+        return const RoofToolsScreen();
+      }));
     };
 
     onRoutingTap = () {
@@ -335,21 +356,24 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              getIconText(Icons.archive_outlined, "Archive"),
+                              InkWell(
+                                onTap: onArchiveTap,
+                                child: getIconText(
+                                    Icons.archive_outlined, "Archive"),
+                              ),
                               const Spacer(),
                               InkWell(
-                                onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) {
-                                    return const Alerts();
-                                  }));
-                                },
+                                onTap: onAlertTap,
                                 child: getIconText(
                                     Icons.notifications_none_outlined,
                                     "Alerts"),
                               ),
                               const Spacer(),
-                              getIconText(Icons.construction, "Roof Tools"),
+                              InkWell(
+                                onTap: onRoofToolsTap,
+                                child: getIconText(
+                                    Icons.construction, "Roof Tools"),
+                              ),
                             ],
                           ),
                         ],

@@ -1,10 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:claim_core/app_theme_work/light_theme_data.dart';
-
-import 'package:claim_core/claim/reports/creat_report.dart';
-import 'package:claim_core/claim/screens/auto_fill.dart';
-
 import 'package:claim_core/login/screens/screen_login.dart';
 import 'package:claim_core/provider/userprovider.dart';
 import 'package:claim_core/splas_screen.dart';
